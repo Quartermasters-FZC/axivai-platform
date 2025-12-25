@@ -1,0 +1,293 @@
+// AXIVAI Platform - Prisma Schema
+// © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// TCO CALCULATOR MODELS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+model District {
+  id                  String              @id @default(cuid())
+  name                String
+  state               String
+  zipCode             String?
+  fleetSize           Int?
+  annualMiles         Int?
+  currentFuelType     FuelType            @default(DIESEL)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  tcoAnalyses         TCOAnalysis[]
+  fleetProfiles       FleetProfile[]
+}
+
+model FleetProfile {
+  id                  String              @id @default(cuid())
+  districtId          String
+  district            District            @relation(fields: [districtId], references: [id], onDelete: Cascade)
+
+  // Fleet composition
+  typeACount          Int                 @default(0)  // Small buses
+  typeCCount          Int                 @default(0)  // Conventional
+  typeDCount          Int                 @default(0)  // Transit-style
+
+  // Operational profile
+  avgDailyMiles       Float               @default(60)
+  operatingDaysPerYear Int                @default(180)
+  parkOutPercentage   Float               @default(0)   // % of fleet using park-out
+
+  // Current costs (user inputs)
+  dieselPricePerGallon Float?
+  avgMpg              Float?
+  annualMaintenanceCost Float?
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  tcoAnalyses         TCOAnalysis[]
+}
+
+model TCOAnalysis {
+  id                  String              @id @default(cuid())
+  name                String
+  districtId          String?
+  district            District?           @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  fleetProfileId      String?
+  fleetProfile        FleetProfile?       @relation(fields: [fleetProfileId], references: [id], onDelete: SetNull)
+
+  // Analysis parameters
+  planningHorizonYears Int                @default(12)
+  discountRate        Float               @default(0.05)  // 5%
+  inflationRate       Float               @default(0.025) // 2.5%
+
+  // Scenario type
+  scenarioType        ScenarioType        @default(BASE)
+
+  // Results (computed)
+  totalTCO            Float?
+  npv                 Float?
+  irr                 Float?
+  paybackYears        Float?
+
+  // Breakdown stored as JSON for flexibility
+  capitalCosts        Json?
+  energyCosts         Json?
+  maintenanceCosts    Json?
+  infrastructureCosts Json?
+  incentives          Json?
+
+  // Audit trail
+  assumptions         Json?               // All assumptions used
+  dataSources         Json?               // Provenance chain
+  confidenceScore     Float?              // 0-1 confidence in results
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  comparisons         ScenarioComparison[] @relation("AnalysisA")
+  comparedBy          ScenarioComparison[] @relation("AnalysisB")
+}
+
+model ScenarioComparison {
+  id                  String              @id @default(cuid())
+  analysisAId         String
+  analysisA           TCOAnalysis         @relation("AnalysisA", fields: [analysisAId], references: [id], onDelete: Cascade)
+  analysisBId         String
+  analysisB           TCOAnalysis         @relation("AnalysisB", fields: [analysisBId], references: [id], onDelete: Cascade)
+
+  // Comparison results
+  tcoSavings          Float?
+  npvDifference       Float?
+  breakEvenYear       Int?
+
+  createdAt           DateTime            @default(now())
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// REFERENCE DATA MODELS (Research Engine feeds these)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+model EnergyRate {
+  id                  String              @id @default(cuid())
+  utilityName         String
+  state               String
+  zipCode             String?
+
+  // Rate structure
+  rateType            RateType            @default(FLAT)
+  baseRate            Float               // $/kWh
+  demandCharge        Float?              // $/kW
+
+  // TOU periods (if applicable)
+  peakRate            Float?
+  offPeakRate         Float?
+  superOffPeakRate    Float?
+
+  // Metadata
+  effectiveDate       DateTime
+  expirationDate      DateTime?
+  source              String              // Data provenance
+  sourceUrl           String?
+  confidence          DataConfidence      @default(ESTIMATED)
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  @@index([state, zipCode])
+}
+
+model VehiclePricing {
+  id                  String              @id @default(cuid())
+  manufacturer        String
+  model               String
+  busType             BusType
+  fuelType            FuelType
+
+  // Pricing
+  msrp                Float
+  typicalPurchasePrice Float?
+
+  // Specifications
+  batteryCapacityKwh  Float?              // For EVs
+  rangeNominalMiles   Float?              // For EVs
+  rangeRealWorldMiles Float?              // Adjusted for conditions
+  fuelEfficiencyMpg   Float?              // For diesel/propane
+  efficiencyKwhPerMile Float?             // For EVs
+
+  // Lifecycle
+  warrantyYears       Int?
+  warrantyMiles       Int?
+  expectedLifeYears   Int                 @default(12)
+
+  // Metadata
+  modelYear           Int
+  source              String
+  confidence          DataConfidence      @default(ESTIMATED)
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  @@index([busType, fuelType])
+}
+
+model IncentiveProgram {
+  id                  String              @id @default(cuid())
+  name                String
+  programCode         String?             @unique
+
+  // Scope
+  federalOrState      String              // "FEDERAL" or state code
+  applicableStates    String[]            // Which states qualify
+
+  // Funding
+  maxAmountPerBus     Float?
+  maxAmountPerCharger Float?
+  totalProgramFunding Float?
+  fundingRemaining    Float?
+
+  // Eligibility
+  eligibilityRequirements Json?
+  priorityCategories  String[]            // e.g., "Title I", "Rural"
+
+  // Timeline
+  applicationDeadline DateTime?
+  awardDate           DateTime?
+  expirationDate      DateTime?
+
+  // Status
+  status              ProgramStatus       @default(ACTIVE)
+
+  // Metadata
+  source              String
+  sourceUrl           String?
+  lastVerified        DateTime
+  confidence          DataConfidence      @default(KNOWN)
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+}
+
+model MaintenanceBenchmark {
+  id                  String              @id @default(cuid())
+  busType             BusType
+  fuelType            FuelType
+
+  // Cost per mile by age bracket
+  costPerMileYear1to3 Float
+  costPerMileYear4to6 Float
+  costPerMileYear7to9 Float
+  costPerMileYear10Plus Float
+
+  // Component breakdown
+  brakesCostPerMile   Float?
+  tiresCostPerMile    Float?
+  hvacCostPerMile     Float?
+  electricalCostPerMile Float?
+  engineDrivetrainCostPerMile Float?
+
+  // Metadata
+  source              String
+  sourceYear          Int
+  sampleSize          Int?
+  confidence          DataConfidence      @default(ESTIMATED)
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  @@unique([busType, fuelType])
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ENUMS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+enum FuelType {
+  DIESEL
+  PROPANE
+  CNG
+  ELECTRIC
+  HYBRID
+}
+
+enum BusType {
+  TYPE_A    // Small (< 10,000 lbs GVWR)
+  TYPE_C    // Conventional (body on chassis)
+  TYPE_D    // Transit-style (flat front)
+}
+
+enum ScenarioType {
+  BASE
+  OPTIMISTIC
+  PESSIMISTIC
+  DIESEL_BASELINE
+  SELF_MANAGED_EV
+  EAAS           // Electrification-as-a-Service
+  AXIVAI         // AXIVAI mobile charging
+}
+
+enum RateType {
+  FLAT
+  TOU           // Time-of-Use
+  TIERED
+  DEMAND
+}
+
+enum DataConfidence {
+  KNOWN         // Verified from authoritative source
+  ESTIMATED     // Calculated or estimated
+  UNKNOWN       // User should provide
+}
+
+enum ProgramStatus {
+  ACTIVE
+  PAUSED
+  CLOSED
+  UPCOMING
+}

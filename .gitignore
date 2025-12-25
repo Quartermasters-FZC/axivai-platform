@@ -96,3 +96,5 @@ Desktop.ini
 *.backup
 *.orig
 .history/
+
+/src/generated/prisma

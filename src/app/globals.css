@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * AXIVAI Brand Colors (from whitepaper)
+ * Canvas: #FFFFFF
+ * Sections: #FEFDFB
+ * Gradient: #1C1917 → #D4A017
+ * Text: #1C1917 / #57534E
+ * Accent Gold: #D4A017
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  /* AXIVAI custom colors */
+  --color-gold: #D4A017;
+  --color-gold-light: #E8C547;
+  --color-gold-dark: #B8860B;
+}
+
+:root {
+  --radius: 0.625rem;
+  /* AXIVAI Brand: Light theme */
+  --background: #FFFFFF;
+  --foreground: #1C1917;
+  --card: #FEFDFB;
+  --card-foreground: #1C1917;
+  --popover: #FFFFFF;
+  --popover-foreground: #1C1917;
+  --primary: #1C1917;
+  --primary-foreground: #FEFDFB;
+  --secondary: #FEFDFB;
+  --secondary-foreground: #1C1917;
+  --muted: #F5F5F4;
+  --muted-foreground: #57534E;
+  --accent: #D4A017;
+  --accent-foreground: #1C1917;
+  --destructive: #DC2626;
+  --border: #E7E5E4;
+  --input: #E7E5E4;
+  --ring: #D4A017;
+  /* Chart colors - warm palette */
+  --chart-1: #D4A017;
+  --chart-2: #1C1917;
+  --chart-3: #57534E;
+  --chart-4: #78716C;
+  --chart-5: #A8A29E;
+  /* Sidebar */
+  --sidebar: #FEFDFB;
+  --sidebar-foreground: #1C1917;
+  --sidebar-primary: #1C1917;
+  --sidebar-primary-foreground: #FEFDFB;
+  --sidebar-accent: #D4A017;
+  --sidebar-accent-foreground: #1C1917;
+  --sidebar-border: #E7E5E4;
+  --sidebar-ring: #D4A017;
+}
+
+.dark {
+  --background: #1C1917;
+  --foreground: #FEFDFB;
+  --card: #292524;
+  --card-foreground: #FEFDFB;
+  --popover: #292524;
+  --popover-foreground: #FEFDFB;
+  --primary: #D4A017;
+  --primary-foreground: #1C1917;
+  --secondary: #292524;
+  --secondary-foreground: #FEFDFB;
+  --muted: #44403C;
+  --muted-foreground: #A8A29E;
+  --accent: #D4A017;
+  --accent-foreground: #1C1917;
+  --destructive: #EF4444;
+  --border: #44403C;
+  --input: #44403C;
+  --ring: #D4A017;
+  --chart-1: #D4A017;
+  --chart-2: #E8C547;
+  --chart-3: #78716C;
+  --chart-4: #A8A29E;
+  --chart-5: #D6D3D1;
+  --sidebar: #292524;
+  --sidebar-foreground: #FEFDFB;
+  --sidebar-primary: #D4A017;
+  --sidebar-primary-foreground: #1C1917;
+  --sidebar-accent: #44403C;
+  --sidebar-accent-foreground: #FEFDFB;
+  --sidebar-border: #44403C;
+  --sidebar-ring: #D4A017;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* AXIVAI custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #1C1917 0%, #D4A017 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-gold {
+    background: linear-gradient(135deg, #D4A017 0%, #E8C547 100%);
+  }
+  .gradient-dark {
+    background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
+  }
+}
