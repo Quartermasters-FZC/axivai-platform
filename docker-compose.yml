@@ -1,0 +1,47 @@
+# AXIVAI Platform - Docker Compose
+# © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: axivai-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: axivai
+      POSTGRES_PASSWORD: axivai_dev_password
+      POSTGRES_DB: axivai
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U axivai -d axivai"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application (Development)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: axivai-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://axivai:axivai_dev_password@db:5432/axivai
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      db:
+        condition: service_healthy
+    command: npm run dev
+
+volumes:
+  postgres_data:
