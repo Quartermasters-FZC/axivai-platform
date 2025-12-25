@@ -6,7 +6,12 @@
  * User inputs ALWAYS override these defaults.
  */
 
-import type { TCOAssumptions, DataPoint, AnalysisParameters } from "@/types/tco";
+import type {
+  TCOAssumptions,
+  DataPoint,
+  AnalysisParameters,
+  FleetScaleAdjustment,
+} from "@/types/tco";
 
 // Helper to create a DataPoint
 function dp<T>(
@@ -124,24 +129,110 @@ export const DEFAULT_ASSUMPTIONS: TCOAssumptions = {
     undefined
   ),
 
-  // AXIVAI Three-Lane Pricing (Whitepaper Section 4.2)
+  // AXIVAI Three-Lane Pricing (Customer-Facing Rates)
   axivaiPricing: {
     directInjectionPerKwh: dp(
-      0.25,
-      "ESTIMATED",
-      "AXIVAI Whitepaper - Lane 1",
+      0.39,
+      "KNOWN",
+      "AXIVAI Customer Blended Rate - Lane 1",
       undefined
     ),
     mothershipPerKwh: dp(
-      0.25,
-      "ESTIMATED",
-      "AXIVAI Whitepaper - Lane 2",
+      0.39,
+      "KNOWN",
+      "AXIVAI Customer Blended Rate - Lane 2",
       undefined
     ),
     valetPerKwh: dp(
-      0.35,
+      0.45,
+      "KNOWN",
+      "AXIVAI Customer Blended Rate - Lane 3 (Premium)",
+      undefined
+    ),
+  },
+
+  // AXIVAI Internal Cost Structure (NOT customer pricing)
+  // Based on real operations data from I-95 Landfill PPA and transport costs
+  axivaiCostStructure: {
+    powerProcurement: {
+      ppaRate: dp(0.04, "KNOWN", "I-95 Landfill PPA", undefined),
+      solarRate: dp(0.03, "ESTIMATED", "Behind-Meter Solar", undefined),
+      utilityRate: dp(0.08, "KNOWN", "Utility C&I Rate", undefined),
+    },
+    transportation: {
+      truckEnergyPerKwh: dp(
+        0.06,
+        "KNOWN",
+        "0.4 kWh/mile × $0.15/kWh × 2 (round trip)",
+        undefined
+      ),
+      laborPerKwh: dp(
+        0.08,
+        "KNOWN",
+        "$30/hr driver, 200 kWh/hr throughput",
+        undefined
+      ),
+      depreciationPerKwh: dp(
+        0.03,
+        "KNOWN",
+        "$150K truck / 5M lifetime kWh delivered",
+        undefined
+      ),
+      maintenancePerKwh: dp(
+        0.03,
+        "ESTIMATED",
+        "Tires, brakes, servicing",
+        undefined
+      ),
+    },
+    margins: {
+      mothership: dp(0.45, "KNOWN", "AXIVAI Operations Data", undefined),
+      directInjection: dp(0.32, "KNOWN", "AXIVAI Operations Data", undefined),
+      valet: dp(0.28, "KNOWN", "AXIVAI Operations Data", undefined),
+    },
+  },
+
+  // Revenue Streams (per bus per year)
+  // Based on CA LCFS, Federal 45Q, PJM demand response
+  revenueStreams: {
+    carbonCredits: {
+      lcfsPerBus: dp(
+        600,
+        "ESTIMATED",
+        "CA LCFS Credits (~$150/ton, 4 tons/bus/year)",
+        undefined
+      ),
+      federalPerBus: dp(
+        400,
+        "ESTIMATED",
+        "Federal 45Q Credits (prorated per bus)",
+        undefined
+      ),
+    },
+    v2g: {
+      demandResponsePerBus: dp(
+        300,
+        "ESTIMATED",
+        "PJM Demand Response Program",
+        undefined
+      ),
+      frequencyRegulationPerBus: dp(
+        400,
+        "ESTIMATED",
+        "PJM Frequency Regulation",
+        undefined
+      ),
+      vppRevenuePerBus: dp(
+        225,
+        "ESTIMATED",
+        "Virtual Power Plant Participation",
+        undefined
+      ),
+    },
+    fleetScaleMultiplier: dp(
+      1.5,
       "ESTIMATED",
-      "AXIVAI Whitepaper - Lane 3",
+      "100+ bus fleet scale bonus",
       undefined
     ),
   },
@@ -178,6 +269,113 @@ export const DEFAULT_ASSUMPTIONS: TCOAssumptions = {
     "AXIVAI Whitepaper Section 7.2 - 30-50% reduction",
     undefined
   ),
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // DIESEL EXTERNAL/SOCIAL COSTS (True Cost of Diesel Operations)
+  // These costs are REAL but often externalized to children and communities
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  dieselExternalCosts: {
+    // Health Costs (per bus per year)
+    // Sources: EPA, Harvard School of Public Health, American Lung Association
+    healthCosts: {
+      childRespiratoryIllness: dp(
+        450,
+        "ESTIMATED",
+        "EPA - Child asthma/respiratory from bus exhaust exposure",
+        "https://www.epa.gov/cleanschoolbus/school-bus-pollution"
+      ),
+      communityHealthImpact: dp(
+        280,
+        "ESTIMATED",
+        "Harvard SPH - PM2.5/NOx community health effects",
+        "https://www.hsph.harvard.edu/c-change/"
+      ),
+      driverOccupationalHealth: dp(
+        120,
+        "ESTIMATED",
+        "NIOSH - Long-term driver diesel exposure effects",
+        "https://www.cdc.gov/niosh/"
+      ),
+    },
+
+    // Environmental/Climate Costs (per bus per year)
+    // Sources: EPA IWG Social Cost of Carbon, IPCC
+    climateCosts: {
+      co2SocialCost: dp(
+        780,
+        "KNOWN",
+        "EPA IWG Social Cost of Carbon @ $65/ton × 12 tons/bus/year",
+        "https://www.epa.gov/environmental-economics/scghg"
+      ),
+      methaneLeakage: dp(
+        95,
+        "ESTIMATED",
+        "Upstream methane from diesel supply chain (EPA)",
+        "https://www.epa.gov/ghgemissions"
+      ),
+      localAirQuality: dp(
+        185,
+        "ESTIMATED",
+        "Ground-level ozone/smog contribution (EPA NAAQS)",
+        "https://www.epa.gov/naaqs"
+      ),
+    },
+
+    // Regulatory/Compliance Costs (per bus per year)
+    // Sources: CARB, EPA Tier 4 requirements
+    regulatoryCosts: {
+      emissionsCompliance: dp(
+        320,
+        "KNOWN",
+        "DEF fluid, DPF maintenance, annual emissions testing",
+        undefined
+      ),
+      futureEmissionsPenalty: dp(
+        200,
+        "ESTIMATED",
+        "Anticipated EPA 2027+ tightening (prorated annual)",
+        "https://www.epa.gov/regulations-emissions-vehicles-and-engines"
+      ),
+      carbonTaxRisk: dp(
+        150,
+        "ESTIMATED",
+        "Potential carbon pricing exposure (risk-adjusted)",
+        undefined
+      ),
+    },
+
+    // Operational Risks (per bus per year)
+    // Sources: EIA price data, supply chain analysis
+    operationalRisks: {
+      fuelPriceVolatility: dp(
+        180,
+        "ESTIMATED",
+        "Diesel price volatility hedge/risk premium",
+        "https://www.eia.gov/petroleum/gasdiesel/"
+      ),
+      supplyChainDisruption: dp(
+        85,
+        "ESTIMATED",
+        "Fuel availability risk (geopolitical, refinery)",
+        undefined
+      ),
+      reputationalRisk: dp(
+        100,
+        "ESTIMATED",
+        "Parent/community pressure, brand damage from diesel",
+        undefined
+      ),
+    },
+  },
+
+  // Diesel Emissions Profile (for calculating external costs dynamically)
+  dieselEmissions: {
+    co2TonsPerBusPerYear: 12,        // Based on 10,800 miles/year at 8 MPG
+    pm25GramsPerMile: 0.15,          // EPA Tier 4 diesel particulate
+    noxGramsPerMile: 2.5,            // EPA Tier 4 NOx
+    co2GramsPerGallon: 10180,        // EPA standard for diesel
+  },
 };
 
 /**
@@ -218,6 +416,37 @@ export const COLD_WEATHER_STATES = new Set([
   "MI", "MN", "MT", "NE", "NH", "NY", "ND", "OH", "PA", "RI",
   "SD", "VT", "WI", "WY",
 ]);
+
+/**
+ * Get fleet scale adjustment based on fleet size
+ * Break-even at ~40 buses, optimal at 100+
+ */
+export function getFleetScaleAdjustment(totalBuses: number): FleetScaleAdjustment {
+  if (totalBuses < 40) {
+    // Small fleets have higher per-unit costs, lower revenue opportunities
+    return {
+      costMultiplier: 1.15, // 15% premium for small fleets
+      revenueMultiplier: 0.8, // 20% reduction in revenue opportunities
+      breakEvenReached: false,
+      fleetTier: "SMALL",
+    };
+  } else if (totalBuses >= 100) {
+    // Large fleets get volume discounts and fleet-scale revenue bonuses
+    return {
+      costMultiplier: 0.92, // 8% volume discount
+      revenueMultiplier: 1.5, // 50% bonus from fleet-scale programs
+      breakEvenReached: true,
+      fleetTier: "LARGE",
+    };
+  }
+  // Medium fleets (40-99) are at standard rates
+  return {
+    costMultiplier: 1.0,
+    revenueMultiplier: 1.0,
+    breakEvenReached: true,
+    fleetTier: "MEDIUM",
+  };
+}
 
 /**
  * Get location-adjusted defaults

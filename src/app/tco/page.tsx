@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FleetInputForm } from "@/components/tco/FleetInputForm";
 import { ResultsDisplay } from "@/components/tco/ResultsDisplay";
+import { AIInsights } from "@/components/tco/AIInsights";
 import { compareScenarios } from "@/lib/tco";
 import { DEFAULT_PARAMETERS } from "@/lib/tco/defaults";
 import type { FleetProfile, LocationProfile, AnalysisParameters } from "@/types/tco";
+import { LegalFooter } from "@/components/LegalFooter";
 
 export default function TCOCalculatorPage() {
   // Fleet profile state
@@ -31,6 +33,13 @@ export default function TCOCalculatorPage() {
   // Active tab
   const [activeTab, setActiveTab] = useState("inputs");
 
+  // AI state
+  const [aiMode, setAiMode] = useState<"explain" | "audit">("explain");
+  const [aiProvider, setAiProvider] = useState<string | undefined>(undefined);
+  const [aiMessage, setAiMessage] = useState<string | undefined>(undefined);
+  const [aiError, setAiError] = useState<string | undefined>(undefined);
+  const [aiLoading, setAiLoading] = useState(false);
+
   // Calculate results
   const results = useMemo(() => {
     const totalBuses = fleet.typeACount + fleet.typeCCount + fleet.typeDCount;
@@ -42,6 +51,40 @@ export default function TCOCalculatorPage() {
       parameters,
     });
   }, [fleet, location, parameters]);
+
+  const runAI = async (mode: "explain" | "audit") => {
+    if (!results) return;
+    setAiMode(mode);
+    setAiLoading(true);
+    setAiError(undefined);
+    setAiMessage(undefined);
+    try {
+      const response = await fetch("/api/tco/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mode,
+          payload: {
+            fleet,
+            location,
+            parameters,
+            results,
+          },
+        }),
+      });
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error || "AI request failed");
+      }
+      const data = await response.json();
+      setAiProvider(data.provider);
+      setAiMessage(data.message);
+    } catch (error) {
+      setAiError((error as Error).message);
+    } finally {
+      setAiLoading(false);
+    }
+  };
 
   const totalBuses = fleet.typeACount + fleet.typeCCount + fleet.typeDCount;
   const canCalculate = totalBuses > 0 && location.state;
@@ -70,7 +113,11 @@ export default function TCOCalculatorPage() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="container mx-auto px-4 py-8"
+      >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <div className="flex items-center justify-between mb-6">
             <TabsList>
@@ -103,7 +150,7 @@ export default function TCOCalculatorPage() {
             {totalBuses > 0 && (
               <div className="mt-6 p-4 bg-muted rounded-lg">
                 <h3 className="font-medium mb-2">Fleet Summary</h3>
-                <div className="grid grid-cols-4 gap-4 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                   <div>
                     <p className="text-muted-foreground">Total Buses</p>
                     <p className="text-xl font-bold">{totalBuses}</p>
@@ -135,7 +182,36 @@ export default function TCOCalculatorPage() {
 
           <TabsContent value="results" className="mt-0">
             {results ? (
-              <ResultsDisplay results={results} />
+              <div className="space-y-6">
+                <div className="flex flex-wrap gap-2 justify-end">
+                  <Button
+                    variant="outline"
+                    disabled={aiLoading}
+                    onClick={() => runAI("explain")}
+                  >
+                    Ask AI to Explain
+                  </Button>
+                  <Button
+                    variant="outline"
+                    disabled={aiLoading}
+                    onClick={() => runAI("audit")}
+                  >
+                    Ask AI to Audit
+                  </Button>
+                </div>
+
+                <ResultsDisplay results={results} />
+
+                {(aiLoading || aiMessage || aiError) && (
+                  <AIInsights
+                    mode={aiMode}
+                    provider={aiProvider}
+                    message={aiMessage}
+                    loading={aiLoading}
+                    error={aiError}
+                  />
+                )}
+              </div>
             ) : (
               <div className="text-center py-12">
                 <p className="text-muted-foreground">
@@ -160,11 +236,12 @@ export default function TCOCalculatorPage() {
       {/* Footer */}
       <footer className="border-t mt-auto">
         <div className="container mx-auto px-4 py-4">
-          <p className="text-xs text-muted-foreground text-center">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
-            This tool provides planning-grade estimates. Consult with professionals
-            for procurement decisions.
-          </p>
+          <div className="text-center space-y-2">
+            <p className="text-xs text-muted-foreground">
+              © 2025–2050 Aliff Capital, LLC. All Rights Reserved. This tool provides planning-grade estimates. Consult with professionals for procurement decisions.
+            </p>
+            <LegalFooter />
+          </div>
         </div>
       </footer>
     </div>

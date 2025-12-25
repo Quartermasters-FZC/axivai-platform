@@ -30,7 +30,7 @@ services:
     container_name: axivai-app
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3002:3000"
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://axivai:axivai_dev_password@db:5432/axivai

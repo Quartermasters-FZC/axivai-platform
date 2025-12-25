@@ -157,4 +157,20 @@
   .gradient-dark {
     background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
   }
+  .skip-link {
+    position: absolute;
+    top: -999px;
+    left: -999px;
+    background: #1C1917;
+    color: #FEFDFB;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    z-index: 100;
+  }
+  .skip-link:focus {
+    top: 1rem;
+    left: 1rem;
+    outline: 2px solid #D4A017;
+    outline-offset: 4px;
+  }
 }
