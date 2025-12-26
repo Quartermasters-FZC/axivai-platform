@@ -146,9 +146,15 @@ export function CookieConsent() {
     persist(next);
   };
 
-  const bannerVisible = useMemo(() => showBanner && !consent, [showBanner, consent]);
+  // Show banner when: no consent yet, OR when showPrefs is true (reopened from settings)
+  const bannerVisible = useMemo(() => {
+    // If preferences panel is open, always show the banner
+    if (showPrefs) return true;
+    // Otherwise, only show if no consent has been given yet
+    return showBanner && !consent;
+  }, [showBanner, consent, showPrefs]);
 
-  if (!bannerVisible && !showPrefs) return null;
+  if (!bannerVisible) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 pointer-events-none">
@@ -248,10 +254,11 @@ export function CookieConsent() {
 }
 
 function ConsentRow({ label, description, checked, onChange }: { label: string; description: string; checked: boolean; onChange: (v: boolean) => void; }) {
+  const id = `consent-${label.toLowerCase().replace(/\s+/g, "-")}`;
   return (
     <div className="flex items-start justify-between gap-3">
-      <div>
-        <p className="font-medium">{label}</p>
+      <div id={`${id}-description`}>
+        <p className="font-medium" id={id}>{label}</p>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
       <Button
@@ -259,6 +266,9 @@ function ConsentRow({ label, description, checked, onChange }: { label: string; 
         size="sm"
         onClick={() => onChange(!checked)}
         className="min-w-[96px]"
+        aria-pressed={checked}
+        aria-labelledby={id}
+        aria-describedby={`${id}-description`}
       >
         {checked ? "Enabled" : "Disabled"}
       </Button>

@@ -243,6 +243,11 @@ export function FleetInputForm({
               min={0}
               max={100}
               step={5}
+              aria-label="Park-out percentage"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={fleet.parkOutPercentage}
+              aria-valuetext={`${fleet.parkOutPercentage}% of buses park out overnight`}
             />
             <p className="text-xs text-muted-foreground">
               Percentage of buses that drivers take home overnight (park-out model).

@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LegalFooter } from "@/components/LegalFooter";
+import {
+  HeroSection,
+  TimelineComparison,
+  PlatformServices,
+} from "@/components/hero/HeroSection";
 
 export default function HomePage() {
   return (
@@ -40,33 +45,9 @@ export default function HomePage() {
         </div>
       </nav>
 
-  <main id="main-content" tabIndex={-1} className="flex flex-col gap-16">
-        {/* Hero Section */}
-        <section className="py-24 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
-            <Badge variant="outline" className="mb-6">
-              Resilience Infrastructure Platform
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-              Electrify Your Fleet.
-              <br />
-              <span className="gradient-text">Bypass the Grid.</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              AXIVAI delivers decision-grade intelligence for school bus
-              electrification. Our mobile charging architecture bypasses utility
-              interconnection queues—deploying in weeks, not years.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link href="/tco">Calculate Your TCO</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="#solutions">Explore Solutions</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+  <main id="main-content" tabIndex={-1} className="flex flex-col">
+        {/* Hero Section - Cinematic Split-Screen */}
+        <HeroSection />
 
         {/* Problem Statement */}
         <section className="py-16 bg-card border-y">
@@ -116,8 +97,11 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Timeline Comparison - The Bottleneck */}
+        <TimelineComparison />
+
         {/* Visual Analogy: Grid Bottleneck vs Logistics-First */}
-        <section className="py-24 px-4 bg-muted/30">
+        <section className="py-24 px-4 bg-card border-y">
           <div className="container mx-auto">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <Badge variant="secondary" className="mb-4">
@@ -277,6 +261,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Platform Services - Integrated Platform Visual */}
+        <PlatformServices />
 
         {/* Core Modules */}
         <section className="py-24 px-4 bg-card border-y">

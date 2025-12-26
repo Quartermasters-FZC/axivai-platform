@@ -97,6 +97,37 @@ export default function CCPA() {
           </section>
         </article>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t py-12 px-4">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-bold gradient-text text-lg">AXIVAI</p>
+              <p className="text-sm text-muted-foreground">
+                Resilience Infrastructure for School Bus Electrification
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+              <Link href="/privacy" className="hover:text-foreground">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-foreground">
+                Terms of Service
+              </Link>
+              <Link href="/cookies" className="hover:text-foreground">
+                Cookie Policy
+              </Link>
+              <Link href="/accessibility" className="hover:text-foreground">
+                Accessibility
+              </Link>
+            </div>
+          </div>
+          <div className="mt-6 text-center text-sm text-muted-foreground">
+            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -21,6 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { CookieSettingsButton } from "@/components/cookie-consent/CookieSettingsButton";
 
 export const metadata: Metadata = {
   title: "Cookie Policy | AXIVAI",
@@ -344,17 +345,7 @@ export default function CookiePolicyPage() {
               button below:
             </p>
             <div className="not-prose mt-4">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  // This will be handled by the cookie consent component
-                  if (typeof window !== "undefined") {
-                    window.dispatchEvent(new CustomEvent("openCookieSettings"));
-                  }
-                }}
-              >
-                Manage Cookie Preferences
-              </Button>
+              <CookieSettingsButton />
             </div>
 
             <h3>5.2 Browser Settings</h3>
