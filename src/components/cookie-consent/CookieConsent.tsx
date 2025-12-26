@@ -1,11 +1,30 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const CONSENT_KEY = "axivai_consent_v1";
+
+/**
+ * Detect privacy signals from the browser
+ * - DNT (Do Not Track): navigator.doNotTrack
+ * - GPC (Global Privacy Control): navigator.globalPrivacyControl
+ */
+function detectPrivacySignals(): { dnt: boolean; gpc: boolean } {
+  if (typeof window === "undefined") return { dnt: false, gpc: false };
+
+  // Check Do Not Track
+  const dnt =
+    navigator.doNotTrack === "1" ||
+    (window as unknown as { doNotTrack?: string }).doNotTrack === "1";
+
+  // Check Global Privacy Control (CCPA opt-out signal)
+  const gpc = (navigator as unknown as { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
+
+  return { dnt, gpc };
+}
 
 type ConsentState = {
   necessary: true;
@@ -44,10 +63,46 @@ function saveConsent(consent: ConsentState) {
 }
 
 export function CookieConsent() {
-  const [consent, setConsent] = useState<ConsentState | null>(() => loadConsent());
-  const [showBanner, setShowBanner] = useState(() => loadConsent() === null);
+  // Initialize privacy signals first
+  const privacySignals = useMemo(() => detectPrivacySignals(), []);
+  
+  // Initialize consent with privacy signal awareness
+  const initialConsent = useMemo(() => {
+    const existing = loadConsent();
+    if (existing) return existing;
+    
+    // If DNT or GPC is detected, auto-apply privacy-respecting defaults
+    if (privacySignals.dnt || privacySignals.gpc) {
+      const privacyRespectingConsent: ConsentState = {
+        necessary: true,
+        analytics: false,
+        functional: false,
+        marketing: false,
+        updatedAt: new Date().toISOString(),
+      };
+      saveConsent(privacyRespectingConsent);
+      return privacyRespectingConsent;
+    }
+    
+    return null;
+  }, [privacySignals]);
+  
+  const [consent, setConsent] = useState<ConsentState | null>(initialConsent);
+  const [showBanner, setShowBanner] = useState(initialConsent === null);
   const [showPrefs, setShowPrefs] = useState(false);
   const [draft, setDraft] = useState<ConsentState>(defaultConsent);
+
+  // Listen for openCookieSettings event (from Cookie Policy page)
+  useEffect(() => {
+    const handleOpenSettings = () => {
+      setDraft(consent ?? defaultConsent);
+      setShowBanner(true);
+      setShowPrefs(true);
+    };
+
+    window.addEventListener("openCookieSettings", handleOpenSettings);
+    return () => window.removeEventListener("openCookieSettings", handleOpenSettings);
+  }, [consent]);
 
   const updateDraft = (key: keyof Omit<ConsentState, "necessary" | "updatedAt">, value: boolean) => {
     setDraft((prev) => ({ ...prev, [key]: value }));
@@ -130,6 +185,21 @@ export function CookieConsent() {
 
             {showPrefs && (
               <div className="rounded-md border border-border bg-muted/30 p-4 space-y-3">
+                {/* Show DNT/GPC detection notice */}
+                {(privacySignals.dnt || privacySignals.gpc) && (
+                  <div className="rounded-md bg-accent/10 border border-accent/20 p-3 text-sm">
+                    <p className="font-medium text-accent-foreground">
+                      Privacy signal detected
+                    </p>
+                    <p className="text-muted-foreground">
+                      {privacySignals.gpc && "Global Privacy Control (GPC) "}
+                      {privacySignals.gpc && privacySignals.dnt && "and "}
+                      {privacySignals.dnt && "Do Not Track (DNT) "}
+                      {privacySignals.gpc || privacySignals.dnt ? "signal honored. Non-essential cookies are disabled by default." : ""}
+                    </p>
+                  </div>
+                )}
+
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="font-medium">Strictly necessary</p>

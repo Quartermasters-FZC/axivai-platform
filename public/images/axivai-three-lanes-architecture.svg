@@ -1,147 +1,147 @@
 <svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="1200" height="800" fill="#0a0a0a"/>
+  <rect width="1200" height="800" fill="#FEFDFB"/>
   
   <!-- Title -->
-  <text x="600" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <text x="600" y="60" font-family="'Geist Sans', Arial, sans-serif" font-size="32" font-weight="600" fill="#1C1917" text-anchor="middle">
     AXIVAI Three-Lane Mobile Charging Architecture
   </text>
   
   <!-- Power Sourcing Section (Top) -->
-  <rect x="50" y="100" width="1100" height="150" fill="#1a1a1a" stroke="#00d4ff" stroke-width="2" rx="10"/>
-  <text x="600" y="135" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <rect x="50" y="100" width="1100" height="150" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2" rx="12"/>
+  <text x="600" y="135" font-family="'Geist Sans', Arial, sans-serif" font-size="24" font-weight="600" fill="#D4A017" text-anchor="middle">
     Power Sourcing Strategy
   </text>
   
   <!-- Power Source 1: Landfill Gas -->
-  <rect x="100" y="160" width="300" height="70" fill="#0f2028" rx="5"/>
-  <text x="250" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <rect x="100" y="160" width="300" height="70" fill="#FEFDFB" stroke="#E7E5E4" stroke-width="1" rx="8"/>
+  <text x="250" y="185" font-family="'Geist Sans', Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" text-anchor="middle">
     Landfill Gas-to-Energy
   </text>
-  <text x="250" y="210" font-family="Arial, sans-serif" font-size="14" fill="#00d4ff" text-anchor="middle">
+  <text x="250" y="210" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#D4A017" text-anchor="middle">
     $0.03-$0.04/kWh • 24/7 Baseload
   </text>
   
   <!-- Power Source 2: Solar + Storage -->
-  <rect x="450" y="160" width="300" height="70" fill="#0f2028" rx="5"/>
-  <text x="600" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <rect x="450" y="160" width="300" height="70" fill="#FEFDFB" stroke="#E7E5E4" stroke-width="1" rx="8"/>
+  <text x="600" y="185" font-family="'Geist Sans', Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" text-anchor="middle">
     Renewables + Storage
   </text>
-  <text x="600" y="210" font-family="Arial, sans-serif" font-size="14" fill="#00d4ff" text-anchor="middle">
+  <text x="600" y="210" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#D4A017" text-anchor="middle">
     $0.03-$0.06/kWh • Wholesale Rates
   </text>
   
   <!-- Power Source 3: Off-Peak Grid -->
-  <rect x="800" y="160" width="300" height="70" fill="#0f2028" rx="5"/>
-  <text x="950" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <rect x="800" y="160" width="300" height="70" fill="#FEFDFB" stroke="#E7E5E4" stroke-width="1" rx="8"/>
+  <text x="950" y="185" font-family="'Geist Sans', Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" text-anchor="middle">
     Off-Peak Grid
   </text>
-  <text x="950" y="210" font-family="Arial, sans-serif" font-size="14" fill="#00d4ff" text-anchor="middle">
+  <text x="950" y="210" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#D4A017" text-anchor="middle">
     $0.06-$0.08/kWh • Night Hours
   </text>
   
   <!-- Lane 1: Direct Injection -->
-  <rect x="50" y="300" width="350" height="450" fill="#1a1a1a" stroke="#00d4ff" stroke-width="2" rx="10"/>
-  <circle cx="225" cy="360" r="40" fill="#00d4ff"/>
-  <text x="225" y="372" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0a0a0a" text-anchor="middle">
+  <rect x="50" y="300" width="350" height="450" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2" rx="12"/>
+  <rect x="200" y="340" width="100" height="100" fill="rgba(212, 160, 23, 0.1)" rx="8"/>
+  <text x="250" y="400" font-family="'Geist Sans', Arial, sans-serif" font-size="48" font-weight="700" fill="#D4A017" text-anchor="middle">
     1
   </text>
-  <text x="225" y="440" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <text x="225" y="470" font-family="'Geist Sans', Arial, sans-serif" font-size="24" font-weight="600" fill="#1C1917" text-anchor="middle">
     Direct Injection
   </text>
-  <text x="225" y="475" font-family="Arial, sans-serif" font-size="18" fill="#00d4ff" text-anchor="middle">
+  <text x="225" y="505" font-family="'Geist Sans', Arial, sans-serif" font-size="18" fill="#57534E" text-anchor="middle">
     ~$0.25/kWh
   </text>
   
   <!-- Truck Icon Placeholder -->
-  <rect x="125" y="500" width="200" height="100" fill="#0f2028" stroke="#00d4ff" stroke-width="1" rx="5"/>
-  <text x="225" y="530" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+  <rect x="125" y="530" width="200" height="100" fill="#FEFDFB" stroke="#E7E5E4" stroke-width="1" rx="8"/>
+  <text x="225" y="560" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#1C1917" text-anchor="middle">
     Class 6 Truck
   </text>
-  <text x="225" y="555" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <text x="225" y="585" font-family="'Geist Sans', Arial, sans-serif" font-size="16" font-weight="600" fill="#D4A017" text-anchor="middle">
     ~500 kWh
   </text>
-  <text x="225" y="580" font-family="Arial, sans-serif" font-size="12" fill="#999999" text-anchor="middle">
+  <text x="225" y="610" font-family="'Geist Sans', Arial, sans-serif" font-size="12" fill="#57534E" text-anchor="middle">
     Satellite Depots
   </text>
   
-  <text x="225" y="640" font-family="Arial, sans-serif" font-size="14" fill="#cccccc" text-anchor="middle">
+  <text x="225" y="660" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#57534E" text-anchor="middle">
     Short runs &amp;
   </text>
-  <text x="225" y="665" font-family="Arial, sans-serif" font-size="14" fill="#cccccc" text-anchor="middle">
+  <text x="225" y="685" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#57534E" text-anchor="middle">
     satellite depot clusters
   </text>
-  <text x="225" y="710" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <text x="225" y="720" font-family="'Geist Sans', Arial, sans-serif" font-size="13" font-weight="600" fill="#D4A017" text-anchor="middle">
     Deploy in WEEKS
   </text>
   
   <!-- Lane 2: Mothership -->
-  <rect x="425" y="300" width="350" height="450" fill="#1a1a1a" stroke="#00d4ff" stroke-width="2" rx="10"/>
-  <circle cx="600" cy="360" r="40" fill="#00d4ff"/>
-  <text x="600" y="372" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0a0a0a" text-anchor="middle">
+  <rect x="425" y="300" width="350" height="450" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2" rx="12"/>
+  <rect x="575" y="340" width="100" height="100" fill="rgba(212, 160, 23, 0.1)" rx="8"/>
+  <text x="625" y="400" font-family="'Geist Sans', Arial, sans-serif" font-size="48" font-weight="700" fill="#D4A017" text-anchor="middle">
     2
   </text>
-  <text x="600" y="440" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <text x="600" y="470" font-family="'Geist Sans', Arial, sans-serif" font-size="24" font-weight="600" fill="#1C1917" text-anchor="middle">
     Mothership
   </text>
-  <text x="600" y="475" font-family="Arial, sans-serif" font-size="18" fill="#00d4ff" text-anchor="middle">
+  <text x="600" y="505" font-family="'Geist Sans', Arial, sans-serif" font-size="18" fill="#57534E" text-anchor="middle">
     ~$0.25/kWh
   </text>
   
   <!-- Semi Trailer Icon Placeholder -->
-  <rect x="500" y="500" width="200" height="100" fill="#0f2028" stroke="#00d4ff" stroke-width="1" rx="5"/>
-  <text x="600" y="530" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+  <rect x="500" y="530" width="200" height="100" fill="#FEFDFB" stroke="#E7E5E4" stroke-width="1" rx="8"/>
+  <text x="600" y="560" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#1C1917" text-anchor="middle">
     Class 8 Semi-Trailer
   </text>
-  <text x="600" y="555" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <text x="600" y="585" font-family="'Geist Sans', Arial, sans-serif" font-size="16" font-weight="600" fill="#D4A017" text-anchor="middle">
     ~2 MWh
   </text>
-  <text x="600" y="580" font-family="Arial, sans-serif" font-size="12" fill="#999999" text-anchor="middle">
+  <text x="600" y="610" font-family="'Geist Sans', Arial, sans-serif" font-size="12" fill="#57534E" text-anchor="middle">
     High-Volume Depots
   </text>
   
-  <text x="600" y="640" font-family="Arial, sans-serif" font-size="14" fill="#cccccc" text-anchor="middle">
+  <text x="600" y="660" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#57534E" text-anchor="middle">
     Maximum throughput
   </text>
-  <text x="600" y="665" font-family="Arial, sans-serif" font-size="14" fill="#cccccc" text-anchor="middle">
+  <text x="600" y="685" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#57534E" text-anchor="middle">
     for depot clusters
   </text>
-  <text x="600" y="710" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <text x="600" y="720" font-family="'Geist Sans', Arial, sans-serif" font-size="13" font-weight="600" fill="#D4A017" text-anchor="middle">
     vs 18-36 MONTHS grid
   </text>
   
   <!-- Lane 3: Valet -->
-  <rect x="800" y="300" width="350" height="450" fill="#1a1a1a" stroke="#00d4ff" stroke-width="2" rx="10"/>
-  <circle cx="975" cy="360" r="40" fill="#00d4ff"/>
-  <text x="975" y="372" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0a0a0a" text-anchor="middle">
+  <rect x="800" y="300" width="350" height="450" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2" rx="12"/>
+  <rect x="950" y="340" width="100" height="100" fill="rgba(212, 160, 23, 0.1)" rx="8"/>
+  <text x="1000" y="400" font-family="'Geist Sans', Arial, sans-serif" font-size="48" font-weight="700" fill="#D4A017" text-anchor="middle">
     3
   </text>
-  <text x="975" y="440" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">
+  <text x="975" y="470" font-family="'Geist Sans', Arial, sans-serif" font-size="24" font-weight="600" fill="#1C1917" text-anchor="middle">
     Valet
   </text>
-  <text x="975" y="475" font-family="Arial, sans-serif" font-size="18" fill="#00d4ff" text-anchor="middle">
+  <text x="975" y="505" font-family="'Geist Sans', Arial, sans-serif" font-size="18" fill="#57534E" text-anchor="middle">
     ~$0.35/kWh
   </text>
   
   <!-- Van Icon Placeholder -->
-  <rect x="875" y="500" width="200" height="100" fill="#0f2028" stroke="#00d4ff" stroke-width="1" rx="5"/>
-  <text x="975" y="530" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+  <rect x="875" y="530" width="200" height="100" fill="#FEFDFB" stroke="#E7E5E4" stroke-width="1" rx="8"/>
+  <text x="975" y="560" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#1C1917" text-anchor="middle">
     Electric Van
   </text>
-  <text x="975" y="555" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <text x="975" y="585" font-family="'Geist Sans', Arial, sans-serif" font-size="16" font-weight="600" fill="#D4A017" text-anchor="middle">
     ~150 kWh
   </text>
-  <text x="975" y="580" font-family="Arial, sans-serif" font-size="12" fill="#999999" text-anchor="middle">
+  <text x="975" y="610" font-family="'Geist Sans', Arial, sans-serif" font-size="12" fill="#57534E" text-anchor="middle">
     Park-Out Solution
   </text>
   
-  <text x="975" y="640" font-family="Arial, sans-serif" font-size="14" fill="#cccccc" text-anchor="middle">
+  <text x="975" y="660" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#57534E" text-anchor="middle">
     Driver homes &amp;
   </text>
-  <text x="975" y="665" font-family="Arial, sans-serif" font-size="14" fill="#cccccc" text-anchor="middle">
+  <text x="975" y="685" font-family="'Geist Sans', Arial, sans-serif" font-size="14" fill="#57534E" text-anchor="middle">
     HOA-restricted areas
   </text>
-  <text x="975" y="710" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+  <text x="975" y="720" font-family="'Geist Sans', Arial, sans-serif" font-size="13" font-weight="600" fill="#D4A017" text-anchor="middle">
     Solves park-out void
   </text>
 </svg>
