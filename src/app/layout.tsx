@@ -34,6 +34,14 @@ export const metadata: Metadata = {
     url: "https://axivai.com",
     siteName: "AXIVAI",
     type: "website",
+    images: [
+      {
+        url: "/images/axivai-three-lanes-architecture.svg",
+        width: 1200,
+        height: 800,
+        alt: "AXIVAI Three-Lane Mobile Charging Architecture showing Direct Injection, Mothership, and Valet solutions",
+      },
+    ],
   },
   metadataBase: new URL("https://axivai.com"),
 };
@@ -86,6 +94,28 @@ export default function RootLayout({
                 "@type": "SearchAction",
                 target: "https://axivai.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ImageObject",
+              name: "AXIVAI Three-Lane Mobile Charging Architecture",
+              description:
+                "Diagram showing AXIVAI's three-lane mobile charging solution: Direct Injection (Class 6 trucks, 500kWh), Mothership (Class 8 trailers, 2MWh), and Valet (electric vans, 150kWh) powered by wholesale energy sources at $0.03-$0.08/kWh",
+              url: "https://axivai.com/images/axivai-three-lanes-architecture.svg",
+              contentUrl: "https://axivai.com/images/axivai-three-lanes-architecture.svg",
+              license: "https://axivai.com/terms",
+              acquireLicensePage: "https://axivai.com/terms",
+              creditText: "AXIVAI by Aliff Capital",
+              creator: {
+                "@type": "Organization",
+                name: "AXIVAI",
               },
             }),
           }}

@@ -1,0 +1,116 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="600" fill="#0a0a0a"/>
+  
+  <!-- Title -->
+  <text x="600" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    Two Approaches to Fleet Electrification
+  </text>
+  
+  <!-- Divider Line -->
+  <line x1="600" y1="80" x2="600" y2="580" stroke="#333333" stroke-width="2"/>
+  
+  <!-- LEFT SIDE: Traditional Grid-Constrained -->
+  <rect x="40" y="90" width="520" height="470" fill="#1a1a1a" stroke="#ff4444" stroke-width="2" rx="10"/>
+  
+  <text x="300" y="130" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ff4444" text-anchor="middle">
+    TRADITIONAL: Construction-First
+  </text>
+  
+  <!-- Grid Infrastructure -->
+  <rect x="80" y="160" width="440" height="80" fill="#2a1a1a" stroke="#ff4444" stroke-width="1" rx="5"/>
+  <text x="300" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    ⚡ Grid Infrastructure Required
+  </text>
+  <text x="300" y="210" font-family="Arial, sans-serif" font-size="13" fill="#cccccc" text-anchor="middle">
+    Transformer upgrades • Trenching • Pedestals
+  </text>
+  <text x="300" y="230" font-family="Arial, sans-serif" font-size="13" fill="#ff4444" text-anchor="middle">
+    $500K-$2M+ per depot
+  </text>
+  
+  <!-- Timeline Box -->
+  <rect x="80" y="260" width="440" height="70" fill="#2a1a1a" stroke="#ff4444" stroke-width="1" rx="5"/>
+  <text x="300" y="285" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    ⏱️ Interconnection Queue
+  </text>
+  <text x="300" y="310" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ff4444" text-anchor="middle">
+    18-36 months (up to 8 years in PJM)
+  </text>
+  
+  <!-- Bottleneck Illustration -->
+  <rect x="80" y="350" width="440" height="80" fill="#2a1a1a" stroke="#ff4444" stroke-width="1" rx="5"/>
+  <text x="300" y="375" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    🚧 Critical Bottlenecks
+  </text>
+  <text x="300" y="395" font-family="Arial, sans-serif" font-size="12" fill="#cccccc" text-anchor="middle">
+    • Capacity overload (50+ buses = factory-scale load)
+  </text>
+  <text x="300" y="413" font-family="Arial, sans-serif" font-size="12" fill="#cccccc" text-anchor="middle">
+    • Park-out homes need $6K panel upgrades
+  </text>
+  
+  <!-- Result -->
+  <rect x="80" y="450" width="440" height="90" fill="#331111" stroke="#ff4444" stroke-width="2" rx="5"/>
+  <text x="300" y="477" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ff4444" text-anchor="middle">
+    ❌ RESULT
+  </text>
+  <text x="300" y="500" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+    Buses arrive in months
+  </text>
+  <text x="300" y="520" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+    Infrastructure takes YEARS
+  </text>
+  
+  <!-- RIGHT SIDE: AXIVAI Logistics-First -->
+  <rect x="640" y="90" width="520" height="470" fill="#1a1a1a" stroke="#00d4ff" stroke-width="2" rx="10"/>
+  
+  <text x="900" y="130" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+    AXIVAI: Logistics-First
+  </text>
+  
+  <!-- Mobile Charging -->
+  <rect x="680" y="160" width="440" height="80" fill="#0f2028" stroke="#00d4ff" stroke-width="1" rx="5"/>
+  <text x="900" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    🚛 Electricity as Physical Cargo
+  </text>
+  <text x="900" y="210" font-family="Arial, sans-serif" font-size="13" fill="#cccccc" text-anchor="middle">
+    Mobile charging units • No fixed infrastructure
+  </text>
+  <text x="900" y="230" font-family="Arial, sans-serif" font-size="13" fill="#00d4ff" text-anchor="middle">
+    $0 depot capital costs
+  </text>
+  
+  <!-- No Queue Box -->
+  <rect x="680" y="260" width="440" height="70" fill="#0f2028" stroke="#00d4ff" stroke-width="1" rx="5"/>
+  <text x="900" y="285" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    ⚡ Bypass Interconnection Queue
+  </text>
+  <text x="900" y="310" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+    Deploy in WEEKS, not years
+  </text>
+  
+  <!-- Three Lanes Illustration -->
+  <rect x="680" y="350" width="440" height="80" fill="#0f2028" stroke="#00d4ff" stroke-width="1" rx="5"/>
+  <text x="900" y="375" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    🎯 Three-Lane Architecture
+  </text>
+  <text x="900" y="395" font-family="Arial, sans-serif" font-size="12" fill="#cccccc" text-anchor="middle">
+    • Direct Injection (depots) • Mothership (clusters)
+  </text>
+  <text x="900" y="413" font-family="Arial, sans-serif" font-size="12" fill="#cccccc" text-anchor="middle">
+    • Valet (driver homes) - solves park-out void
+  </text>
+  
+  <!-- Result -->
+  <rect x="680" y="450" width="440" height="90" fill="#0a2a28" stroke="#00d4ff" stroke-width="2" rx="5"/>
+  <text x="900" y="477" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00d4ff" text-anchor="middle">
+    ✓ RESULT
+  </text>
+  <text x="900" y="500" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+    Buses + Charging deployed together
+  </text>
+  <text x="900" y="520" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">
+    Operational in WEEKS
+  </text>
+</svg>

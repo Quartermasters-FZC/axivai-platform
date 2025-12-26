@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -115,6 +116,40 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Visual Analogy: Grid Bottleneck vs Logistics-First */}
+        <section className="py-24 px-4 bg-muted/30">
+          <div className="container mx-auto">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <Badge variant="secondary" className="mb-4">
+                The AXIVAI Difference
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">
+                Logistics-First, Not Construction-First
+              </h2>
+              <p className="text-muted-foreground">
+                Traditional grid upgrades trap districts in multi-year queues.
+                AXIVAI delivers electricity as cargo—deploying in weeks.
+              </p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <div className="relative w-full rounded-lg overflow-hidden border border-accent/20 bg-card shadow-lg">
+                <Image
+                  src="/images/grid-bottleneck-vs-logistics-first.svg"
+                  alt="Comparison of traditional grid-constrained approach requiring 18-36 months for infrastructure upgrades versus AXIVAI's logistics-first mobile charging model deploying in weeks"
+                  width={1200}
+                  height={600}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+              <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
+                <strong className="text-foreground">Construction-First</strong> requires transformer upgrades, trenching, and 18–36 month interconnection queues.{" "}
+                <strong className="text-accent">AXIVAI&apos;s Logistics-First</strong> model treats electricity as physical cargo, bypassing grid constraints entirely.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Solution: Three Lanes */}
         <section id="solutions" className="py-24 px-4">
           <div className="container mx-auto">
@@ -128,6 +163,25 @@ export default function HomePage() {
               <p className="text-muted-foreground">
                 Instead of bringing buses to chargers, we bring chargers to buses.
                 Three lanes of mobile charging infrastructure.
+              </p>
+            </div>
+
+            {/* Three Lanes Architecture Diagram */}
+            <div className="max-w-6xl mx-auto mb-16">
+              <div className="relative w-full rounded-lg overflow-hidden border border-accent/20 bg-card shadow-xl">
+                <Image
+                  src="/images/axivai-three-lanes-architecture.svg"
+                  alt="AXIVAI Three-Lane Mobile Charging Architecture showing Direct Injection (Class 6 trucks with 500kWh capacity), Mothership (Class 8 semi-trailers with 2MWh capacity), and Valet (electric vans with 150kWh capacity) powered by landfill gas-to-energy, solar plus storage, and off-peak grid at $0.03-$0.08 per kWh"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+              <p className="text-center text-sm text-muted-foreground mt-6 max-w-4xl mx-auto">
+                Three deployment lanes matched to operational needs: <strong className="text-accent">Direct Injection</strong> for satellite depots,{" "}
+                <strong className="text-accent">Mothership</strong> for high-volume clusters, and{" "}
+                <strong className="text-accent">Valet</strong> for driver homes. Powered by wholesale energy sources ($0.03–$0.08/kWh) to bypass retail grid rates.
               </p>
             </div>
 
@@ -177,6 +231,47 @@ export default function HomePage() {
                     Electric vans (~150 kWh) reach driver homes and HOA-restricted
                     areas. Solves the park-out problem.
                   </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Power Sourcing Strategy */}
+            <div className="max-w-4xl mx-auto mt-16">
+              <Card className="border-accent/30 bg-accent/5">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
+                      <span className="text-xl">⚡</span>
+                    </div>
+                    <CardTitle className="text-xl">Strategic Power Sourcing</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Wholesale and off-grid energy sources bypass retail grid rates
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="space-y-2">
+                      <div className="font-semibold text-sm text-accent">Landfill Gas-to-Energy</div>
+                      <div className="text-2xl font-bold">$0.03–$0.04<span className="text-sm text-muted-foreground">/kWh</span></div>
+                      <p className="text-xs text-muted-foreground">24/7 baseload power from waste methane capture</p>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="font-semibold text-sm text-accent">Renewables + Storage</div>
+                      <div className="text-2xl font-bold">$0.03–$0.06<span className="text-sm text-muted-foreground">/kWh</span></div>
+                      <p className="text-xs text-muted-foreground">Solar and wind at wholesale PPA rates</p>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="font-semibold text-sm text-accent">Off-Peak Grid</div>
+                      <div className="text-2xl font-bold">$0.06–$0.08<span className="text-sm text-muted-foreground">/kWh</span></div>
+                      <p className="text-xs text-muted-foreground">Night-time C&amp;I rates when capacity is high</p>
+                    </div>
+                  </div>
+                  <div className="mt-6 pt-6 border-t border-accent/20">
+                    <p className="text-sm text-muted-foreground">
+                      By sourcing power independently and delivering it as cargo, AXIVAI eliminates demand charges and time-of-use penalties that plague traditional depot charging.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>

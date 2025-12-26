@@ -1,0 +1,2 @@
+These placeholder SVG files can be replaced with actual images.
+The implementation uses Next.js Image component which will work with PNG, JPG, WebP, or AVIF formats.
