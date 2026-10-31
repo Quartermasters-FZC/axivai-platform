@@ -10,6 +10,7 @@ import { compareScenarios } from "@/lib/tco";
 import { DEFAULT_PARAMETERS } from "@/lib/tco/defaults";
 import type { FleetProfile, LocationProfile, AnalysisParameters } from "@/types/tco";
 import { LegalFooter } from "@/components/LegalFooter";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 
 export default function TCOCalculatorPage() {
   // Fleet profile state
@@ -106,7 +107,7 @@ export default function TCOCalculatorPage() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">Powered by</span>
-              <span className="font-bold gradient-text">AXIVAI</span>
+              <BrandLogo className="h-4" />
             </div>
           </div>
         </div>

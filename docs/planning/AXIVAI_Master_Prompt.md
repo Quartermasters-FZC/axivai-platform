@@ -11,8 +11,8 @@ I. SOURCE OF TRUTH & PROJECT STATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 1. SINGLE SOURCE OF TRUTH (NON-NEGOTIABLE)
-The AXIVAI white paper located at:
-  /Planning/AXIVAI_Whitepaper_VNext.docx.md
+The AXIVAI concept paper located at:
+  /Planning/AXIVAI_Improved_Concept_Paper_October_2026.md
 is the SINGLE SOURCE OF TRUTH.
 
 • All decisions, architecture, copy, assumptions, and constraints must align with it.
@@ -105,13 +105,13 @@ IV. GUARDRAILS & FAILURE MODES
 • Conflicting sources must be surfaced
 
 7. DRIFT DETECTION
-If any recommendation deviates from the white paper or existing Planning files:
+If any recommendation deviates from the concept paper or existing Planning files:
 You MUST flag it as:
 “Deviation from source-of-truth — requires approval”
 
 8. SESSION RECOVERY RULE
 If the session resets, crashes, or context is uncertain:
-1) Re-read the white paper
+1) Re-read the concept paper
 2) Read Session_Recovery.md
 3) Reconstruct current state from /Planning
 4) Resume only after grounding
@@ -222,7 +222,7 @@ E) Save-ready output section
 IX. QUALITY BAR
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-• Every feature must map to a real problem in the white paper
+• Every feature must map to a real problem in the concept paper
 • Assumptions must be explicit
 • Uncertainty must be shown
 • Write as if reviewed by:

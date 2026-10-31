@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,8 +18,8 @@ export default function CCPA() {
     <div className="min-h-screen bg-background">
       <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold gradient-text">
-            AXIVAI
+          <Link href="/">
+            <BrandLogo className="h-7" priority />
           </Link>
           <Button asChild variant="outline" size="sm">
             <Link href="/">Back to Home</Link>
@@ -103,7 +104,7 @@ export default function CCPA() {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <p className="font-bold gradient-text text-lg">AXIVAI</p>
+              <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
                 Resilience Infrastructure for School Bus Electrification
               </p>

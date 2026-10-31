@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent/CookieConsent";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -14,32 +19,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AXIVAI - School Bus Electrification Platform",
+  title: "AXIVAI | Deployable power infrastructure",
   description:
-    "Decision-grade infrastructure intelligence for U.S. school bus electrification. Planning-grade TCO calculator, research engine, and mobile charging solutions.",
+    "AXIVAI is a concept for making usable electrical capacity available where fixed infrastructure is too slow, too limited or too inflexible, through modular storage, mission-specific deployment and managed operations. Research and concept development stage.",
   keywords: [
-    "electric school bus",
-    "school bus electrification",
-    "TCO calculator",
-    "mobile charging",
-    "EPA Clean School Bus Program",
-    "V1G",
-    "fleet electrification",
+    "deployable power",
+    "modular energy storage",
+    "temporary power",
+    "mobile battery storage",
+    "fleet charging",
+    "electric school bus charging",
+    "managed charging",
+    "power resilience",
   ],
   authors: [{ name: "Aliff Capital, LLC", url: "https://aliffcapital.com" }],
   openGraph: {
-    title: "AXIVAI - School Bus Electrification Platform",
+    title: "AXIVAI | Power anywhere. Ready when needed.",
     description:
-      "Decision-grade infrastructure intelligence for U.S. school bus electrification",
+      "A deployable power infrastructure concept: mobile, stationed or managed capacity where conventional infrastructure falls short.",
     url: "https://axivai.com",
     siteName: "AXIVAI",
     type: "website",
     images: [
       {
-        url: "/images/axivai-three-lanes-architecture.svg",
-        width: 1200,
-        height: 800,
-        alt: "AXIVAI Three-Lane Mobile Charging Architecture showing Direct Injection, Mothership, and Valet solutions",
+        url: "/images/hero/axivai-hero.png",
+        width: 1983,
+        height: 793,
+        alt: "Concept rendering of AXIVAI deployable power: a battery transport truck, modular storage units and an electric school-bus depot at sunrise",
       },
     ],
   },
@@ -54,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${montserrat.variable} ${geistMono.variable} antialiased`}
       >
         <a href="#main-content" className="skip-link">
           Skip to main content
@@ -69,8 +75,8 @@ export default function RootLayout({
               name: "AXIVAI",
               url: "https://axivai.com",
               description:
-                "Decision-grade infrastructure intelligence for U.S. school bus electrification.",
-              logo: "https://axivai.com/logo.png",
+                "Deployable power infrastructure concept: modular storage, mission-specific deployment and managed operations.",
+              logo: "https://axivai.com/brand/axivai-wordmark.png",
               sameAs: ["https://aliffcapital.com"],
               contactPoint: {
                 "@type": "ContactPoint",
@@ -94,28 +100,6 @@ export default function RootLayout({
                 "@type": "SearchAction",
                 target: "https://axivai.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ImageObject",
-              name: "AXIVAI Three-Lane Mobile Charging Architecture",
-              description:
-                "Diagram showing AXIVAI's three-lane mobile charging solution: Direct Injection (Class 6 trucks, 500kWh), Mothership (Class 8 trailers, 2MWh), and Valet (electric vans, 150kWh) powered by wholesale energy sources at $0.03-$0.08/kWh",
-              url: "https://axivai.com/images/axivai-three-lanes-architecture.svg",
-              contentUrl: "https://axivai.com/images/axivai-three-lanes-architecture.svg",
-              license: "https://axivai.com/terms",
-              acquireLicensePage: "https://axivai.com/terms",
-              creditText: "AXIVAI by Aliff Capital",
-              creator: {
-                "@type": "Organization",
-                name: "AXIVAI",
               },
             }),
           }}

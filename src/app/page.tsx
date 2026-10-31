@@ -1,14 +1,183 @@
 import Link from "next/link";
-import Image from "next/image";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LegalFooter } from "@/components/LegalFooter";
+import { HeroSection } from "@/components/hero/HeroSection";
 import {
-  HeroSection,
-  TimelineComparison,
-  PlatformServices,
-} from "@/components/hero/HeroSection";
+  Clock,
+  Gauge,
+  CalendarRange,
+  ShieldAlert,
+  MapPin,
+  Truck,
+  BatteryCharging,
+  SlidersHorizontal,
+  Calculator,
+  Search,
+  Compass,
+  Shield,
+  MessageSquare,
+  ArrowRight,
+  CircleDot,
+} from "lucide-react";
+
+// Copy source: docs/planning/AXIVAI_Improved_Concept_Paper_October_2026.md
+
+const PROBLEMS = [
+  {
+    icon: Clock,
+    title: "Connection delay",
+    manifestation: "A fleet or facility is ready, but a transformer, feeder or service upgrade is not.",
+    question: "Can temporary power bridge the interval safely and affordably?",
+  },
+  {
+    icon: Gauge,
+    title: "Peak-capacity mismatch",
+    manifestation: "A site has enough daily energy but not enough instantaneous kW.",
+    question: "Can managed charging or a stationary battery reshape demand?",
+  },
+  {
+    icon: CalendarRange,
+    title: "Temporary or relocatable demand",
+    manifestation: "A construction project, event or industrial operation needs power for a limited period.",
+    question: "Can a deployable asset avoid permanent infrastructure investment?",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Resilience gap",
+    manifestation: "A critical load needs continuity during outages or disruptions.",
+    question: "What power, duration, recharge plan and reliability level are required?",
+  },
+  {
+    icon: MapPin,
+    title: "Remote or dispersed load",
+    manifestation: "Electricity is needed at several sites without adequate connections.",
+    question: "When does transporting stored energy outperform local supply?",
+  },
+];
+
+const MODES = [
+  {
+    icon: Truck,
+    title: "Mobile energy delivery",
+    description: "Charge storage elsewhere, transport it, discharge at the customer site.",
+    fit: "No adequate local connection; limited-duration or geographically dispersed needs.",
+    limitation: "Transport, labour, equipment cycling and low utilisation can overwhelm the economics.",
+  },
+  {
+    icon: BatteryCharging,
+    title: "Stationed power",
+    description: "Deliver a battery system once and leave it on site for a defined period.",
+    fit: "Peak support, temporary construction power, bridge-to-grid, resilience.",
+    limitation: "Needs on-site recharge or periodic replenishment, plus site and safety approvals.",
+  },
+  {
+    icon: SlidersHorizontal,
+    title: "Managed capacity",
+    description: "Coordinate available electrical service, charging and optional storage.",
+    fit: "Sites with constrained peak kW but adequate energy over longer windows.",
+    limitation: "Cannot create sufficient power where the underlying supply is genuinely absent.",
+  },
+];
+
+const PROCESS = [
+  "Verify the need: kW, kWh, duration, location, service level",
+  "Assess alternatives, including ones that do not involve AXIVAI",
+  "Select the deployment mode",
+  "Engineer, permit and commission",
+  "Measure service results",
+];
+
+const ALTERNATIVES = [
+  {
+    alternative: "Managed or lower-power charging",
+    preferable: "Existing service plus a longer charging window meets total energy needs.",
+  },
+  {
+    alternative: "Permanent utility upgrade",
+    preferable: "Load is stable, infrastructure arrives soon and lifetime cost is lower.",
+  },
+  {
+    alternative: "Stationary battery on existing service",
+    preferable: "Energy can replenish slowly between short, high-power peaks.",
+  },
+  {
+    alternative: "Generator rental or hybrid plant",
+    preferable: "Long-duration continuous power is required and fuel logistics are manageable.",
+  },
+  {
+    alternative: "Existing mobile charging supplier",
+    preferable: "A supplier already meets response, price and compatibility needs.",
+  },
+  {
+    alternative: "On-site generation",
+    preferable: "Continuous high-energy demand, with permitting and economics that support it.",
+  },
+];
+
+const APPLICATIONS = [
+  { name: "Electric school-bus depots", need: "Bridge delayed service or charging infrastructure", test: "Can required bus charging be achieved below the cost of alternatives?" },
+  { name: "Commercial fleets and depots", need: "Charging peak capacity and site readiness", test: "kW profile, daily kWh, route density, service economics" },
+  { name: "Construction and temporary industrial sites", need: "Defined-duration power without permanent buildout", test: "Rental economics versus generators and grid connections" },
+  { name: "Ports and logistics yards", need: "Electrification of high-load equipment", test: "Power density, operating shifts, site electrical constraints" },
+  { name: "Utilities and critical infrastructure", need: "Temporary support and limited-duration resilience", test: "Reliability requirement, export permission, response time" },
+  { name: "Disaster recovery", need: "Power after outages or infrastructure damage", test: "Access, duration, replenishment, paid readiness" },
+  { name: "Government and defense", need: "Operational resilience and deployable mission power", test: "Mission specification, qualification, cyber and logistics" },
+];
+
+const STAGES = [
+  { stage: "I", title: "Problem mapping", question: "Where are the physical and commercial power-access gaps?" },
+  { stage: "II", title: "Comparative engineering", question: "Which mode solves each problem best?" },
+  { stage: "III", title: "Techno-economic feasibility", question: "When is deployable power attractive after total costs?" },
+  { stage: "IV", title: "Concept validation", question: "Which use cases deserve a pilot?" },
+  { stage: "V", title: "Pilot definition", question: "What small test would most reduce uncertainty?" },
+  { stage: "VI", title: "Commercialization", question: "Is there a repeatable, financially viable service?" },
+];
+
+const EVIDENCE_LEVELS = [
+  { title: "Established external problem", description: "Supported by technical studies, utility documents or documented deployments." },
+  { title: "Feasible technology class", description: "Demonstrated somewhere, but not necessarily as an AXIVAI system." },
+  { title: "AXIVAI hypothesis", description: "An architecture, customer benefit or economic model that still requires testing." },
+  { title: "Validated AXIVAI result", description: "Reserved for measured performance from a completed, attributable AXIVAI test or deployment." },
+];
+
+const FAQS = [
+  {
+    question: "Is AXIVAI operating today?",
+    short: "No. AXIVAI is in concept development.",
+    answer:
+      "There are no AXIVAI operating assets, deployed hubs, commercial customers, proprietary software, engineering certifications, contracted power supplies or demonstrated financial returns. Imagery on this site is illustrative.",
+  },
+  {
+    question: "Can deployable power avoid a utility interconnection?",
+    short: "Sometimes, not always.",
+    answer:
+      "It depends on the site, the configuration and local approvals. Grid-parallel storage, safety reviews and permitting can recreate the same delay. That is one of the questions the research is designed to answer.",
+  },
+  {
+    question: "Why start with electric school buses?",
+    short: "The infrastructure problem is comparatively well documented.",
+    answer:
+      "The U.S. Department of Energy's Electric School Bus Planning Guide discusses service upgrades, demand charges, managed charging and temporary mobile charging. School buses are a starting case, not the boundary of the concept.",
+  },
+  {
+    question: "How do you handle data privacy?",
+    short: "Consent-first, with opt-out controls.",
+    answer:
+      "The cookie banner and the privacy, cookies and CCPA/Do Not Sell pages are linked in every footer. Analytics stay off until you consent.",
+  },
+];
+
+function EstimateTag() {
+  return (
+    <span className="inline-flex items-center gap-1 rounded border border-accent-ink/40 px-1.5 py-0.5 text-[11px] font-medium text-accent-ink align-middle">
+      <CircleDot className="w-3 h-3" aria-hidden="true" />
+      Estimate
+    </span>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -16,263 +185,363 @@ export default function HomePage() {
       {/* Navigation */}
       <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold gradient-text">
-            AXIVAI
+          <Link href="/">
+            <BrandLogo className="h-7" priority />
           </Link>
           <div className="flex items-center gap-6 flex-wrap justify-end">
+            <Link
+              href="#approach"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Approach
+            </Link>
+            <Link
+              href="#applications"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Applications
+            </Link>
             <Link
               href="/tco"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              TCO Calculator
-            </Link>
-            <Link
-              href="#solutions"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Solutions
-            </Link>
-            <Link
-              href="#about"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About
+              TCO calculator
             </Link>
             <Button asChild size="sm">
-              <Link href="/tco">Get Started</Link>
+              <Link href="#evidence">Our evidence standard</Link>
             </Button>
           </div>
         </div>
       </nav>
 
-  <main id="main-content" tabIndex={-1} className="flex flex-col">
-        {/* Hero Section - Cinematic Split-Screen */}
+      <main id="main-content" tabIndex={-1} className="flex flex-col">
         <HeroSection />
 
-        {/* Problem Statement */}
-        <section className="py-16 bg-card border-y">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-2xl font-bold mb-4">The Crisis</h2>
-              <p className="text-muted-foreground">
-                $5 billion invested in electric school buses. Thousands sitting
-                idle. The grid can&apos;t keep up.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">8-Year Queues</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    PJM interconnection timelines stretch to 8 years. Buses arrive
-                    in months—chargers take years.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">OEM Bankruptcies</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Lion Electric, Proterra, Lightning eMotors—warranties voided,
-                    assets stranded.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Park-Out Void</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Rural districts can&apos;t electrify driver homes. $6,000+
-                    panel upgrades per residence.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Timeline Comparison - The Bottleneck */}
-        <TimelineComparison />
-
-        {/* Visual Analogy: Grid Bottleneck vs Logistics-First */}
-        <section className="py-24 px-4 bg-card border-y">
-          <div className="container mx-auto">
+        {/* Problem */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-6xl">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <Badge variant="secondary" className="mb-4">
-                The AXIVAI Difference
+                The problem
               </Badge>
               <h2 className="text-3xl font-bold mb-4">
-                Logistics-First, Not Construction-First
+                Power is not always where, when or how operations need it
               </h2>
               <p className="text-muted-foreground">
-                Traditional grid upgrades trap districts in multi-year queues.
-                AXIVAI delivers electricity as cargo—deploying in weeks.
+                Electricity reaches a site through a chain: generation, transmission,
+                local distribution, customer connection, usable power. A
+                generation-rich region can still contain a depot that cannot get the
+                peak power it needs. The limiting factor has to be diagnosed for each
+                location.
               </p>
             </div>
-            <div className="max-w-6xl mx-auto">
-              <div className="relative w-full rounded-lg overflow-hidden border border-accent/20 bg-card shadow-lg">
-                <Image
-                  src="/images/grid-bottleneck-vs-logistics-first.svg"
-                  alt="Comparison of traditional grid-constrained approach requiring 18-36 months for infrastructure upgrades versus AXIVAI's logistics-first mobile charging model deploying in weeks"
-                  width={1200}
-                  height={600}
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-              <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
-                <strong className="text-foreground">Construction-First</strong> requires transformer upgrades, trenching, and 18–36 month interconnection queues.{" "}
-                <strong className="text-accent">AXIVAI&apos;s Logistics-First</strong> model treats electricity as physical cargo, bypassing grid constraints entirely.
-              </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {PROBLEMS.map(({ icon: Icon, title, manifestation, question }) => (
+                <Card key={title} className="h-full">
+                  <CardHeader>
+                    <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-3">
+                      <Icon className="w-5 h-5 text-foreground" aria-hidden="true" />
+                    </div>
+                    <CardTitle className="text-lg">{title}</CardTitle>
+                    <CardDescription>{manifestation}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-foreground">{question}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Solution: Three Lanes */}
-        <section id="solutions" className="py-24 px-4">
-          <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto text-center mb-16">
+        {/* Approach */}
+        <section id="approach" className="py-20 px-4 bg-card border-y scroll-mt-20">
+          <div className="container mx-auto max-w-6xl">
+            <div className="max-w-3xl mx-auto text-center mb-12">
               <Badge variant="secondary" className="mb-4">
-                The AXIVAI Solution
+                The approach
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">Start with the need, not the truck</h2>
+              <p className="text-muted-foreground">
+                The central design rule is solution neutrality. A battery truck is not
+                always the answer. AXIVAI evaluates whether managed charging,
+                temporary stationary storage, transported energy or another power
+                solution best meets each requirement.
+              </p>
+            </div>
+
+            {/* Process */}
+            <ol className="grid gap-3 md:grid-cols-5 mb-14">
+              {PROCESS.map((step, i) => (
+                <li
+                  key={step}
+                  className="relative rounded-lg border bg-background p-4 text-sm"
+                >
+                  <span className="block font-display text-xs font-semibold text-accent-ink mb-1">
+                    Step {i + 1}
+                  </span>
+                  {step}
+                  {i < PROCESS.length - 1 && (
+                    <ArrowRight
+                      className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground bg-card"
+                      aria-hidden="true"
+                    />
+                  )}
+                </li>
+              ))}
+            </ol>
+
+            {/* Three deployment modes */}
+            <h3 className="text-2xl font-bold text-center mb-8">Three deployment modes</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {MODES.map(({ icon: Icon, title, description, fit, limitation }) => (
+                <Card key={title} className="h-full">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-accent-ink" aria-hidden="true" />
+                    </div>
+                    <CardTitle>{title}</CardTitle>
+                    <CardDescription>{description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4 text-sm">
+                    <div>
+                      <div className="font-semibold mb-1">Where it may fit</div>
+                      <p className="text-muted-foreground">{fit}</p>
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-1">Main limitation</div>
+                      <p className="text-muted-foreground">{limitation}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-8 max-w-3xl mx-auto">
+              Not every deployment needs every layer. Existing, adequately powered
+              connections come first; an Energy Hub is an optional operating node,
+              not a prerequisite.
+            </p>
+          </div>
+        </section>
+
+        {/* Alternatives test */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <Badge variant="secondary" className="mb-4">
+                The alternatives test
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">Designed to lose gracefully</h2>
+              <p className="text-muted-foreground">
+                AXIVAI has to compete with what customers can already buy. When a
+                simpler option performs better, the recommendation should say so.
+              </p>
+            </div>
+            <div className="overflow-x-auto rounded-lg border">
+              <table className="w-full text-sm">
+                <caption className="sr-only">
+                  Alternatives to deployable power and when each is often preferable
+                </caption>
+                <thead className="bg-muted/50 text-left">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 font-semibold">Alternative</th>
+                    <th scope="col" className="px-4 py-3 font-semibold">Often preferable when</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {ALTERNATIVES.map(({ alternative, preferable }) => (
+                    <tr key={alternative}>
+                      <th scope="row" className="px-4 py-3 font-medium text-left align-top">
+                        {alternative}
+                      </th>
+                      <td className="px-4 py-3 text-muted-foreground">{preferable}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
+              The concept is strongest when power-access delay, site flexibility or
+              avoided downtime has substantial value and technical alternatives are
+              limited.
+            </p>
+          </div>
+        </section>
+
+        {/* Applications */}
+        <section id="applications" className="py-20 px-4 bg-card border-y scroll-mt-20">
+          <div className="container mx-auto max-w-6xl">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <Badge variant="secondary" className="mb-4">
+                Applications
               </Badge>
               <h2 className="text-3xl font-bold mb-4">
-                Electricity as Physical Cargo
+                School buses first, not school buses only
               </h2>
               <p className="text-muted-foreground">
-                Instead of bringing buses to chargers, we bring chargers to buses.
-                Three lanes of mobile charging infrastructure.
+                These are research priorities, not AXIVAI customers or announced
+                offerings. Each application has to pass its own test before it earns
+                a pilot.
               </p>
             </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {APPLICATIONS.map(({ name, need, test }, i) => (
+                <Card key={name} className="h-full">
+                  <CardHeader>
+                    <CardTitle className="text-base flex flex-wrap items-center gap-2">
+                      {name}
+                      {i === 0 && (
+                        <Badge variant="outline" className="text-xs">
+                          Initial research case
+                        </Badge>
+                      )}
+                    </CardTitle>
+                    <CardDescription>{need}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-sm">
+                    <span className="font-semibold">Key test: </span>
+                    <span className="text-muted-foreground">{test}</span>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-8 max-w-3xl mx-auto">
+              Storage duration is not firm generation. For large, continuous loads
+              such as data centers, deployable storage offers at most limited-duration
+              bridging or backup support.
+            </p>
+          </div>
+        </section>
 
-            {/* Three Lanes Architecture Diagram */}
-            <div className="max-w-6xl mx-auto mb-16">
-              <div className="relative w-full rounded-lg overflow-hidden border border-accent/20 bg-card shadow-xl">
-                <Image
-                  src="/images/axivai-three-lanes-architecture.svg"
-                  alt="AXIVAI Three-Lane Mobile Charging Architecture showing Direct Injection (Class 6 trucks with 500kWh capacity), Mothership (Class 8 semi-trailers with 2MWh capacity), and Valet (electric vans with 150kWh capacity) powered by landfill gas-to-energy, solar plus storage, and off-peak grid at $0.03-$0.08 per kWh"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-              <p className="text-center text-sm text-muted-foreground mt-6 max-w-4xl mx-auto">
-                Three deployment lanes matched to operational needs: <strong className="text-accent">Direct Injection</strong> for satellite depots,{" "}
-                <strong className="text-accent">Mothership</strong> for high-volume clusters, and{" "}
-                <strong className="text-accent">Valet</strong> for driver homes. Powered by wholesale energy sources ($0.03–$0.08/kWh) to bypass retail grid rates.
+        {/* Economics */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-5xl grid gap-10 lg:grid-cols-2 items-start">
+            <div className="space-y-4">
+              <Badge variant="secondary">Economics</Badge>
+              <h2 className="text-3xl font-bold">The value is availability, not the kilowatt-hour</h2>
+              <p className="text-muted-foreground">
+                The core hypothesis: power available at the right place and time can be
+                worth more than the electricity itself. That is a hypothesis to test,
+                and it has to beat the least-cost feasible alternative, not a
+                do-nothing scenario.
+              </p>
+              <p className="text-muted-foreground">
+                No credible profitability claim can be made without site-specific
+                inputs: load shape, tariffs, asset costs, logistics, availability
+                commitments and contract terms.
               </p>
             </div>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Illustrative stress test</CardTitle>
+                <CardDescription>
+                  A deliberately unfavourable case, not a cost forecast or quotation.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm">
+                <div className="flex items-center justify-between gap-4 border-b pb-3">
+                  <span className="text-muted-foreground">
+                    Logistics: $600 per cycle ÷ 1,600 kWh
+                  </span>
+                  <span className="font-display font-semibold whitespace-nowrap">
+                    $0.375/kWh <EstimateTag />
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-4 border-b pb-3">
+                  <span className="text-muted-foreground">
+                    Electricity: $0.08/kWh at 85% efficiency
+                  </span>
+                  <span className="font-display font-semibold whitespace-nowrap">
+                    ≈ $0.094/kWh <EstimateTag />
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-semibold">Combined, before equipment and overhead</span>
+                  <span className="font-display font-bold whitespace-nowrap">
+                    ≈ $0.469/kWh <EstimateTag />
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground pt-2">
+                  Excludes battery ownership, depreciation, financing, maintenance,
+                  insurance and fixed overhead. It shows how readily transport can
+                  erase a low source-electricity price. Shorter routes, higher
+                  utilisation and fewer transport cycles could change the result.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <Card className="border-accent/20">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                    <span className="text-2xl font-bold text-accent">1</span>
-                  </div>
-                  <CardTitle>Direct Injection</CardTitle>
-                  <CardDescription>~$0.25/kWh</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Class 6 electric trucks (~500 kWh) serve satellite depots and
-                    short-run clusters.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-accent/20">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                    <span className="text-2xl font-bold text-accent">2</span>
-                  </div>
-                  <CardTitle>Mothership</CardTitle>
-                  <CardDescription>~$0.25/kWh</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Class 8 semi-trailers (~2 MWh) handle high-volume depot
-                    clusters with maximum throughput.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-accent/20">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                    <span className="text-2xl font-bold text-accent">3</span>
-                  </div>
-                  <CardTitle>Valet</CardTitle>
-                  <CardDescription>~$0.35/kWh</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Electric vans (~150 kWh) reach driver homes and HOA-restricted
-                    areas. Solves the park-out problem.
-                  </p>
-                </CardContent>
-              </Card>
+        {/* Staged validation */}
+        <section className="py-20 px-4 bg-card border-y">
+          <div className="container mx-auto max-w-6xl">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <Badge variant="secondary" className="mb-4">
+                Staged validation
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">Learning gates, not a rollout plan</h2>
+              <p className="text-muted-foreground">
+                AXIVAI is in concept development. Each stage needs evidence before the
+                next one begins; pilots and commercialization are conditional.
+              </p>
             </div>
+            <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {STAGES.map(({ stage, title, question }) => (
+                <li key={stage} className="rounded-lg border bg-background p-5">
+                  <div className="font-display text-sm font-semibold text-accent-ink mb-1">
+                    Stage {stage}
+                  </div>
+                  <div className="font-semibold mb-1">{title}</div>
+                  <p className="text-sm text-muted-foreground">{question}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
 
-            {/* Power Sourcing Strategy */}
-            <div className="max-w-4xl mx-auto mt-16">
-              <Card className="border-accent/30 bg-accent/5">
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
-                      <span className="text-xl">⚡</span>
-                    </div>
-                    <CardTitle className="text-xl">Strategic Power Sourcing</CardTitle>
-                  </div>
-                  <CardDescription>
-                    Wholesale and off-grid energy sources bypass retail grid rates
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="space-y-2">
-                      <div className="font-semibold text-sm text-accent">Landfill Gas-to-Energy</div>
-                      <div className="text-2xl font-bold">$0.03–$0.04<span className="text-sm text-muted-foreground">/kWh</span></div>
-                      <p className="text-xs text-muted-foreground">24/7 baseload power from waste methane capture</p>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="font-semibold text-sm text-accent">Renewables + Storage</div>
-                      <div className="text-2xl font-bold">$0.03–$0.06<span className="text-sm text-muted-foreground">/kWh</span></div>
-                      <p className="text-xs text-muted-foreground">Solar and wind at wholesale PPA rates</p>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="font-semibold text-sm text-accent">Off-Peak Grid</div>
-                      <div className="text-2xl font-bold">$0.06–$0.08<span className="text-sm text-muted-foreground">/kWh</span></div>
-                      <p className="text-xs text-muted-foreground">Night-time C&amp;I rates when capacity is high</p>
-                    </div>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-accent/20">
-                    <p className="text-sm text-muted-foreground">
-                      By sourcing power independently and delivering it as cargo, AXIVAI eliminates demand charges and time-of-use penalties that plague traditional depot charging.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+        {/* Evidence standard */}
+        <section id="evidence" className="py-20 px-4 scroll-mt-20">
+          <div className="container mx-auto max-w-5xl">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <Badge variant="secondary" className="mb-4">
+                Evidence standard
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">Every claim says how much we know</h2>
+              <p className="text-muted-foreground">
+                AXIVAI material separates four levels of evidence, so a hypothesis is
+                never presented as a result.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              {EVIDENCE_LEVELS.map(({ title, description }) => (
+                <Card key={title}>
+                  <CardHeader>
+                    <CardTitle className="text-base">{title}</CardTitle>
+                    <CardDescription>{description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+            <div className="rounded-lg border border-accent/40 bg-accent/5 p-5 text-sm">
+              <p>
+                <span className="font-semibold">Where AXIVAI stands today: </span>
+                there are no operating assets, deployed hubs, commercial customers,
+                proprietary software, engineering certifications, contracted power
+                supplies or demonstrated financial returns. Brand imagery is
+                illustrative, not photographic evidence of deployed facilities.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Platform Services - Integrated Platform Visual */}
-        <PlatformServices />
-
-        {/* Core Modules */}
-        <section className="py-24 px-4 bg-card border-y">
+        {/* Tools */}
+        <section className="py-20 px-4 bg-card border-y">
           <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Platform Modules</h2>
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Research tools</h2>
               <p className="text-muted-foreground">
-                Decision-grade tools built for school district CFOs, policymakers,
-                and auditors.
+                Planning tools that show their assumptions, cite their sources and
+                label what is unknown.
               </p>
             </div>
 
@@ -280,201 +549,115 @@ export default function HomePage() {
               <Link href="/tco">
                 <Card className="h-full hover:border-accent transition-colors cursor-pointer">
                   <CardHeader>
-                    <CardTitle className="text-lg">TCO Calculator</CardTitle>
+                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+                      <Calculator className="w-5 h-5 text-accent-ink" aria-hidden="true" />
+                    </div>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      TCO calculator
+                      <Badge variant="outline" className="text-xs">
+                        Beta
+                      </Badge>
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      Planning-grade total cost of ownership with full
-                      transparency. Compare diesel, self-managed EV, EaaS, and
-                      AXIVAI scenarios.
+                      Planning-grade fleet cost comparison with visible assumptions,
+                      stress scenarios and exportable evidence. Being updated to the
+                      October 2026 concept.
                     </p>
                   </CardContent>
                 </Card>
               </Link>
 
-              <Card className="h-full opacity-75">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    Research Engine
-                    <Badge variant="outline" className="text-xs">
-                      Coming Soon
-                    </Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Weekly automated research with citation, freshness scoring,
-                    and confidence labeling.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="h-full opacity-75">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    Solution Explorer
-                    <Badge variant="outline" className="text-xs">
-                      Coming Soon
-                    </Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Interactive problem-to-solution mapping with evidence trails
-                    and impact analysis.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="h-full opacity-75">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    Trust Center
-                    <Badge variant="outline" className="text-xs">
-                      Coming Soon
-                    </Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Compliance, accessibility, AI governance, and audit trails for
-                    procurement readiness.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="h-full opacity-75">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    AXIVAI Chat
-                    <Badge variant="outline" className="text-xs">
-                      Coming Soon
-                    </Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Grounded Q&A with full citation awareness. Explains TCO
-                    outputs, policy, and navigation.
-                  </p>
-                </CardContent>
-              </Card>
+              {[
+                {
+                  icon: Search,
+                  title: "Research engine",
+                  description: "Automated research with citations, freshness tracking and evidence labels.",
+                },
+                {
+                  icon: Compass,
+                  title: "Solution explorer",
+                  description: "From a verified power need to the alternatives and deployment modes that could meet it.",
+                },
+                {
+                  icon: Shield,
+                  title: "Trust center",
+                  description: "Accessibility, privacy, AI governance and audit trails in one place.",
+                },
+                {
+                  icon: MessageSquare,
+                  title: "AXIVAI chat",
+                  description: "Grounded, cited answers about the concept, the research and the calculator.",
+                },
+              ].map(({ icon: Icon, title, description }) => (
+                <Card key={title} className="h-full">
+                  <CardHeader>
+                    <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-3">
+                      <Icon className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+                    </div>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      {title}
+                      <Badge variant="outline" className="text-xs">
+                        Planned
+                      </Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{description}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          </div>
-        </section>
-
-        {/* Service Regions & Funding */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-5xl grid gap-10 lg:grid-cols-[2fr,1fr] items-start">
-            <div className="space-y-4">
-              <Badge variant="secondary">Eligibility & Coverage</Badge>
-              <h2 className="text-3xl font-bold">Built for U.S. School Districts</h2>
-              <p className="text-muted-foreground">
-                We prioritize districts facing grid bottlenecks and tight procurement cycles. Mobile charging
-                unlocks immediate deployment while utility upgrades catch up.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["CA", "TX", "FL", "NY", "NJ", "PA", "WA", "OR", "VA", "IL"].map((state) => (
-                  <Badge key={state} variant="outline" className="bg-muted text-foreground">
-                    {state}
-                  </Badge>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Custom modeling available for other states. Funding-aligned for EPA Clean School Bus, IRA, and state LCFS where available.
-              </p>
-            </div>
-            <Card className="bg-card border-accent/30">
-              <CardHeader>
-                <CardTitle>Procurement Ready</CardTitle>
-                <CardDescription>Evidence-first, audit-friendly deliverables.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2">
-                  <Badge variant="outline" className="mt-0.5">Docs</Badge>
-                  <span>Planning-grade TCO with exportable JSON/CSV evidence.</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Badge variant="outline" className="mt-0.5">Compliance</Badge>
-                  <span>Privacy, cookies, CCPA/Do Not Sell, accessibility pages linked in footer.</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Badge variant="outline" className="mt-0.5">Support</Badge>
-                  <span>Direct analyst support for state-level grant submissions.</span>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="py-16 px-4 bg-card border-y" aria-labelledby="faq-heading">
+        <section className="py-20 px-4" aria-labelledby="faq-heading">
           <div className="container mx-auto max-w-5xl space-y-10">
             <div className="text-center space-y-4">
               <Badge variant="secondary" className="mb-2">
                 FAQ
               </Badge>
               <h2 id="faq-heading" className="text-3xl font-bold">
-                Procurement & Compliance Questions
+                Common questions
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Fast answers for district CFOs, transportation directors, and grant coordinators.
-              </p>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-lg">Can we deploy without a new interconnection?</CardTitle>
-                  <CardDescription>Yes. Mobile charging bypasses queue risk.</CardDescription>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground space-y-2">
-                  <p>We deliver megawatt-scale charging as rolling assets. You avoid transformer upgrades and can iterate routes while the grid catches up.</p>
-                </CardContent>
-              </Card>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-lg">How do we handle data privacy?</CardTitle>
-                  <CardDescription>Consent-first with opt-out controls.</CardDescription>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Our cookie banner, privacy, cookies, and CCPA/Do Not Sell pages are linked in every footer. Analytics are disabled until consent.</p>
-                </CardContent>
-              </Card>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-lg">Do you support rural park-outs?</CardTitle>
-                  <CardDescription>Yes, via the Valet lane.</CardDescription>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Electric vans service driver homes and HOA-restricted areas, eliminating $6k+ panel upgrades per residence.</p>
-                </CardContent>
-              </Card>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-lg">What documentation is exportable?</CardTitle>
-                  <CardDescription>JSON and CSV for audit trails.</CardDescription>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Every TCO run exports evidence factors, assumptions, and scenario comparisons for your procurement file.</p>
-                </CardContent>
-              </Card>
+              {FAQS.map(({ question, short, answer }) => (
+                <Card key={question} className="h-full">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{question}</CardTitle>
+                    <CardDescription>{short}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-sm text-muted-foreground">
+                    <p>{answer}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-24 px-4">
+        {/* Closing */}
+        <section className="py-20 px-4 bg-card border-t">
           <div className="container mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold mb-4">
-              Ready to Electrify Smarter?
+              The right power capability, where conventional infrastructure falls short
             </h2>
             <p className="text-muted-foreground mb-8">
-              Calculate your total cost of ownership and see how AXIVAI&apos;s mobile
-              charging architecture compares to traditional approaches.
+              Mobile, stationed or intelligently managed. The next stage is
+              comparative technical and economic research to find which applications
+              reward deployable capacity enough to justify its cost.
             </p>
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground w-full sm:w-auto">
-              <Link href="/tco">Start Your TCO Analysis</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground w-full sm:w-auto">
+                <Link href="#approach">Review the approach</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <Link href="/tco">Try the TCO calculator (beta)</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
@@ -484,9 +667,9 @@ export default function HomePage() {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <p className="font-bold gradient-text text-lg">AXIVAI</p>
+              <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="text-center md:text-right">

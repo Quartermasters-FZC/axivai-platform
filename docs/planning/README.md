@@ -9,7 +9,7 @@ AXIVAI is a public-sector, decision-grade resilience infrastructure platform for
 ## HOW TO USE
 
 1. Place this entire folder into your project as `/Planning`
-2. Ensure `AXIVAI_Whitepaper_VNext.docx.md` exists in the same directory
+2. Ensure `AXIVAI_Improved_Concept_Paper_October_2026.md` exists in the same directory
 3. Paste `AXIVAI_Master_Prompt.md` into:
    - Claude Project → Instructions
 4. Execute prompts sequentially
@@ -22,7 +22,7 @@ AXIVAI is a public-sector, decision-grade resilience infrastructure platform for
 
 ## CORE PRINCIPLES
 
-- White paper = single source of truth
+- Concept paper = single source of truth
 - Planning only (no production code unless instructed)
 - Artifact-first workflow
 - Public-sector trust, auditability, and explainability
