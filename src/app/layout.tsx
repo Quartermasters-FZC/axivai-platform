@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import { CookieConsent } from "@/components/cookie-consent/CookieConsent";
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <SiteHeader />
         <script
           type="application/ld+json"
           suppressHydrationWarning

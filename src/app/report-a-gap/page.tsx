@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { LegalFooter } from "@/components/LegalFooter";
 import { GapReportForm } from "@/components/gap-report/GapReportForm";
 
@@ -16,17 +13,6 @@ export const metadata: Metadata = {
 export default function ReportAGapPage() {
   return (
     <div className="min-h-screen bg-background">
-      <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <BrandLogo className="h-7" priority />
-          </Link>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/">Back to home</Link>
-          </Button>
-        </div>
-      </nav>
-
       <main id="main-content" tabIndex={-1} className="py-12 md:py-16 px-4">
         <div className="container mx-auto max-w-3xl">
           <div className="mb-10 space-y-4">

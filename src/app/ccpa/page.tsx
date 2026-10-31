@@ -16,17 +16,6 @@ export default function CCPA() {
   const lastUpdated = "October 31, 2026";
   return (
     <div className="min-h-screen bg-background">
-      <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <BrandLogo className="h-7" priority />
-          </Link>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/">Back to Home</Link>
-          </Button>
-        </div>
-      </nav>
-
       <main className="py-16 px-4">
         <article className="container mx-auto max-w-3xl prose prose-stone dark:prose-invert">
           <div className="not-prose mb-8">

@@ -178,38 +178,6 @@ function EstimateTag() {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <BrandLogo className="h-7" priority />
-          </Link>
-          <div className="flex items-center gap-6 flex-wrap justify-end">
-            <Link
-              href="#approach"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Approach
-            </Link>
-            <Link
-              href="#applications"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Applications
-            </Link>
-            <Link
-              href="#evidence"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Evidence
-            </Link>
-            <Button asChild size="sm">
-              <Link href="/report-a-gap">Report a power gap</Link>
-            </Button>
-          </div>
-        </div>
-      </nav>
-
       <main id="main-content" tabIndex={-1} className="flex flex-col">
         <HeroSection />
 

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LegalFooter } from "@/components/LegalFooter";
 import {
   DataTag,
@@ -161,23 +160,6 @@ function SectionHead({ id, no, title }: { id: string; no: string; title: string 
 export default function SchoolBusDepotsReport() {
   return (
     <div className="axr min-h-screen">
-      {/* Site nav */}
-      <nav className="axr-noprint border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50" style={{ borderColor: "var(--line)" }}>
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
-          <Link href="/" aria-label="AXIVAI home" style={{ textDecoration: "none" }}>
-            <BrandLogo className="h-7" priority />
-          </Link>
-          <div className="flex items-center gap-5 text-sm">
-            <Link href="/#applications" className="hidden sm:inline" style={{ textDecoration: "none", color: "var(--ink-muted)" }}>
-              Applications
-            </Link>
-            <Link href="/report-a-gap" className="hidden sm:inline" style={{ textDecoration: "none", color: "var(--ink-muted)" }}>
-              Report a power gap
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       {/* Cover */}
       <header className="axr-cover">
         <div className="axr-cover-graphic hidden md:block" aria-hidden="true" />
