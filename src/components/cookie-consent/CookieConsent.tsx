@@ -63,16 +63,24 @@ function saveConsent(consent: ConsentState) {
 }
 
 export function CookieConsent() {
-  // Initialize privacy signals first
-  const privacySignals = useMemo(() => detectPrivacySignals(), []);
-  
-  // Initialize consent with privacy signal awareness
-  const initialConsent = useMemo(() => {
+  const [mounted, setMounted] = useState(false);
+  const [consent, setConsent] = useState<ConsentState | null>(null);
+  const [showBanner, setShowBanner] = useState(false);
+  const [showPrefs, setShowPrefs] = useState(false);
+  const [draft, setDraft] = useState<ConsentState>(defaultConsent);
+  const [privacySignals, setPrivacySignals] = useState<{ dnt: boolean; gpc: boolean }>({ dnt: false, gpc: false });
+
+  // Initialize on client-side only to avoid hydration mismatch
+  useEffect(() => {
+    const signals = detectPrivacySignals();
+    setPrivacySignals(signals);
+
     const existing = loadConsent();
-    if (existing) return existing;
-    
-    // If DNT or GPC is detected, auto-apply privacy-respecting defaults
-    if (privacySignals.dnt || privacySignals.gpc) {
+    if (existing) {
+      setConsent(existing);
+      setShowBanner(false);
+    } else if (signals.dnt || signals.gpc) {
+      // If DNT or GPC is detected, auto-apply privacy-respecting defaults
       const privacyRespectingConsent: ConsentState = {
         necessary: true,
         analytics: false,
@@ -81,16 +89,15 @@ export function CookieConsent() {
         updatedAt: new Date().toISOString(),
       };
       saveConsent(privacyRespectingConsent);
-      return privacyRespectingConsent;
+      setConsent(privacyRespectingConsent);
+      setShowBanner(false);
+    } else {
+      // No consent yet, show banner
+      setShowBanner(true);
     }
-    
-    return null;
-  }, [privacySignals]);
-  
-  const [consent, setConsent] = useState<ConsentState | null>(initialConsent);
-  const [showBanner, setShowBanner] = useState(initialConsent === null);
-  const [showPrefs, setShowPrefs] = useState(false);
-  const [draft, setDraft] = useState<ConsentState>(defaultConsent);
+
+    setMounted(true);
+  }, []);
 
   // Listen for openCookieSettings event (from Cookie Policy page)
   useEffect(() => {
@@ -148,11 +155,13 @@ export function CookieConsent() {
 
   // Show banner when: no consent yet, OR when showPrefs is true (reopened from settings)
   const bannerVisible = useMemo(() => {
+    // Don't show anything until mounted (client-side)
+    if (!mounted) return false;
     // If preferences panel is open, always show the banner
     if (showPrefs) return true;
-    // Otherwise, only show if no consent has been given yet
-    return showBanner && !consent;
-  }, [showBanner, consent, showPrefs]);
+    // Otherwise, only show if showBanner is true (set during initialization)
+    return showBanner;
+  }, [mounted, showBanner, showPrefs]);
 
   if (!bannerVisible) return null;
 
