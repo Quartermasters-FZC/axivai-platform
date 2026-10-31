@@ -166,7 +166,7 @@ export function CookieConsent() {
   if (!bannerVisible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 pointer-events-none">
+    <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 pointer-events-none print:hidden">
       <div className="max-w-5xl mx-auto pointer-events-auto">
         <Card className="bg-card/95 border border-border shadow-lg">
           <div className="flex flex-col gap-4 p-4">
