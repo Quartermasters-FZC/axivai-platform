@@ -1,25 +1,26 @@
 # AXIVAI Platform - Docker Compose
-# © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+# © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
 
 services:
-  # PostgreSQL Database
+  # MySQL Database (matches Hostinger production)
   db:
-    image: postgres:16-alpine
+    image: mysql:8.4
     container_name: axivai-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: axivai
-      POSTGRES_PASSWORD: axivai_dev_password
-      POSTGRES_DB: axivai
+      MYSQL_USER: axivai
+      MYSQL_PASSWORD: axivai_dev_password
+      MYSQL_DATABASE: axivai
+      MYSQL_ROOT_PASSWORD: axivai_dev_root
     ports:
-      - "5433:5432"
+      - "3307:3306"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U axivai -d axivai"]
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u axivai -paxivai_dev_password"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   # Next.js Application (Development)
   app:
@@ -33,7 +34,7 @@ services:
       - "3002:3000"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://axivai:axivai_dev_password@db:5432/axivai
+      - DATABASE_URL=mysql://axivai:axivai_dev_password@db:3306/axivai
     volumes:
       - .:/app
       - /app/node_modules
@@ -44,4 +45,4 @@ services:
     command: npm run dev
 
 volumes:
-  postgres_data:
+  mysql_data:

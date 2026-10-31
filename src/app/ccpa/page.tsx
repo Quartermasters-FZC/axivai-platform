@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function CCPA() {
-  const lastUpdated = "December 25, 2025";
+  const lastUpdated = "October 31, 2026";
   return (
     <div className="min-h-screen bg-background">
       <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
@@ -56,7 +56,7 @@ export default function CCPA() {
             <p>We may collect the following categories in the past 12 months:</p>
             <ul>
               <li>Identifiers: name, email, IP address (approximate geolocation).</li>
-              <li>Commercial information: service interest, TCO analysis inputs you provide.</li>
+              <li>Commercial information: power-access gap report details you provide.</li>
               <li>Internet activity: pages viewed, interactions (if analytics is enabled by consent).</li>
               <li>Professional information: organization and role if you share them.</li>
             </ul>
@@ -106,7 +106,7 @@ export default function CCPA() {
             <div>
               <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -125,7 +125,7 @@ export default function CCPA() {
             </div>
           </div>
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
           </div>
         </div>
       </footer>

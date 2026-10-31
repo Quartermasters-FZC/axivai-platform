@@ -1,6 +1,6 @@
 /**
  * AXIVAI Accessibility Statement Page
- * © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+ * © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
  *
  * Accessibility Statement compliant with:
  * - ADA (Americans with Disabilities Act)
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 export default function AccessibilityPage() {
-  const lastUpdated = "December 25, 2025";
+  const lastUpdated = "October 31, 2026";
 
   return (
     <div className="min-h-screen bg-background">
@@ -63,8 +63,8 @@ export default function AccessibilityPage() {
               Aliff Capital, LLC is committed to ensuring that the AXIVAI
               platform is accessible to all users, including people with
               disabilities. We strive to provide an inclusive digital experience
-              that allows everyone to access and use our decision-support tools
-              for school bus electrification.
+              that allows everyone to access our concept information and
+              research tools.
             </p>
             <p>
               We are continually improving the user experience for everyone and
@@ -214,19 +214,8 @@ export default function AccessibilityPage() {
             </p>
             <ul>
               <li>
-                <strong>TCO Calculator Charts:</strong> Complex data
-                visualizations may not be fully accessible to screen readers.
-                We provide tabular data alternatives where possible.
-              </li>
-              <li>
-                <strong>AI-Generated Content:</strong> Responses from AI
-                features may not always follow accessibility best practices in
-                formatting.
-              </li>
-              <li>
-                <strong>PDF Exports:</strong> Exported reports may have limited
-                accessibility features. We are working on improving PDF
-                accessibility.
+                <strong>Concept Renderings:</strong> Some illustrative images
+                contain text. We provide text alternatives that describe them.
               </li>
               <li>
                 <strong>Third-Party Components:</strong> Some embedded
@@ -423,7 +412,7 @@ export default function AccessibilityPage() {
             <div>
               <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -442,7 +431,7 @@ export default function AccessibilityPage() {
             </div>
           </div>
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
           </div>
         </div>
       </footer>

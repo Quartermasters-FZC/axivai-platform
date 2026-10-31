@@ -1,6 +1,6 @@
 /**
  * AXIVAI Cookie Policy Page
- * © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+ * © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
  *
  * Comprehensive Cookie Policy compliant with:
  * - GDPR (EU)
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export default function CookiePolicyPage() {
-  const lastUpdated = "December 25, 2025";
+  const lastUpdated = "October 31, 2026";
 
   return (
     <div className="min-h-screen bg-background">
@@ -287,43 +287,6 @@ export default function CookiePolicyPage() {
                 </a>
               </li>
             </ul>
-
-            <h3>AI Service Providers</h3>
-            <p>
-              When you use AI-powered features (optional), your interactions
-              may be processed by OpenAI, Anthropic, or Google. These providers
-              may use their own cookies or tracking technologies. Please refer
-              to their privacy policies for details:
-            </p>
-            <ul>
-              <li>
-                <a
-                  href="https://openai.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  OpenAI Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.anthropic.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Anthropic Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Google Privacy Policy
-                </a>
-              </li>
-            </ul>
           </section>
 
           {/* Managing Cookies */}
@@ -499,7 +462,7 @@ export default function CookiePolicyPage() {
             <div>
               <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -518,7 +481,7 @@ export default function CookiePolicyPage() {
             </div>
           </div>
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
           </div>
         </div>
       </footer>

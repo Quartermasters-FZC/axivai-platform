@@ -1,5 +1,5 @@
 # AXIVAI Platform - Dockerfile
-# © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+# © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
 
 # ============================================
 # Base stage

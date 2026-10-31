@@ -29,8 +29,8 @@ You must assume the following files exist and are authoritative:
 - 03_System_Architecture.md
 - 10_Research_Engine_Spec.md
 - 11_Data_Connectors_Plan.md
-- 20_TCO_Blueprint.md
-- 21_TCO_Scenarios_Sensitivity.md
+- 20_TCO_Blueprint.md (retired October 2026, reference only)
+- 21_TCO_Scenarios_Sensitivity.md (retired October 2026, reference only)
 - 30_Chatbot_Spec.md
 - 40_Compliance_Trust_Center.md
 - 50_Design_System.md
@@ -128,7 +128,7 @@ You are designing a MULTI-SYSTEM PLATFORM:
 • Strict citation, freshness, and confidence labeling
 • Feeds TCO, Chatbot, Solutions, and Compliance
 
-2) Planning-Grade TCO Calculator
+2) Planning-Grade TCO Calculator — RETIRED October 2026; replaced on the site by the power-access gap report form
 • User inputs always override defaults
 • Includes:
   - TOU rates, demand charges, escalation

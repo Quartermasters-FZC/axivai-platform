@@ -1,10 +1,9 @@
 /**
  * AXIVAI Terms of Service Page
- * © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+ * © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
  *
  * Comprehensive Terms of Service covering:
  * - Platform usage terms
- * - Subscription and payment terms
  * - Intellectual property
  * - Liability limitations
  * - Dispute resolution
@@ -20,13 +19,13 @@ import { Separator } from "@/components/ui/separator";
 export const metadata: Metadata = {
   title: "Terms of Service | AXIVAI",
   description:
-    "Terms and conditions for using AXIVAI school bus electrification platform, including TCO Calculator, subscription terms, acceptable use, and user rights.",
+    "Terms and conditions for using the AXIVAI website and research tools, including the power-access gap report form, acceptable use, and user rights.",
   robots: "index, follow",
 };
 
 export default function TermsOfServicePage() {
-  const lastUpdated = "December 25, 2025";
-  const effectiveDate = "December 25, 2025";
+  const lastUpdated = "October 31, 2026";
+  const effectiveDate = "October 31, 2026";
 
   return (
     <div className="min-h-screen bg-background">
@@ -104,35 +103,31 @@ export default function TermsOfServicePage() {
           <section id="services">
             <h2>3. Description of Services</h2>
             <p>
-              AXIVAI provides decision-grade infrastructure intelligence for
-              U.S. school bus electrification. Our Services include:
+              AXIVAI is a deployable power infrastructure concept in research
+              and development. It does not currently sell products or services.
+              Our Services include:
             </p>
 
-            <h3>3.1 TCO Calculator</h3>
+            <h3>3.1 Concept Information</h3>
             <p>
-              A planning-grade Total Cost of Ownership calculator that compares
-              diesel, self-managed EV, Electrification-as-a-Service (EaaS), and
-              AXIVAI mobile charging scenarios. The TCO Calculator provides:
+              Information about the AXIVAI concept, its research questions and
+              its evidence standard. This information describes hypotheses
+              under investigation, not operating assets, offerings or results.
             </p>
-            <ul>
-              <li>Fleet-specific cost estimates based on user inputs</li>
-              <li>Multi-scenario comparison with transparent assumptions</li>
-              <li>Evidence strength indicators and applicability warnings</li>
-              <li>Export capabilities (JSON/CSV)</li>
-            </ul>
 
-            <h3>3.2 AI-Powered Analysis (Preview)</h3>
+            <h3>3.2 Power-Access Gap Reports</h3>
             <p>
-              Optional AI-powered explanations and audit insights using
-              third-party AI providers (OpenAI, Anthropic, Google). AI outputs
-              are informational only and should not replace professional advice.
+              A form for describing sites where power access falls short.
+              Reports are used for research. Submitting a report creates no
+              commercial relationship, commitment or obligation for you or for
+              AXIVAI. Do not include confidential information you are not
+              permitted to share, or personal information about other people.
             </p>
 
             <h3>3.3 Future Services</h3>
             <p>
-              Additional modules including Research Engine, Solution Explorer,
-              Trust Center, and AXIVAI Chat are planned for future release.
-              These Terms will govern those services upon availability.
+              Additional research tools may be released in the future. These
+              Terms will govern those services upon availability.
             </p>
           </section>
 
@@ -263,7 +258,6 @@ export default function TermsOfServicePage() {
               services, including:
             </p>
             <ul>
-              <li>AI providers (OpenAI, Anthropic, Google)</li>
               <li>Data sources (EIA, EPA, government databases)</li>
               <li>Analytics and infrastructure providers</li>
             </ul>
@@ -289,9 +283,8 @@ export default function TermsOfServicePage() {
 
             <h3>8.2 No Professional Advice</h3>
             <p>
-              The Services, including TCO calculations and AI insights, provide
-              <strong> planning-grade estimates only</strong> and do not
-              constitute:
+              The Services provide <strong>general research information only</strong>
+              and do not constitute:
             </p>
             <ul>
               <li>Financial, investment, or accounting advice</li>
@@ -312,7 +305,6 @@ export default function TermsOfServicePage() {
               <li>All data, calculations, or estimates are accurate, complete, or current</li>
               <li>Default assumptions apply to your specific situation</li>
               <li>Third-party data sources are error-free or up-to-date</li>
-              <li>AI-generated content is factually correct or bias-free</li>
             </ul>
             <p>
               Users are responsible for verifying outputs against their own
@@ -584,7 +576,7 @@ export default function TermsOfServicePage() {
             <div>
               <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -603,7 +595,7 @@ export default function TermsOfServicePage() {
             </div>
           </div>
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
           </div>
         </div>
       </footer>

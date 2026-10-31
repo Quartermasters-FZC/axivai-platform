@@ -96,11 +96,6 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "AXIVAI",
               url: "https://axivai.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://axivai.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
             }),
           }}
         />

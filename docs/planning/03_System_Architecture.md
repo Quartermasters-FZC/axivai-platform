@@ -1,6 +1,6 @@
 Design platform architecture (planning only):
 - Research Engine
-- TCO Engine
+- Gap report intake (form → API → MySQL `GapReport`)
 - Chatbot
 - Compliance Center
 - CMS & Auth

@@ -1,6 +1,6 @@
 /**
  * AXIVAI Privacy Policy Page
- * © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+ * © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
  *
  * Comprehensive privacy policy compliant with:
  * - CCPA/CPRA (California)
@@ -18,12 +18,12 @@ import { Separator } from "@/components/ui/separator";
 export const metadata: Metadata = {
   title: "Privacy Policy | AXIVAI",
   description:
-    "Learn how AXIVAI collects, uses, and protects your personal information. GDPR and CCPA compliant privacy practices for our school bus electrification platform.",
+    "Learn how AXIVAI collects, uses, and protects your personal information. How AXIVAI handles information on its website and in power-access gap reports.",
   robots: "index, follow",
 };
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = "December 25, 2025";
+  const lastUpdated = "October 31, 2026";
 
   return (
     <div className="min-h-screen bg-background">
@@ -63,9 +63,9 @@ export default function PrivacyPolicyPage() {
               use, disclose, and safeguard your information when you visit our
               website at{" "}
               <Link href="https://axivai.com">axivai.com</Link> and use our
-              school bus electrification decision-support platform, including
-              our TCO Calculator and related services (collectively, the
-              &quot;Services&quot;).
+              research tools, including the power-access gap report form
+              (collectively, the &quot;Services&quot;). AXIVAI is a deployable
+              power infrastructure concept in research and development.
             </p>
             <p>
               By accessing or using our Services, you agree to this Privacy
@@ -85,9 +85,16 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Fleet Profile Data:</strong> State/location, bus counts
-                by type (Type A, C, D), daily mileage, operating days, park-out
-                percentages, and optional cost overrides.
+                <strong>Gap Report Data:</strong> When you submit a
+                power-access gap report, we collect the organization type,
+                state and optional city, the problem description, optional
+                power and energy figures, timelines, current approach and cost
+                of delay, and optionally your organization name and role.
+              </li>
+              <li>
+                <strong>Follow-Up Contact Details:</strong> Your name and email
+                address, only if you tick the box agreeing that we may contact
+                you about your report. If you don&apos;t, we do not store them.
               </li>
               <li>
                 <strong>Contact Information:</strong> If you contact us via
@@ -95,9 +102,8 @@ export default function PrivacyPolicyPage() {
                 address, and the content of your message.
               </li>
               <li>
-                <strong>Business Information:</strong> Organization name, role,
-                and professional contact details if you request a consultation
-                or quote.
+                <strong>Business Information:</strong> Organization name and
+                role if you choose to provide them.
               </li>
             </ul>
 
@@ -117,7 +123,9 @@ export default function PrivacyPolicyPage() {
               </li>
               <li>
                 <strong>IP Address:</strong> Your Internet Protocol address,
-                which may indicate your general geographic location.
+                which may indicate your general geographic location. For gap
+                reports we store only a one-way hash of your IP address, used to
+                limit spam and repeated submissions.
               </li>
               <li>
                 <strong>Cookies and Similar Technologies:</strong> See our{" "}
@@ -132,11 +140,6 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>AI Service Providers:</strong> When you use AI-powered
-                features, interactions may be processed by OpenAI, Anthropic, or
-                Google, subject to their respective privacy policies.
-              </li>
-              <li>
                 <strong>Analytics Providers:</strong> Aggregated usage data to
                 help us improve our Services.
               </li>
@@ -149,9 +152,13 @@ export default function PrivacyPolicyPage() {
             <p>We use the information we collect to:</p>
             <ul>
               <li>
-                <strong>Provide and Improve Services:</strong> Calculate TCO
-                estimates, generate analysis reports, and enhance platform
-                functionality.
+                <strong>Research:</strong> Use gap reports to map where and why
+                power access falls short, and to compare possible solutions.
+                Published findings use aggregated or de-identified data only.
+              </li>
+              <li>
+                <strong>Follow-Up:</strong> Contact you about your gap report,
+                only if you agreed to follow-up.
               </li>
               <li>
                 <strong>Respond to Inquiries:</strong> Answer your questions and
@@ -215,8 +222,7 @@ export default function PrivacyPolicyPage() {
               functions on our behalf, including:
             </p>
             <ul>
-              <li>Cloud hosting and infrastructure (e.g., Vercel, AWS)</li>
-              <li>AI/ML processing (OpenAI, Anthropic, Google)</li>
+              <li>Website hosting and database (Hostinger)</li>
               <li>Analytics services</li>
             </ul>
             <p>
@@ -276,10 +282,10 @@ export default function PrivacyPolicyPage() {
               <li>Resolve disputes and enforce agreements</li>
             </ul>
             <p>
-              TCO calculation data is processed in real-time and is not
-              persistently stored unless you create an account (feature not yet
-              available). Anonymized, aggregated data may be retained
-              indefinitely for analytical purposes.
+              Gap reports are kept while the research they support is active.
+              Follow-up contact details are deleted on request, or once they
+              are no longer needed for follow-up. Anonymized, aggregated data
+              may be retained indefinitely for analytical purposes.
             </p>
           </section>
 
@@ -524,7 +530,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -543,7 +549,7 @@ export default function PrivacyPolicyPage() {
             </div>
           </div>
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
           </div>
         </div>
       </footer>

@@ -87,10 +87,10 @@ export function HeroSection() {
               size="lg"
               className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
             >
-              <Link href="#approach">See the approach</Link>
+              <Link href="/report-a-gap">Report a power-access gap</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="w-full sm:w-auto font-medium">
-              <Link href="#applications">Explore applications</Link>
+              <Link href="#approach">See the approach</Link>
             </Button>
           </div>
         </div>

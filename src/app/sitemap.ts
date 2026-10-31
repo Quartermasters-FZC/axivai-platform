@@ -4,7 +4,7 @@ const baseUrl = "https://axivai.com";
 
 const staticPaths = [
   "",
-  "tco",
+  "report-a-gap",
   "privacy",
   "cookies",
   "terms",

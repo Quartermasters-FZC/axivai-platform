@@ -14,11 +14,7 @@ import {
   Truck,
   BatteryCharging,
   SlidersHorizontal,
-  Calculator,
-  Search,
-  Compass,
-  Shield,
-  MessageSquare,
+  ClipboardList,
   ArrowRight,
   CircleDot,
 } from "lucide-react";
@@ -202,13 +198,13 @@ export default function HomePage() {
               Applications
             </Link>
             <Link
-              href="/tco"
+              href="#evidence"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              TCO calculator
+              Evidence
             </Link>
             <Button asChild size="sm">
-              <Link href="#evidence">Our evidence standard</Link>
+              <Link href="/report-a-gap">Report a power gap</Link>
             </Button>
           </div>
         </div>
@@ -391,9 +387,13 @@ export default function HomePage() {
                     <CardTitle className="text-base flex flex-wrap items-center gap-2">
                       {name}
                       {i === 0 && (
-                        <Badge variant="outline" className="text-xs">
+                        <Link
+                          href="/research/school-bus-depots"
+                          className="inline-flex items-center gap-1 rounded-md border border-accent-ink/40 bg-accent/5 px-2 py-0.5 text-xs font-medium text-accent-ink hover:border-accent-ink"
+                        >
                           Initial research case
-                        </Badge>
+                          <ArrowRight className="w-3 h-3" aria-hidden="true" />
+                        </Link>
                       )}
                     </CardTitle>
                     <CardDescription>{need}</CardDescription>
@@ -534,80 +534,29 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Tools */}
-        <section className="py-20 px-4 bg-card border-y">
-          <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Research tools</h2>
-              <p className="text-muted-foreground">
-                Planning tools that show their assumptions, cite their sources and
-                label what is unknown.
-              </p>
+        {/* Report a gap */}
+        <section id="report" className="py-20 px-4 bg-card border-y scroll-mt-20">
+          <div className="container mx-auto max-w-4xl grid gap-8 md:grid-cols-[auto_1fr] items-start">
+            <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center">
+              <ClipboardList className="w-7 h-7 text-accent-ink" aria-hidden="true" />
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <Link href="/tco">
-                <Card className="h-full hover:border-accent transition-colors cursor-pointer">
-                  <CardHeader>
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
-                      <Calculator className="w-5 h-5 text-accent-ink" aria-hidden="true" />
-                    </div>
-                    <CardTitle className="text-lg flex items-center gap-2">
-                      TCO calculator
-                      <Badge variant="outline" className="text-xs">
-                        Beta
-                      </Badge>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Planning-grade fleet cost comparison with visible assumptions,
-                      stress scenarios and exportable evidence. Being updated to the
-                      October 2026 concept.
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              {[
-                {
-                  icon: Search,
-                  title: "Research engine",
-                  description: "Automated research with citations, freshness tracking and evidence labels.",
-                },
-                {
-                  icon: Compass,
-                  title: "Solution explorer",
-                  description: "From a verified power need to the alternatives and deployment modes that could meet it.",
-                },
-                {
-                  icon: Shield,
-                  title: "Trust center",
-                  description: "Accessibility, privacy, AI governance and audit trails in one place.",
-                },
-                {
-                  icon: MessageSquare,
-                  title: "AXIVAI chat",
-                  description: "Grounded, cited answers about the concept, the research and the calculator.",
-                },
-              ].map(({ icon: Icon, title, description }) => (
-                <Card key={title} className="h-full">
-                  <CardHeader>
-                    <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-3">
-                      <Icon className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
-                    </div>
-                    <CardTitle className="text-lg flex items-center gap-2">
-                      {title}
-                      <Badge variant="outline" className="text-xs">
-                        Planned
-                      </Badge>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">{description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="space-y-4">
+              <Badge variant="secondary">Help map the problem</Badge>
+              <h2 className="text-3xl font-bold">Know a site that can&apos;t get the power it needs?</h2>
+              <p className="text-muted-foreground">
+                Stage I of the research is problem mapping: real sites, real loads,
+                real utility delays and what the alternatives cost. If you run a
+                fleet, a depot, a construction project, a facility or a utility
+                program and power access is holding you back, tell us about it.
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
+                <li>About 5 minutes. Rough numbers or &ldquo;not sure&rdquo; are fine.</li>
+                <li>Contact details are optional and kept only if you ask for follow-up.</li>
+                <li>AXIVAI isn&apos;t selling anything; a report creates no commitment.</li>
+              </ul>
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold">
+                <Link href="/report-a-gap">Report a power-access gap</Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -655,7 +604,7 @@ export default function HomePage() {
                 <Link href="#approach">Review the approach</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="/tco">Try the TCO calculator (beta)</Link>
+                <Link href="/report-a-gap">Report a power-access gap</Link>
               </Button>
             </div>
           </div>
@@ -674,7 +623,7 @@ export default function HomePage() {
             </div>
             <div className="text-center md:text-right">
               <p className="text-sm text-muted-foreground">
-                © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+                © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 <Link

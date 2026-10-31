@@ -1,6 +1,6 @@
 /**
  * AXIVAI Privacy Request (DSAR) Page
- * © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+ * © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
  *
  * Data Subject Access Request form for:
  * - CCPA/CPRA (California)
@@ -477,7 +477,7 @@ export default function PrivacyRequestPage() {
             <div>
               <BrandLogo className="h-6 mb-1" />
               <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
+                Deployable power infrastructure · concept in research and development
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -496,7 +496,7 @@ export default function PrivacyRequestPage() {
             </div>
           </div>
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
+            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
           </div>
         </div>
       </footer>
