@@ -14,7 +14,7 @@ Search engines and AI assistants rank pages that carry unique, checkable facts. 
   - CEC, CARB, CDE, EPA Clean School Bus award lists;
   - reputable news.
 - If a figure can't be verified, leave it out. Don't write "unverified".
-- Existing AXIVAI research to link to and reuse: `docs/research/transformer-lead-times-ny-ca.md`, `docs/research/ny-grid-access-esb.md`, and the reports under `/research/...`.
+- Existing AXIVAI research to reuse: `docs/research/transformer-lead-times-ny-ca.md` and `docs/research/ny-grid-access-esb.md`. These are internal notes, not pages, so never link them. Link the published pages instead: `/research/ev-charging-grid-connection-wait-times`, `/research/new-york-school-bus-incentive-program`, `/research/california-utility-ev-fleet-programs`, `/research/lion-electric-orphaned-school-buses`, `/research/stranded-electric-buses` and the other `/research/...` reports.
 
 ## Facts already settled (verified 1 Nov 2026)
 
@@ -109,7 +109,12 @@ Omit any fact key you can't verify.
 **Standard data sources (New York).** Use these on every NY page:
 - **NYSED zero-emission progress report (Oct 2025):** district area, NYSERDA fleet-plan status and regional comparisons.
 - **NYSBIP dataset:** data.ny.gov `7nqt-yksu`, via `curl "https://data.ny.gov/resource/7nqt-yksu.json?$limit=5000"`. It gives each district's voucher counts, operators and the priority flag. District names appear under several spellings.
-- **Enrollment:** data.nysed.gov blocks WebFetch, so use curl. District IDs come from `lists.php?start=<letter>&type=district`.
+- **Enrollment:** data.nysed.gov blocks WebFetch, so use curl.
+- **Utility territory:** data.ny.gov dataset `awza-4vgu` (electric utility service territories). Match it against the district's address.
+- **Fleet size estimate:** data.ny.gov `h9zr-j4pg` (school bus inspections). Buses are inspected twice a year, so halve the inspection count and say it's approximate.
+- **Bus and capital votes:** NYSED's budget vote result spreadsheets (2024–2026) cover the bus and capital propositions of every district.
+- **Budgets and bus reserves:** NYSED's 2026–27 property tax report card spreadsheets.
+- **Blocked pages:** use an archive.org (Wayback) copy. Don't route pages through third-party proxy or reader services such as r.jina.ai. District IDs come from `lists.php?start=<letter>&type=district`.
 
 **Standard data sources (California).**
 - **Enrollment:** CDE DataQuest.
