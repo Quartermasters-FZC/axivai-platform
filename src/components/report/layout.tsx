@@ -7,7 +7,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { RESEARCH_REPORTS } from "@/lib/research";
+import { allReports } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 export type TocEntry = readonly [id: string, label: string];
@@ -30,7 +30,7 @@ export function ReportShell({
   toc: readonly TocEntry[];
   children: ReactNode;
 }) {
-  const entry = RESEARCH_REPORTS.find((r) => r.slug === slug);
+  const entry = slug ? allReports().find((r) => r.slug === slug) : undefined;
   const url = `${SITE.url}/research/${slug}`;
   const jsonLd = entry && [
     {

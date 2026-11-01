@@ -2,7 +2,7 @@
  * /llms.txt: a short, plain-text map of the site for AI assistants (llmstxt.org format).
  */
 
-import { RESEARCH_REPORTS } from "@/lib/research";
+import { allReports, listFolders, loadCollection } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -24,7 +24,13 @@ AXIVAI is founded and seed-funded by Aliff Capital. First market: electric schoo
 
 ## Research
 
-${RESEARCH_REPORTS.map((r) => `- [${r.title}](${SITE.url}/research/${r.slug}): ${r.summary}`).join("\n")}
+${allReports().map((r) => `- [${r.title}](${SITE.url}/research/${r.slug}): ${r.summary}`).join("\n")}
+
+## Electric school buses by state
+
+${loadCollection("states").map((e) => `- [${e.meta.title}](${SITE.url}/electric-school-buses/${e.slug}): ${e.meta.summary}`).join("\n")}
+
+District pages: ${listFolders("districts").reduce((n, s) => n + loadCollection(`districts/${s}`).length, 0)} school districts, listed on each state page.
 
 ## Optional
 

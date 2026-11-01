@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home", exact: true },
   { href: "/#approach", label: "Approach" },
   { href: "/#applications", label: "Applications" },
+  { href: "/electric-school-buses", label: "School buses", match: "/electric-school-buses" },
   { href: "/research", label: "Research", match: "/research" },
 ] as const;
 

@@ -64,7 +64,7 @@ const FINDINGS: { claim: string; tag: Provenance; source: string; note?: string 
     source: NYSED,
   },
   {
-    claim: "NYSBIP has vouchers for 461 zero-emission buses across 84 districts; 177 of those buses are in completed projects.",
+    claim: "NYSBIP has vouchers for 461 zero-emission buses across 77 districts and 2 BOCES; 177 of those buses are in completed projects.",
     tag: "verified",
     source: NYSBIP,
     note: "“Closed” means the project is complete. An open project may still have buses running.",
@@ -82,9 +82,9 @@ const FINDINGS: { claim: string; tag: Provenance; source: string; note?: string 
     note: "The utility’s own claim. Feeder capacity is not the same as a site’s service capacity.",
   },
   {
-    claim: "Some constraints sit at the substation: National Grid’s Delameter rebuild, partly for future school-bus load, takes about 2 years from late 2026.",
+    claim: "Some constraints sit at the substation: at RG&E’s Station 124, school-bus charging accounts for 63% of the load requested, and the expansion is due in service in 2028.",
     tag: "verified",
-    source: "ICCT policy update on New York proactive planning, July 2026",
+    source: "NYSEG and RG&E urgent-project petition to the NY PSC, November 2024",
   },
   {
     claim: "The purchase mandate now starts 1 July 2032 (with up to two 24-month extensions); full zero-emission operation is due 1 July 2040.",
@@ -141,7 +141,7 @@ const ALTERNATIVES: { option: string; wins: string; fails: string; note: string 
     option: "AXIVAI bridge power",
     wins: "Buses funded and delivered, but the depot waits on a substation upgrade",
     fails: "Sites where the options above already work",
-    note: "Built for depots waiting on substation work, such as National Grid’s two-year Delameter rebuild.",
+    note: "Built for depots waiting on substation work, such as RG&E’s Station 124 expansion, due in 2028.",
   },
 ];
 
@@ -189,9 +189,14 @@ const SOURCES: Source[] = [
     caution: "A staff summary of stakeholder input, not project-level data.",
   },
   {
+    title: "NYSEG and RG&E, urgent upgrade projects petition, Case 24-E-0364 (26 November 2024)",
+    href: "https://documents.dps.ny.gov/public/Common/ViewDoc.aspx?DocRefId=%7BD0586A93-0000-C68A-9C46-31CE3784468F%7D",
+    use: "Substation projects driven partly by school-bus charging, including RG&E Station 124 (63% of requested load) and in-service dates of 2028–2031.",
+  },
+  {
     title: "ICCT, New York’s proactive grid planning proceeding (July 2026)",
     href: "https://theicct.org/wp-content/uploads/2026/08/ID-617-%E2%80%93-NY-grid-planning_policy-update_final.pdf",
-    use: "Example of a substation upgrade tied to school-bus load, with its timeline.",
+    use: "Summary of the PSC's proactive planning proceeding.",
     caution: "Secondary summary of PSC filings.",
   },
   {
@@ -402,7 +407,7 @@ export default function NyImplementationGapReport() {
         <div className="grid gap-4 md:grid-cols-3">
           <div className="axr-card">
             <div className="axr-metric-label">Buses with NYSBIP vouchers</div>
-            <div className="axr-metric-value mt-2">461<span className="axr-metric-unit">in 84 districts</span></div>
+            <div className="axr-metric-value mt-2">461<span className="axr-metric-unit">in 79 districts and BOCES</span></div>
             <div className="mt-3"><DataTag status="verified" source={NYSBIP} /></div>
           </div>
           <div className="axr-card">
@@ -515,8 +520,8 @@ export default function NyImplementationGapReport() {
               that are still waiting on the grid.
             </li>
             <li>
-              <strong>Where the wait is longest.</strong> Substation work such as National Grid&apos;s two-year
-              Delameter rebuild. That is long enough to cost a fleet a school year or more, and AXIVAI moves on when the
+              <strong>Where the wait is longest.</strong> Substation work such as RG&amp;E&apos;s Station 124
+              expansion, due in service in 2028. That is long enough to cost a fleet a school year or more, and AXIVAI moves on when the
               permanent service arrives.
             </li>
             <li>

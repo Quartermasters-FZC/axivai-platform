@@ -5,7 +5,7 @@
 
 export type ResearchReport = {
   slug: string;
-  kind: "Research case" | "Industry review" | "Market scan" | "Case study";
+  kind: string;
   title: string;
   summary: string;
   date: string;

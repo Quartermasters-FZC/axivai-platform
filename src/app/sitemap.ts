@@ -1,11 +1,12 @@
 import { MetadataRoute } from "next";
-import { RESEARCH_REPORTS } from "@/lib/research";
+import { allReports, listFolders, loadCollection } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 const pages: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
   { path: "off-grid-fleet-charging", priority: 0.9 },
   { path: "research", priority: 0.9 },
+  { path: "electric-school-buses", priority: 0.9 },
   { path: "faq", priority: 0.8 },
   { path: "about", priority: 0.7 },
   { path: "report-a-gap", priority: 0.8 },
@@ -26,11 +27,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority,
     })),
-    ...RESEARCH_REPORTS.map((r) => ({
+    ...allReports().map((r) => ({
       url: `${SITE.url}/research/${r.slug}`,
       lastModified: new Date(r.isoDate),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    ...loadCollection("states").map((e) => ({
+      url: `${SITE.url}/electric-school-buses/${e.slug}`,
+      lastModified: new Date(e.meta.isoDate ?? now),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...listFolders("districts").flatMap((state) =>
+      loadCollection(`districts/${state}`).map((e) => ({
+        url: `${SITE.url}/electric-school-buses/${state}/${e.slug}`,
+        lastModified: new Date(e.meta.isoDate ?? now),
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    ),
   ];
 }

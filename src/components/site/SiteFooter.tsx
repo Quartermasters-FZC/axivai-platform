@@ -15,6 +15,7 @@ const COLUMNS: { title: string; links: { href: string; label: string; external?:
       { href: "/#approach", label: "Approach" },
       { href: "/#applications", label: "Applications" },
       { href: "/off-grid-fleet-charging", label: "Off-grid fleet charging" },
+      { href: "/electric-school-buses", label: "Electric school buses" },
       { href: "/research", label: "Research" },
       { href: "/report-a-gap", label: "Report a power gap" },
     ],

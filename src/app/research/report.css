@@ -194,3 +194,16 @@
   .axr a { text-decoration: none; }
   .axr-print-url::after { content: " (" attr(href) ")"; font-size: 9pt; color: var(--ink-muted); word-break: break-all; }
 }
+
+/* Markdown report bodies (content/*.md) */
+.axr-md { font-size: 16px; line-height: 26px; }
+.axr-md h3 { font-family: var(--font-display); font-size: 18px; line-height: 26px; font-weight: 600; margin-top: 28px; }
+.axr-md ul, .axr-md ol { padding-left: 22px; }
+.axr-md ul { list-style: disc; }
+.axr-md ol { list-style: decimal; }
+.axr-md li + li { margin-top: 6px; }
+.axr-md a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+.axr-md strong { font-weight: 600; }
+.axr-md blockquote { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink-muted); }
+.axr-md .axr-table-wrap { margin-top: 16px; max-width: none; }
+.axr-md.axr-prose:has(.axr-table-wrap) { max-width: 90ch; }

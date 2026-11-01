@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ReportFooter } from "@/components/report/layout";
-import { RESEARCH_REPORTS } from "@/lib/research";
+import { allReports } from "@/lib/content";
 import "./report.css";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function ResearchIndex() {
 
       <main id="main-content" tabIndex={-1} className="container mx-auto px-4 py-12">
         <ol className="grid gap-4 md:grid-cols-2">
-          {RESEARCH_REPORTS.map((r) => (
+          {allReports().map((r) => (
             <li key={r.slug} className="axr-card flex flex-col">
               <div className="axr-eyebrow">{r.kind}</div>
               <h2 className="axr-h2 mt-2">

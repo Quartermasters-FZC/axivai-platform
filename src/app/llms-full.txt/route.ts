@@ -4,7 +4,7 @@
  */
 
 import { FAQS } from "@/lib/faq";
-import { RESEARCH_REPORTS } from "@/lib/research";
+import { allReports } from "@/lib/content";
 import { PARTNERS, SITE } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -53,7 +53,7 @@ ${FAQS.map((f) => `### ${f.question}\n\n${f.short} ${f.answer}`).join("\n\n")}
 
 ## Research reports
 
-${RESEARCH_REPORTS.map((r) => `### ${r.title}\n\n${r.kind}, ${r.date}. ${SITE.url}/research/${r.slug}\n\n${r.summary}`).join("\n\n")}
+${allReports().map((r) => `### ${r.title}\n\n${r.kind}, ${r.date}. ${SITE.url}/research/${r.slug}\n\n${r.summary}`).join("\n\n")}
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }
