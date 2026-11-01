@@ -10,12 +10,13 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BrandLogo } from "@/components/brand/BrandLogo";
+import { SITE } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy | AXIVAI",
   description:
     "Learn how AXIVAI collects, uses, and protects your personal information. How AXIVAI handles information on its website and in power-access gap reports.",
@@ -23,12 +24,12 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = "October 31, 2026";
+  const lastUpdated = "November 1, 2026";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Content */}
-      <main className="py-16 px-4">
+      <main id="main-content" tabIndex={-1} className="py-16 px-4">
         <article className="container mx-auto max-w-3xl prose prose-stone dark:prose-invert">
           <div className="not-prose mb-8">
             <Badge variant="outline" className="mb-4">
@@ -52,8 +53,8 @@ export default function PrivacyPolicyPage() {
               website at{" "}
               <Link href="https://axivai.com">axivai.com</Link> and use our
               research tools, including the power-access gap report form
-              (collectively, the &quot;Services&quot;). AXIVAI is a deployable
-              power infrastructure concept in research and development.
+              (collectively, the &quot;Services&quot;).  AXIVAI provides deployable
+              power infrastructure.
             </p>
             <p>
               By accessing or using our Services, you agree to this Privacy
@@ -116,22 +117,17 @@ export default function PrivacyPolicyPage() {
                 limit spam and repeated submissions.
               </li>
               <li>
-                <strong>Cookies and Similar Technologies:</strong> See our{" "}
-                <Link href="/cookies">Cookie Policy</Link> for details.
+                <strong>Cookies:</strong> None. The site sets no cookies; see
+                our <Link href="/cookies">Cookie Policy</Link>.
               </li>
             </ul>
 
             <h3>2.3 Information from Third Parties</h3>
             <p>
-              We may receive information about you from third-party sources,
-              including:
+              We do not receive information about you from third parties. The
+              site uses no analytics providers, advertising networks or data
+              brokers.
             </p>
-            <ul>
-              <li>
-                <strong>Analytics Providers:</strong> Aggregated usage data to
-                help us improve our Services.
-              </li>
-            </ul>
           </section>
 
           {/* How We Use Information */}
@@ -153,9 +149,8 @@ export default function PrivacyPolicyPage() {
                 provide customer support.
               </li>
               <li>
-                <strong>Analytics and Research:</strong> Understand usage
-                patterns to improve our offerings (in anonymized/aggregated
-                form).
+                <strong>Research:</strong> Analyze gap reports, in aggregated
+                form, to understand where power access falls short.
               </li>
               <li>
                 <strong>Legal Compliance:</strong> Comply with applicable laws,
@@ -178,9 +173,8 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Consent:</strong> When you have given explicit consent
-                for specific processing activities (e.g., marketing
-                communications, non-essential cookies).
+                <strong>Consent:</strong> When you ask us to follow up on a gap
+                report and give us your contact details for that purpose.
               </li>
               <li>
                 <strong>Contract Performance:</strong> When processing is
@@ -211,7 +205,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>Website hosting and database (Hostinger)</li>
-              <li>Analytics services</li>
+              <li>Email for messages you send us (Hostinger)</li>
             </ul>
             <p>
               These providers are contractually bound to protect your data and
@@ -269,12 +263,24 @@ export default function PrivacyPolicyPage() {
               <li>Comply with legal obligations</li>
               <li>Resolve disputes and enforce agreements</li>
             </ul>
-            <p>
-              Gap reports are kept while the research they support is active.
-              Follow-up contact details are deleted on request, or once they
-              are no longer needed for follow-up. Anonymized, aggregated data
-              may be retained indefinitely for analytical purposes.
-            </p>
+            <p>For power-access gap reports, specifically:</p>
+            <ul>
+              <li>
+                The one-way hash of your IP address, used only to prevent
+                abuse, is deleted after {SITE.retention.ipHashDays} days.
+              </li>
+              <li>
+                Your name and email, kept only if you asked for follow-up, are
+                deleted after {SITE.retention.contactMonths} months, or sooner
+                on request.
+              </li>
+              <li>
+                The rest of the report (site type, location, power needs and
+                description) is kept while the research it supports is active.
+                Findings we publish use it only in aggregated form that does
+                not identify you or your organization.
+              </li>
+            </ul>
           </section>
 
           {/* Your Rights */}
@@ -326,8 +332,8 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>
               To exercise these rights, email us at{" "}
-              <a href="mailto:privacy@aliffcapital.com">
-                privacy@aliffcapital.com
+              <a href="mailto:privacy@axivai.com">
+                privacy@axivai.com
               </a>{" "}
               or use our{" "}
               <Link href="/privacy-request">Privacy Request Form</Link>. We will
@@ -371,8 +377,8 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>
               To exercise these rights, contact us at{" "}
-              <a href="mailto:privacy@aliffcapital.com">
-                privacy@aliffcapital.com
+              <a href="mailto:privacy@axivai.com">
+                privacy@axivai.com
               </a>
               . You also have the right to lodge a complaint with your local
               data protection authority.
@@ -391,10 +397,9 @@ export default function PrivacyPolicyPage() {
           <section id="cookies">
             <h2>9. Cookies and Tracking Technologies</h2>
             <p>
-              We use cookies and similar technologies to enhance your experience.
-              For detailed information about the types of cookies we use and how
-              to manage your preferences, please see our{" "}
-              <Link href="/cookies">Cookie Policy</Link>.
+              AXIVAI does not set cookies and uses no analytics, advertising or
+              tracking technologies. See our{" "}
+              <Link href="/cookies">Cookie Policy</Link> for details.
             </p>
           </section>
 
@@ -408,8 +413,8 @@ export default function PrivacyPolicyPage() {
               information from a child under the applicable age, we will delete
               it promptly. If you believe a child has provided us with personal
               information, please contact us at{" "}
-              <a href="mailto:privacy@aliffcapital.com">
-                privacy@aliffcapital.com
+              <a href="mailto:privacy@axivai.com">
+                privacy@axivai.com
               </a>
               .
             </p>
@@ -478,12 +483,9 @@ export default function PrivacyPolicyPage() {
               Privacy Inquiries
               <br />
               Email:{" "}
-              <a href="mailto:privacy@aliffcapital.com">
-                privacy@aliffcapital.com
+              <a href="mailto:privacy@axivai.com">
+                privacy@axivai.com
               </a>
-              <br />
-              Website:{" "}
-              <Link href="https://aliffcapital.com">aliffcapital.com</Link>
             </address>
             <p className="mt-4">
               For GDPR-related inquiries, you may also contact our Data
@@ -511,36 +513,6 @@ export default function PrivacyPolicyPage() {
         </article>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t py-12 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <BrandLogo className="h-6 mb-1" />
-              <p className="text-sm text-muted-foreground">
-                Deployable power infrastructure · concept in research and development
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-foreground">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-foreground">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="hover:text-foreground">
-                Cookie Policy
-              </Link>
-              <Link href="/accessibility" className="hover:text-foreground">
-                Accessibility
-              </Link>
-            </div>
-          </div>
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

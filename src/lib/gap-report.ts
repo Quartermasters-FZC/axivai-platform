@@ -1,6 +1,6 @@
 /**
  * Power-access gap report: options and validation shared by the form and the API.
- * Feeds Stage I problem mapping (concept paper §10, priority question 3).
+ * Feeds market mapping and pilot-site selection (business plan §10, priority question 3).
  * Keep enum values in sync with prisma/schema.prisma.
  */
 

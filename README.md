@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Deployable power infrastructure · concept in research and development</strong><br />
+  <strong>Deployable power infrastructure · model in research and development</strong><br />
   Power anywhere. Ready when needed.
 </p>
 
@@ -13,15 +13,15 @@
 
 ---
 
-AXIVAI explores how to make electrical capacity available when fixed infrastructure is too slow, too limited or too inflexible, through modular storage, mission-specific deployment and managed operations. It is a research concept, not an operating business.
+AXIVAI explores how to make electrical capacity available when fixed infrastructure is too slow, too limited or too inflexible, through modular storage, mission-specific deployment and managed operations. It is a research model, not an operating business.
 
-Source of truth: [docs/planning/AXIVAI_Improved_Concept_Paper_October_2026.md](docs/planning/AXIVAI_Improved_Concept_Paper_October_2026.md). Brand rules: [docs/planning/50_Design_System.md](docs/planning/50_Design_System.md).
+Source of truth: [docs/planning/AXIVAI_Business_Plan_October_2026.md](docs/planning/AXIVAI_Business_Plan_October_2026.md). Brand rules: [docs/planning/50_Design_System.md](docs/planning/50_Design_System.md).
 
 ## What's on the site
 
 | Page | Purpose |
 |------|---------|
-| `/` | The concept: problems, approach, deployment modes, alternatives test, applications, economics, staged validation, evidence standard |
+| `/` | The model: problems, approach, deployment modes, alternatives test, applications, economics, staged validation, evidence standard |
 | `/report-a-gap` | Power-access gap report form for Stage I problem mapping. Submissions are stored in MySQL (`GapReport`) |
 | Legal pages | Privacy, terms, cookies, accessibility, CCPA and privacy requests |
 

@@ -38,7 +38,7 @@ const EVIDENCE: Record<EvidenceLevel, string> = {
   validated: "Validated",
 };
 
-/** Evidence level from the concept paper §11. */
+/** Status chip (legacy; not used in report copy). */
 export function Evidence({ level }: { level: EvidenceLevel }) {
   return (
     <span className={`axr-evidence axr-evidence-${level}`}>

@@ -11,13 +11,13 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/accessibility" },
   title: "Accessibility Statement | AXIVAI",
   description:
     "AXIVAI is committed to ensuring digital accessibility for people with disabilities. Learn about our accessibility features and how to report issues.",
@@ -25,12 +25,12 @@ export const metadata: Metadata = {
 };
 
 export default function AccessibilityPage() {
-  const lastUpdated = "October 31, 2026";
+  const lastUpdated = "November 1, 2026";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Content */}
-      <main className="py-16 px-4">
+      <main id="main-content" tabIndex={-1} className="py-16 px-4">
         <article className="container mx-auto max-w-3xl">
           <div className="mb-8">
             <Badge variant="outline" className="mb-4">
@@ -51,7 +51,7 @@ export default function AccessibilityPage() {
               Aliff Capital, LLC is committed to ensuring that the AXIVAI
               platform is accessible to all users, including people with
               disabilities. We strive to provide an inclusive digital experience
-              that allows everyone to access our concept information and
+              that allows everyone to access our company information and
               research tools.
             </p>
             <p>
@@ -202,12 +202,26 @@ export default function AccessibilityPage() {
             </p>
             <ul>
               <li>
-                <strong>Concept Renderings:</strong> Some illustrative images
+                <strong>Renderings:</strong> Some images
                 contain text. We provide text alternatives that describe them.
               </li>
               <li>
-                <strong>Third-Party Components:</strong> Some embedded
-                third-party content may not meet WCAG standards.
+                <strong>Animated Diagrams:</strong> Research diagrams animate
+                to explain a process. Each has a pause button and chapter
+                buttons, starts only when scrolled into view, and shows a
+                complete static version if your device is set to reduce motion.
+                Their on-screen captions double as the transcript for the
+                optional narration.
+              </li>
+              <li>
+                <strong>Diagram Detail on Small Screens:</strong> Phone
+                versions of the diagrams are simplified; some fine detail is
+                available only in the text of each report.
+              </li>
+              <li>
+                <strong>External Sources:</strong> Research pages link to
+                government reports and other sites we do not control, which
+                may not meet WCAG standards.
               </li>
             </ul>
             <p>
@@ -240,8 +254,12 @@ export default function AccessibilityPage() {
               <li>Microsoft Edge (latest 2 versions)</li>
             </ul>
 
-            <h3>Compatible Assistive Technologies</h3>
-            <p>We test compatibility with:</p>
+            <h3>Assistive Technologies</h3>
+            <p>
+              The site is built to work with common screen readers, including
+              the following. We have not yet completed hands-on testing with
+              each of them (see Assessment Methods below):
+            </p>
             <ul>
               <li>NVDA (Windows)</li>
               <li>JAWS (Windows)</li>
@@ -254,27 +272,30 @@ export default function AccessibilityPage() {
           <section className="prose prose-stone dark:prose-invert mb-12">
             <h2>Assessment Methods</h2>
             <p>
-              Aliff Capital, LLC assessed the accessibility of AXIVAI using the
-              following methods:
+              We have assessed the accessibility of AXIVAI using the following
+              methods:
             </p>
             <ul>
               <li>
-                <strong>Self-Evaluation:</strong> Internal review using WCAG 2.1
-                checklist
+                <strong>Automated testing (November 1, 2026):</strong>{" "}
+                Lighthouse accessibility audits, which run the axe-core rule
+                set, on 11 representative pages, including the home page,
+                the gap report form, research reports and the legal pages. All
+                11 scored 100 after one heading-order issue was fixed.
               </li>
               <li>
-                <strong>Automated Testing:</strong> Axe, WAVE, and Lighthouse
-                accessibility audits
-              </li>
-              <li>
-                <strong>Manual Testing:</strong> Keyboard-only navigation,
-                screen reader testing
-              </li>
-              <li>
-                <strong>User Feedback:</strong> Ongoing feedback from users with
-                disabilities
+                <strong>Design review:</strong> Colour contrast, focus
+                indicators, skip links, heading structure, text alternatives
+                and reduced-motion behaviour, checked against WCAG 2.1 Level AA
+                during development.
               </li>
             </ul>
+            <p>
+              Automated tools cannot detect every barrier. Manual testing with
+              keyboard-only navigation and screen readers has not yet been
+              completed and is planned before public launch; this statement
+              will be updated with the results. Your feedback helps, too.
+            </p>
           </section>
 
           {/* Feedback */}
@@ -294,8 +315,8 @@ export default function AccessibilityPage() {
                     Aliff Capital, LLC
                     <br />
                     Email:{" "}
-                    <a href="mailto:accessibility@aliffcapital.com">
-                      accessibility@aliffcapital.com
+                    <a href="mailto:accessibility@axivai.com">
+                      accessibility@axivai.com
                     </a>
                   </address>
                   <p>
@@ -393,36 +414,6 @@ export default function AccessibilityPage() {
         </article>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t py-12 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <BrandLogo className="h-6 mb-1" />
-              <p className="text-sm text-muted-foreground">
-                Deployable power infrastructure · concept in research and development
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-foreground">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-foreground">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="hover:text-foreground">
-                Cookie Policy
-              </Link>
-              <Link href="/accessibility" className="hover:text-foreground">
-                Accessibility
-              </Link>
-            </div>
-          </div>
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

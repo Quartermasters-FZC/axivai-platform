@@ -24,11 +24,11 @@ Canonical system: https://claude.ai/artifact/Pyf3uEkt6Kd7CCxZMtCWRY — tokens, 
 - Results using defaults or estimates open with an assumption notice naming them and the possible swing.
 - Freshness: grant/price data >30 days and market data >90 days are tagged Risk.
 - Unfavourable scenarios get equal visual weight; AXIVAI's scenario gets no highlight colour.
-- All rendered/AI imagery carries a "Concept rendering" label until replaced by real pilot photography.
-- Hero imagery shows deployable power in use: mobile delivery, stationed power or managed capacity. Never show one mode as the only answer, and never fixed pedestals under a permanent canopy. (Aligned to the concept paper §4.3, October 2026.)
+- All rendered/AI imagery carries a "Rendering" label until replaced by real pilot photography.
+- Hero imagery shows deployable power in use: mobile delivery, stationed power or managed capacity. Never show one mode as the only answer, and never fixed pedestals under a permanent canopy. (Aligned to the business plan §4.3, October 2026.)
 
 ## Voice
 - Tagline: "Power anywhere. Ready when needed." (never reworded)
 - Confident, specific, sourced; sentence case; no hype words, exclamation marks or emoji.
-- Signature phrases (from the concept paper): "start with the need, not the truck", "the right power capability, where conventional infrastructure falls short", "designed to lose gracefully".
-- Retired October 2026: "electricity as physical cargo", "logistics-first, not construction-first", "bring the charger to the bus". They frame mobile delivery as the whole concept; use them only, if at all, in content specifically about the mobile delivery mode.
+- Signature phrases (from the business plan): "start with the need, not the truck", "the right power capability, where conventional infrastructure falls short", "designed to lose gracefully".
+- Retired October 2026: "electricity as physical cargo", "logistics-first, not construction-first", "bring the charger to the bus". They frame mobile delivery as the whole model; use them only, if at all, in content specifically about the mobile delivery mode.

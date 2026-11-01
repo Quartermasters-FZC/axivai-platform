@@ -98,3 +98,9 @@ Desktop.ini
 .history/
 
 /src/generated/prisma
+
+# DLP Labs raw research pulls (contain personal contact details; commit only cleaned versions)
+/docs/research/sources/dlp-labs/raw/
+
+# Local working backups
+/_backup/

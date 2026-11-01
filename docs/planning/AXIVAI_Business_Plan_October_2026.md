@@ -1,27 +1,27 @@
 # AXIVAI
-## Deployable Power Infrastructure — Revised Concept Paper
+## Deployable Power Infrastructure — Revised Business Plan
 
 **Tagline:** Power Anywhere. Ready When Needed.  
-**Concept category:** Modular energy storage, deployable power, energy logistics, and intelligent operations  
-**Status:** Research and concept development — **not** an operating business or validated investment opportunity  
+**Model category:** Modular energy storage, deployable power, energy logistics, and intelligent operations  
+**Status:** Research and business development — **not** an operating business or validated investment opportunity  
 **Version:** 1.0 | 28 October 2026  
 **Brand system:** Cream White `#FEFDFB` · Obsidian `#1C1917` · AXIVAI Gold `#D4A017`
 
 ---
 
-## 1. Executive concept
+## 1. Executive model
 
 **AXIVAI explores how to make useful electrical capacity available wherever conventional infrastructure cannot meet the location, timing, duration, or reliability of a customer's power requirement.**
 
-The concept combines modular battery storage, transportable and stationed power systems, access to existing energy supply, and coordinated operations. **Its proposition is not simply to move electricity. It is to provide power availability, flexibility, resilience, and speed of deployment.**
+The model combines modular battery storage, transportable and stationed power systems, access to existing energy supply, and coordinated operations. **Its proposition is not simply to move electricity. It is to provide power availability, flexibility, resilience, and speed of deployment.**
 
-The initial research case is U.S. electric school-bus charging where utility service or charging infrastructure is delayed. School buses are a *starting use case*, not the boundary of the concept. Other potential applications include construction, industrial facilities, ports and logistics, utilities, disaster recovery, critical infrastructure, and specialized government or defense operations.
+The initial research case is U.S. electric school-bus charging where utility service or charging infrastructure is delayed. School buses are a *starting use case*, not the boundary of the model. Other potential applications include construction, industrial facilities, ports and logistics, utilities, disaster recovery, critical infrastructure, and specialized government or defense operations.
 
-The central design rule is **solution neutrality**: do not assume a battery truck is always the answer. AXIVAI would evaluate whether managed charging, temporary stationary storage, drop-and-swap battery units, transported energy, or another power solution best satisfies each requirement. If a less complicated alternative performs better, the concept must acknowledge that result.
+The central design rule is **solution neutrality**: do not assume a battery truck is always the answer. AXIVAI would evaluate whether managed charging, temporary stationary storage, drop-and-swap battery units, transported energy, or another power solution best satisfies each requirement. If a less complicated alternative performs better, the model must acknowledge that result.
 
 > **Core hypothesis:** The economic and operational value of power that is available at the right place and time can exceed the commodity value of the electricity itself. Modular, deployable infrastructure may capture some of that value where permanent grid solutions are too slow, inflexible, or unavailable.
 
-This is a hypothesis to test, not a claim that the concept has already been demonstrated by AXIVAI.
+This is a hypothesis to test, not a claim that the model has already been demonstrated by AXIVAI.
 
 ## 2. The problem AXIVAI is investigating
 
@@ -56,7 +56,7 @@ AXIVAI is designed around **four customer outcomes**, rather than around any par
 
 **Positioning statement:**
 
-> **AXIVAI is a deployable power infrastructure concept that seeks to make electrical capacity available when fixed infrastructure is too slow, too limited, or too inflexible—through modular storage, mission-specific deployment, and managed operations.**
+> **AXIVAI is a deployable power infrastructure model that seeks to make electrical capacity available when fixed infrastructure is too slow, too limited, or too inflexible—through modular storage, mission-specific deployment, and managed operations.**
 
 **What this is not:** a claim that batteries create energy, can sustain any load indefinitely, automatically eliminate utility interconnection needs, or provide cheaper power than conventional alternatives in every application.
 
@@ -121,7 +121,7 @@ A system advertised as having 2 MWh of *nominal* battery energy cannot be presum
 
 ### 4.4 AXIVAI Intelligence — proposed capabilities
 
-The name 'AXIVAI Intelligence' refers to a **future operational software layer**, not an existing product. Candidate functions are demand and runtime forecasting; equipment selection; dispatch and route optimization; battery state-of-health monitoring; energy cost optimization; charging schedules; alerting; contract/SLA reporting; and fleet utilization analytics. The concept should initially favor interoperability with proven commercial hardware and software rather than assume that proprietary algorithms are required from day one.
+The name 'AXIVAI Intelligence' refers to a **future operational software layer**, not an existing product. Candidate functions are demand and runtime forecasting; equipment selection; dispatch and route optimization; battery state-of-health monitoring; energy cost optimization; charging schedules; alerting; contract/SLA reporting; and fleet utilization analytics. The model should initially favor interoperability with proven commercial hardware and software rather than assume that proprietary algorithms are required from day one.
 
 ## 5. Application portfolio: problem–solution fit
 
@@ -142,7 +142,7 @@ The use cases below are **research priorities**, not AXIVAI customers or announc
 
 ## 6. The required alternatives test
 
-The concept must compete with what customers can already buy. AXIVAI's proposed solution should **lose gracefully** when a simpler alternative performs better.
+The model must compete with what customers can already buy. AXIVAI's proposed solution should **lose gracefully** when a simpler alternative performs better.
 
 | Alternative | Often preferable when | AXIVAI's possible advantage |
 |---|---|---|
@@ -153,7 +153,7 @@ The concept must compete with what customers can already buy. AXIVAI's proposed 
 | **Existing mobile charging supplier** | Supplier already meets response, price and compatibility needs | Must demonstrate genuine operational or service differentiation |
 | **On-site generation** | Continuous high-energy demand and local permitting/economics support it | Battery storage remains complementary rather than a substitute |
 
-The concept is strongest when **power-access delay, site flexibility, or avoided downtime** has substantial value and technical alternatives are limited.
+The model is strongest when **power-access delay, site flexibility, or avoided downtime** has substantial value and technical alternatives are limited.
 
 ## 7. Engineering red team: critical unknowns
 
@@ -173,7 +173,7 @@ The appropriate standards and approvals require jurisdiction- and configuration-
 
 Mobile storage shifts power across time and location; it does not produce energy. Claims of 'clean' or lower-emissions electricity require an identified supply mix and analysis of battery losses, transport, generation, and the alternative being displaced. Resilience promises require a specified service level and recharge contingency.
 
-## 8. Conceptual economics: what must be true?
+## 8. Modelual economics: what must be true?
 
 AXIVAI's value is not necessarily well represented by a per-kWh electricity margin alone. A prospective future service model might include:
 
@@ -218,20 +218,20 @@ A regional Energy Hub could aggregate demand, support charging and asset mainten
 
 However, the hub could itself require costly transformers, feeders or interconnection work—the very constraints AXIVAI hopes to bypass. **A theoretical low regional energy price is not proof of spare service capacity at a particular property.**
 
-Before considering a hub, concept research must determine: available kW; electrical upgrade needs; tariff and demand charges; usable hours; zoning and fire access; charging hardware; road distance to loads; utilization potential; ownership/lease economics; and whether charging directly at customer sites would be cheaper.
+Before considering a hub, model research must determine: available kW; electrical upgrade needs; tariff and demand charges; usable hours; zoning and fire access; charging hardware; road distance to loads; utilization potential; ownership/lease economics; and whether charging directly at customer sites would be cheaper.
 
-**Generation remains optional.** Future solar, renewable gas, other generation, or PPAs may be worth investigating only if they improve a proven supply need. The concept should not presume a policy-driven schedule for generation ownership.
+**Generation remains optional.** Future solar, renewable gas, other generation, or PPAs may be worth investigating only if they improve a proven supply need. The model should not presume a policy-driven schedule for generation ownership.
 
 ## 10. Research evolution and staged validation
 
-AXIVAI is presently in **concept development**. The stages below are learning gates, not an operational rollout commitment.
+AXIVAI is presently in **business development**. The stages below are learning gates, not an operational rollout commitment.
 
 | Stage | Main question | Evidence needed before advancing |
 |---|---|---|
 | **I. Problem mapping** | Where are the physical and commercial power-access gaps? | Specific loads, utility correspondence, alternative costs, delays |
 | **II. Comparative engineering** | Which mode solves each problem best? | AC/DC architectures, kW and kWh models, safety and deployment assumptions |
 | **III. Techno-economic feasibility** | When is deployable power attractive after total costs? | Site-based comparisons, validated quotations, utilization sensitivity |
-| **IV. Concept validation** | Which use cases deserve a pilot? | Independent technical review and credible customer use-case evidence |
+| **IV. Model validation** | Which use cases deserve a pilot? | Independent technical review and credible customer use-case evidence |
 | **V. Pilot definition — future** | What small test would most reduce uncertainty? | Test objectives, site, partners, approvals, risk register, budget |
 | **VI. Commercialization — conditional** | Is there a repeatable, financially viable service? | Only after real pilot results and market validation |
 
@@ -254,7 +254,7 @@ To preserve credibility, future AXIVAI material should distinguish four levels:
 - **AXIVAI hypothesis:** An architecture, customer benefit or economic model that still requires testing.
 - **Validated AXIVAI result:** Reserved for measured performance from a completed, attributable AXIVAI test or deployment.
 
-At present **there are no claimed AXIVAI operating assets, deployed hubs, commercial customers, proprietary software, engineering certifications, contracted power supplies, or demonstrated financial returns** in this concept paper. Brand imagery, storyboards and mockups are illustrative designs, not photographic evidence of deployed facilities.
+At present **there are no claimed AXIVAI operating assets, deployed hubs, commercial customers, proprietary software, engineering certifications, contracted power supplies, or demonstrated financial returns** in this business plan. Brand imagery, storyboards and mockups are illustrative designs, not photographic evidence of deployed facilities.
 
 ### Red-team failure modes to continue testing
 
@@ -267,9 +267,9 @@ At present **there are no claimed AXIVAI operating assets, deployed hubs, commer
 7. Environmental and nationwide-network claims get ahead of the evidence.
 8. Expansion into unrelated sectors creates multiple incompatible product lines.
 
-These are not reasons to stop concept research; they are reasons to keep the solution architecture open.
+These are not reasons to stop model research; they are reasons to keep the solution architecture open.
 
-## 12. Concept positioning and long-term possibility
+## 12. Model positioning and long-term possibility
 
 **Category:** Deployable Energy Infrastructure  
 **Research proposition:** Power availability, flexibility, resilience and speed of deployment  
@@ -282,11 +282,11 @@ A regional or national network of Energy Hubs and deployable assets remains a **
 
 ## 13. Conclusion
 
-The refined AXIVAI concept responds to a real structural mismatch: **electrical power is not always available at the location, moment, intensity or reliability level that operations require.** In some circumstances, modular storage and rapidly deployable power systems can address that mismatch sooner or more flexibly than fixed infrastructure.
+The refined AXIVAI model responds to a real structural mismatch: **electrical power is not always available at the location, moment, intensity or reliability level that operations require.** In some circumstances, modular storage and rapidly deployable power systems can address that mismatch sooner or more flexibly than fixed infrastructure.
 
 The most important correction from the original vision is this:
 
-> **AXIVAI is not a concept for transporting batteries everywhere. It is a concept for delivering the right power capability—mobile, stationed or intelligently managed—where conventional infrastructure falls short.**
+> **AXIVAI is not a model for transporting batteries everywhere. It is a model for delivering the right power capability—mobile, stationed or intelligently managed—where conventional infrastructure falls short.**
 
 School buses offer an understandable starting case. The larger research opportunity lies in discovering **which applications reward deployable capacity enough to justify its engineering, logistics and lifetime cost**. The next stage is comparative technical and economic research, not a claim that a nationwide business has already been proven.
 

@@ -179,3 +179,8 @@
     outline-offset: 4px;
   }
 }
+
+/* Inline SVG diagrams on site pages: scale to the container and use the site fonts. */
+.svg-site-fonts svg { display: block; width: 100%; height: auto; }
+.svg-site-fonts svg text { font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif; }
+.svg-site-fonts svg text[font-family^="Montserrat"] { font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif; }

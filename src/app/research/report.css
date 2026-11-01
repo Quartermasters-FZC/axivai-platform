@@ -96,7 +96,7 @@
 .axr-tag-unknown { color: var(--status-unknown); border-style: dashed; }
 .axr-tag-risk { color: var(--status-risk); }
 
-/* Evidence level chip (concept paper §11) — neutral ink; hypotheses are dashed */
+/* Status chip — neutral ink; dashed variant */
 .axr-evidence { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: 4px; border: 1px solid var(--ink);
   font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
 .axr-evidence-hypothesis { border-style: dashed; color: var(--ink-muted); border-color: var(--ink-muted); }

@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
-import { LegalFooter } from "@/components/LegalFooter";
 import { GapReportForm } from "@/components/gap-report/GapReportForm";
 
 export const metadata: Metadata = {
   title: "Report a power-access gap | AXIVAI",
   description:
     "Tell AXIVAI where a site can't get the power it needs in time. Reports feed research into when deployable power beats the alternatives.",
-  alternates: { canonical: "https://axivai.com/report-a-gap" },
+  alternates: { canonical: "/report-a-gap" },
 };
 
 export default function ReportAGapPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <main id="main-content" tabIndex={-1} className="py-12 md:py-16 px-4">
         <div className="container mx-auto max-w-3xl">
           <div className="mb-10 space-y-4">
@@ -24,13 +23,13 @@ export default function ReportAGapPage() {
             </h1>
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
               Is a site you work with waiting on a utility upgrade, short on peak power,
-              or in need of temporary or backup power? Tell us about it. Each report
-              helps map where power access falls short and whether anything simpler
-              than deployable power would fix it.
+              or in need of temporary or backup power? Tell us about it. We&apos;ll look
+              at the load, the timeline and the options, and we&apos;re choosing AXIVAI&apos;s
+              first pilot sites from these reports.
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>Takes about 5 minutes. Only the starred fields are required.</li>
-              <li>AXIVAI is in concept research and isn&apos;t selling anything.</li>
+              
               <li>Contact details are optional and kept only if you ask for follow-up.</li>
             </ul>
           </div>
@@ -39,11 +38,6 @@ export default function ReportAGapPage() {
         </div>
       </main>
 
-      <footer className="border-t py-8 px-4">
-        <div className="container mx-auto">
-          <LegalFooter />
-        </div>
-      </footer>
     </div>
   );
 }

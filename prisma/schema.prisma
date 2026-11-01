@@ -15,7 +15,7 @@ datasource db {
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // POWER-ACCESS GAP REPORTS (Stage I problem mapping)
-// See docs/planning/AXIVAI_Improved_Concept_Paper_October_2026.md §10
+// See docs/planning/AXIVAI_Business_Plan_October_2026.md §10
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 model GapReport {
@@ -34,12 +34,12 @@ model GapReport {
   state             String           @db.Char(2)
   city              String?          @db.VarChar(120)
 
-  // The problem (concept paper §2)
+  // The problem (business plan §2)
   problemType       ProblemType
   application       String           @db.VarChar(80)
   description       String           @db.Text
 
-  // The need (concept paper §7.1) — all optional; "unknown" is a valid answer
+  // The need (business plan §7.1) — all optional; "unknown" is a valid answer
   peakKw            Int?
   dailyKwh          Int?
   durationNeeded    DurationNeeded?

@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
 import { gapReportSchema } from "@/lib/gap-report";
 import { getPrisma } from "@/lib/prisma";
+import { purgeExpiredGapReportData } from "@/lib/retention";
 
 const MAX_REPORTS_PER_HOUR = 5;
 const MAX_BODY_BYTES = 20_000;
@@ -69,6 +70,9 @@ export async function POST(req: Request) {
         ipHash,
       },
     });
+
+    // Enforce the published retention periods; a daily cron on /api/maintenance/purge covers quiet periods.
+    await purgeExpiredGapReportData(prisma).catch((err) => console.error("/api/gap-report purge error", err));
 
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (error) {

@@ -2,14 +2,14 @@
 
 This folder contains the **authoritative AI prompt operating system** for building AXIVAI.COM.
 
-AXIVAI is a deployable power infrastructure concept in research and development. School-bus depots are the initial research case, not the boundary of the concept.
+AXIVAI is a deployable power infrastructure model in research and development. School-bus depots are the initial research case, not the boundary of the model.
 
 ---
 
 ## HOW TO USE
 
 1. Place this entire folder into your project as `/Planning`
-2. Ensure `AXIVAI_Improved_Concept_Paper_October_2026.md` exists in the same directory
+2. Ensure `AXIVAI_Business_Plan_October_2026.md` exists in the same directory
 3. Paste `AXIVAI_Master_Prompt.md` into:
    - Claude Project → Instructions
 4. Execute prompts sequentially
@@ -22,7 +22,7 @@ AXIVAI is a deployable power infrastructure concept in research and development.
 
 ## CORE PRINCIPLES
 
-- Concept paper = single source of truth
+- Business plan = single source of truth
 - Planning only (no production code unless instructed)
 - Artifact-first workflow
 - Public-sector trust, auditability, and explainability

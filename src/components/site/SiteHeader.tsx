@@ -14,10 +14,10 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
+  { href: "/", label: "Home", exact: true },
   { href: "/#approach", label: "Approach" },
   { href: "/#applications", label: "Applications" },
-  { href: "/research/school-bus-depots", label: "Research", match: "/research" },
-  { href: "/#evidence", label: "Evidence" },
+  { href: "/research", label: "Research", match: "/research" },
 ] as const;
 
 const CTA = { href: "/report-a-gap", label: "Report a power gap" };
@@ -47,7 +47,7 @@ export function SiteHeader() {
   }, [open]);
 
   const isActive = (link: (typeof NAV_LINKS)[number]) =>
-    "match" in link && pathname.startsWith(link.match);
+    "exact" in link ? pathname === link.href : "match" in link && pathname.startsWith(link.match);
   const ctaActive = pathname.startsWith(CTA.href);
 
   return (

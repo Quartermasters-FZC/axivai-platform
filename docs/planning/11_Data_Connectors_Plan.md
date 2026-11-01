@@ -7,4 +7,4 @@ Plan (do not implement) connectors for:
 - Weather APIs
 - EPA / DOE / DSIRE
 
-Include update cadence, caching, fallback, and .env variables (conceptual).
+Include update cadence, caching, fallback, and .env variables (modelual).

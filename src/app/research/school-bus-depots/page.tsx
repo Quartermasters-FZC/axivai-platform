@@ -1,92 +1,80 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { LegalFooter } from "@/components/LegalFooter";
+import { GapCta, ReportShell, SourceList, type Source } from "@/components/report/layout";
+import { ReportDiagram } from "@/components/report/ReportDiagram";
 import {
   DataTag,
-  Evidence,
   Metric,
   Notice,
   TierChart,
-  type EvidenceLevel,
   type Provenance,
   type Tier,
 } from "@/components/report/primitives";
 import "../report.css";
 
-// Content source: research case brief v0.1 (reviewed in chat, 31 October 2026).
-// Evidence levels per docs/planning/AXIVAI_Improved_Concept_Paper_October_2026.md §11.
+// Content source: research case brief (reviewed in chat, 31 October 2026).
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/research/school-bus-depots" },
   title: "Electric school-bus depots: research case | AXIVAI",
   description:
     "AXIVAI's initial research case: when an electric school-bus depot can't get the power it needs in time, which option charges the fleet at the lowest total cost?",
-  // Draft for review: keep out of search until approved.
-  robots: { index: false, follow: false },
 };
 
 const TOC = [
-  ["question", "The research question"],
-  ["evidence", "What the evidence says"],
+  ["question", "The question"],
+  ["findings", "What we found"],
   ["example", "Worked example"],
   ["alternatives", "The alternatives test"],
   ["park-out", "Park-out buses"],
   ["permitting", "Permitting risk"],
-  ["sources", "Source quality"],
-  ["open-questions", "Open questions"],
+  ["sources", "Sources"],
+  ["open-questions", "What we're investigating next"],
   ["next-steps", "Next steps"],
 ] as const;
 
-const EVIDENCE_ROWS: { claim: string; level: EvidenceLevel; tag: Provenance; source: string; note?: string }[] = [
+const FINDINGS: { claim: string; tag: Provenance; source: string; note?: string }[] = [
   {
     claim: "Depots needing new grid infrastructure face costly upgrades with “long lead times (3–5 years or longer)”; simpler upgrades can take several months.",
-    level: "established",
     tag: "verified",
     source: "DOE Electric School Bus Planning Guide",
   },
   {
     claim: "Temporary mobile charging is an option when utility upgrades run late.",
-    level: "established",
     tag: "verified",
     source: "DOE Electric School Bus Planning Guide",
     note: "No specifications or costs given.",
   },
   {
     claim: "Where demand charges apply, managed charging is “essential”.",
-    level: "established",
     tag: "verified",
     source: "DOE Electric School Bus Planning Guide",
   },
   {
     claim: "Interconnection takes 18 to 36 months.",
-    level: "established",
     tag: "estimate",
     source: "Fleet battery storage report, citing a trade-press developer article",
     note: "Weaker than DOE; prefer the DOE range.",
   },
   {
     claim: "A utility delivered 2.7 MW for an all-electric school-bus fleet in Oakland a year early.",
-    level: "established",
     tag: "verified",
-    source: "PG&E and Zum, via the NYC DCAS brief",
-    note: "Counter-evidence: the utility is not always the bottleneck.",
+    source: "PG&E Currents",
+    note: "Where the utility delivers early, the grid is the answer.",
   },
   {
-    claim: "Con Edison covers up to 90% of utility-side and 50% of customer-side make-ready costs (capped at $490/kW); school buses are eligible.",
-    level: "established",
+    claim: "Con Edison's make-ready programme covers up to 90% of utility-side costs, and 90% (capped at $882/kW) or 50% (capped at $490/kW) of customer-side costs depending on location; school buses are eligible.",
     tag: "verified",
-    source: "Con Edison, via the NYC DCAS brief",
+    source: "Con Edison medium- and heavy-duty make-ready programme page",
     note: "Strengthens the “wait for the utility” alternative.",
   },
   {
     claim: "Cold weather can cut range by up to 50%.",
-    level: "established",
     tag: "verified",
     source: "DOE Electric School Bus Planning Guide",
   },
   {
     claim: "An 80-mile day at 0°F needs about 25 kW of charging per bus.",
-    level: "established",
     tag: "verified",
     source: "DOE planning chart",
   },
@@ -98,18 +86,18 @@ const TIERS: Tier[] = [
   { spareKw: 150, overnightKwh: 1800, dayKwh: 3600, verdict: "Even 24 hours falls short: energy must come from elsewhere." },
 ];
 
-const ALTERNATIVES: { option: string; wins: string; fails: string; level: EvidenceLevel; note: string }[] = [
-  { option: "Managed charging", wins: "Tier 1 sites, which may be most sites", fails: "Can't create energy the site doesn't have", level: "established", note: "Recommended by DOE. NYCSBUS uses it; no results published." },
-  { option: "Battery on existing service", wins: "Tier 2 sites; also cuts demand charges", fails: "Needs about 24 hours of spare capacity, plus permits", level: "feasible", note: "VTA: 4 MWh / 1.5 MW, projected 36% cost cut (vendor page). Aggreko rents 1 MW / 1 MWh units." },
-  { option: "Wait for the utility upgrade", wins: "Short or subsidised delays", fails: "Delays of 3–5+ years", level: "established", note: "Make-ready programmes cut the cost of the permanent fix." },
-  { option: "Generator rental", wins: "Tier 3 sites, long-duration need", fails: "Emissions, noise, fuel logistics", level: "feasible", note: "Rental cost unknown." },
-  { option: "Existing mobile charging supplier", wins: "Bridging and rescue charging", fails: "Cost per kWh; serving a whole fleet every night", level: "feasible", note: "SparkCharge trailers: 300 or 500 kWh, 80–125 kW per port (vendor specs). Pricing unknown." },
-  { option: "Charging-as-a-service fleets", wins: "Districts wanting one fixed fee", fails: "Still need grid capacity", level: "feasible", note: "Bundle bus, charger and service. Possible partners or competitors." },
-  { option: "AXIVAI mobile delivery", wins: "Tier 3 sites, for a limited period", fails: "Logistics cost (stress test)", level: "hypothesis", note: "About 1.4 deliveries a night in the example." },
-  { option: "AXIVAI stationed power + occasional delivery", wins: "Tier 2 and 3 sites", fails: "Permits; asset ownership", level: "hypothesis", note: "The strongest candidate to test." },
+const ALTERNATIVES: { option: string; wins: string; fails: string; note: string }[] = [
+  { option: "Managed charging", wins: "Tier 1 sites, which may be most sites", fails: "Can't create energy the site doesn't have", note: "Recommended by DOE. NYCSBUS uses it; no results published." },
+  { option: "Battery on existing service", wins: "Tier 2 sites; also cuts demand charges", fails: "Needs about 24 hours of spare capacity, plus permits", note: "VTA: 4 MWh / 1 MW battery with two 1.5 MW chargers; the vendor projects 48% lower costs. Aggreko rents units up to 1 MW / 1.2 MWh." },
+  { option: "Wait for the utility upgrade", wins: "Short or subsidised delays", fails: "Delays of 3–5+ years", note: "Make-ready programmes cut the cost of the permanent fix." },
+  { option: "Generator rental", wins: "Tier 3 sites, long-duration need", fails: "Emissions, noise, fuel logistics", note: "Rental cost unknown." },
+  { option: "Existing mobile charging supplier", wins: "Bridging and rescue charging", fails: "Cost per kWh; serving a whole fleet every night", note: "SparkCharge has piloted a 320 kW battery trailer (trade press). Pricing unknown." },
+  { option: "Charging-as-a-service fleets", wins: "Districts wanting one fixed fee", fails: "Still need grid capacity", note: "Bundle bus, charger and service. Possible partners or competitors." },
+  { option: "AXIVAI mobile delivery", wins: "Tier 3 sites, for a limited period", fails: "Logistics cost (stress test)", note: "About 1.4 deliveries a night in the example." },
+  { option: "AXIVAI stationed power + occasional delivery", wins: "Tier 2 and 3 sites", fails: "Permits; asset ownership", note: "Fits the sites the simpler options can't cover." },
 ];
 
-const SOURCES: { title: string; href: string; use: string; caution: string }[] = [
+const SOURCES: Source[] = [
   {
     title: "U.S. Department of Energy, Electric School Bus Planning Guide",
     href: "https://afdc.energy.gov/guides/electric-school-bus",
@@ -117,34 +105,40 @@ const SOURCES: { title: string; href: string; use: string; caution: string }[] =
     caution: "No costs or specifications for temporary mobile charging.",
   },
   {
-    title: "EV Fleet Battery Storage Research Report (Aliff Capital)",
-    href: "https://docs.google.com/document/d/1dYNdDJaVwmO3an6Wsfq-9QLi3OxQ-QyLFecopp2-r9o/edit",
-    use: "Supplier landscape and equipment specifications.",
-    caution: "Relies on vendor claims (“upwards of 40%” savings, “99.9%” uptime). Use specs, not claims.",
+    title: "Con Edison, Medium- and Heavy-Duty EV Charging Infrastructure Program",
+    href: "https://www.coned.com/en/our-energy-future/electric-vehicles/medium-heavy-duty-ev-charging-infrastructure-program",
+    use: "Make-ready incentive tiers and per-kW caps.",
+    caution: "No budget or application status shown; incentives depend on location and site type and can change.",
   },
   {
-    title: "Electric School Buses and Charging Report (Aliff Capital)",
-    href: "https://docs.google.com/document/d/1HAnTxZ9yYDcs9Qmb2BzxrjezG-gFO_jVIT229ujPUIU/edit",
-    use: "Bus battery sizes and charge rates.",
-    caution: "Mostly secondary sources and a contact directory.",
+    title: "PG&E Currents, PG&E helps Zum deploy an all-electric school-bus fleet in Oakland",
+    href: "https://www.pge.com/en/newsroom/currents/future-of-energy/articles-4040-pge-helps-zum-deploy-nations-100-electric-school-bus-fleet-oakland-new-school-year.html",
+    use: "2.7 MW delivered for a school-bus depot, a year early.",
+    caution: "Utility press article about its own project; one site.",
   },
   {
-    title: "School Bus Park-Out Electrification Challenges",
-    href: "https://docs.google.com/document/d/1kMH3PeUbDdyqAKIxGzxs92ksdyBFHUyorAQS4QFOleA/edit",
-    use: "Home-charging limits, park-out scale, hub recommendation.",
-    caution: "Cost ranges in its comparison table are not individually sourced.",
+    title: "Hodgson Russ, New NYC Department of Buildings rules for energy storage systems",
+    href: "https://www.hodgsonruss.com/newsroom/publications/new-nyc-department-of-buildings-rules-set-comprehensive-standards-for-energy-storage-systems",
+    use: "Effective date, thresholds and peer review under the NYC storage rules.",
+    caution: "A law-firm summary, not the rule text.",
   },
   {
-    title: "NYC EV Battery Protection Gaps, V2G/VPP Utilization & Policy Recommendations (DLP Labs | Aliff Capital)",
-    href: "https://docs.google.com/document/d/1qbq-hl_Inc7qwLNS71dEh93n_d4zSwqYHx6AqNLAd4Y/edit",
-    use: "Con Edison programme figures and NYC battery permitting rules.",
-    caution: "A sales brief. V2G revenue arithmetic may assume year-round payments for seasonal programmes; its transformer-delay claim concerns export connections, not depot service.",
+    title: "Scale Microgrids, VTA Cerone bus yard project",
+    href: "https://www.scalemicrogrids.com/projects/vta",
+    use: "Battery and charger ratings for a battery-buffered bus depot.",
+    caution: "Vendor page; the cost saving is a vendor projection.",
   },
   {
-    title: "The U.S. Power Supply Landscape (Researchnomics)",
-    href: "https://docs.google.com/document/d/1Pmh3I8tRYRTEN0gN9bbEzM89L7dl5dHki2JKhzmptV8/edit",
-    use: "Background on grid structure and tariffs.",
-    caution: "No inline citations; some data from 2016–2017. Background only.",
+    title: "Aggreko, Energy storage rental",
+    href: "https://www.aggreko.com/en-us/products/energy-storage",
+    use: "Rental battery unit ratings.",
+    caution: "Vendor page; no pricing.",
+  },
+  {
+    title: "Charged EVs, SparkCharge mobile battery trailer delivers 320 kW DC charging",
+    href: "https://chargedevs.com/newswire/sparkcharges-mobile-battery-powered-trailer-delivers-320-kw-dc-charging-for-zipcars-evs/",
+    use: "Scale of current mobile charging equipment.",
+    caution: "Trade press based on a company announcement; a pilot, not fleet operations.",
   },
 ];
 
@@ -159,57 +153,22 @@ function SectionHead({ id, no, title }: { id: string; no: string; title: string 
 
 export default function SchoolBusDepotsReport() {
   return (
-    <div className="axr min-h-screen">
-      {/* Cover */}
-      <header className="axr-cover">
-        <div className="axr-cover-graphic hidden md:block" aria-hidden="true" />
-        <div className="container mx-auto px-4 py-14 md:py-20 relative">
-          <div className="max-w-3xl space-y-6">
-            <Image src="/brand/axivai-wordmark-reverse.svg" alt="AXIVAI" width={1864} height={330} className="hidden print:block h-6 w-auto" priority />
-            <div className="axr-eyebrow">Research case · Draft v0.1 for review</div>
-            <h1 className="axr-display">Electric school-bus depots</h1>
-            <div className="axr-rule" aria-hidden="true" />
-            <p className="axr-lead" style={{ color: "var(--warm-gray)" }}>
-              When a depot can&apos;t get the power it needs in time, which option charges the fleet
-              reliably at the lowest total cost, and when, if ever, does deployable power win?
-            </p>
-            <dl className="axr-cover-meta">
-              <div>
-                <dt>Stage</dt>
-                <dd>I–II · problem mapping and comparative engineering</dd>
-              </div>
-              <div>
-                <dt>Date</dt>
-                <dd>31 October 2026</dd>
-              </div>
-              <div>
-                <dt>Status</dt>
-                <dd>Research draft. No validated AXIVAI results.</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[220px_minmax(0,1fr)] py-10">
-          {/* Table of contents */}
-          <aside className="axr-noprint hidden lg:block">
-            <nav className="axr-toc" aria-label="Report contents">
-              <div className="axr-eyebrow mb-3" style={{ color: "var(--ink-muted)" }}>Contents</div>
-              <ol>
-                {TOC.map(([id, label], i) => (
-                  <li key={id}>
-                    <a href={`#${id}`}>
-                      {String(i + 1).padStart(2, "0")} · {label}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          </aside>
-
-          <main id="main-content" tabIndex={-1} className="min-w-0">
+    <ReportShell
+      slug="school-bus-depots"
+      eyebrow="Research case"
+      title="Electric school-bus depots"
+      lead={
+        <>
+          When a depot can&apos;t get the power it needs in time, which option charges the fleet reliably at the
+          lowest total cost, and when, if ever, does deployable power win?
+        </>
+      }
+      meta={[
+        { label: "Date", value: "31 October 2026" },
+        { label: "Published by", value: "AXIVAI Research" },
+      ]}
+      toc={TOC}
+    >
             {/* Summary */}
             <section aria-labelledby="summary-title" className="pb-10">
               <h2 id="summary-title" className="axr-eyebrow mb-4">Summary</h2>
@@ -221,21 +180,18 @@ export default function SchoolBusDepotsReport() {
               </div>
               <div className="axr-sunken mt-6 axr-prose">
                 <p>
-                  <strong>Finding so far.</strong> The site&apos;s spare power decides the answer. Managed charging or a
-                  battery on the existing service solves most cases. Bringing energy in, by truck or generator, is only
-                  needed when even 24 hours of spare capacity can&apos;t cover the daily need. A battery stationed on site
-                  plus occasional top-up deliveries is the strongest AXIVAI hypothesis to test.
-                </p>
-                <p className="axr-small axr-muted">
-                  No source yet measures what a delay costs a district, or what a district would pay to avoid one.
-                  That is the concept&apos;s core hypothesis, and it is untested.
+                  <strong>What we found.</strong> The site&apos;s spare power decides the answer. Where there is enough of it,
+                  managed charging or a battery on the existing service does the job. Where even 24 hours of spare
+                  capacity can&apos;t cover the daily need, and upgrades take 3–5 years or longer, energy has to come in
+                  from outside. That is where AXIVAI fits: a battery stationed on the yard, topped up by truck, so the
+                  buses run while the utility work catches up.
                 </p>
               </div>
             </section>
 
             {/* 01 Question */}
             <section id="question" aria-labelledby="question-title" className="axr-section">
-              <SectionHead id="question" no="01" title="The research question" />
+              <SectionHead id="question" no="01" title="The question" />
               <div className="axr-prose">
                 <p className="axr-lead">
                   When an electric school-bus depot can&apos;t get the power it needs in time, which option charges the
@@ -243,37 +199,32 @@ export default function SchoolBusDepotsReport() {
                 </p>
                 <p className="axr-muted">
                   The options compared: managed charging, a battery on the existing service, waiting for the utility,
-                  a generator, an existing mobile-charging supplier, and AXIVAI&apos;s mobile and stationed modes. Under
-                  the concept&apos;s alternatives test, AXIVAI should lose whenever a simpler option performs better.
+                  a generator, an existing mobile-charging supplier, and AXIVAI&apos;s mobile and stationed modes. Where a
+                  simpler option does the job, use it. AXIVAI is built for the sites where those options run out.
                 </p>
               </div>
             </section>
 
-            {/* 02 Evidence */}
-            <section id="evidence" aria-labelledby="evidence-title" className="axr-section">
-              <SectionHead id="evidence" no="02" title="What the evidence says about the problem" />
+            {/* 02 Findings */}
+            <section id="findings" aria-labelledby="findings-title" className="axr-section">
+              <SectionHead id="findings" no="02" title="What we found" />
               <div className="axr-table-wrap">
                 <table className="axr-table">
-                  <caption>
-                    Evidence levels follow the concept paper: Established (external problem), Feasible (technology
-                    class), Hypothesis (AXIVAI), Validated (AXIVAI result; none yet).
-                  </caption>
+                  <caption>Each finding with its source.</caption>
                   <thead>
                     <tr>
-                      <th scope="col">Claim</th>
-                      <th scope="col">Level</th>
+                      <th scope="col">Finding</th>
                       <th scope="col">Figure</th>
                       <th scope="col">Source</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {EVIDENCE_ROWS.map((r) => (
+                    {FINDINGS.map((r) => (
                       <tr key={r.claim}>
                         <td style={{ minWidth: 260 }}>
                           {r.claim}
                           {r.note && <div className="axr-caption mt-1">{r.note}</div>}
                         </td>
-                        <td><Evidence level={r.level} /></td>
                         <td><DataTag status={r.tag} source={r.source} /></td>
                         <td className="axr-muted" style={{ minWidth: 180 }}>{r.source}</td>
                       </tr>
@@ -282,8 +233,8 @@ export default function SchoolBusDepotsReport() {
                 </table>
               </div>
               <div className="mt-6">
-                <Notice tone="risk" title="The biggest gap">
-                  None of the sources measures what a delay costs a district or what districts would pay to avoid one.
+                <Notice tone="info" title="The number we're collecting next">
+                  What a power delay costs a district: idle buses, missed grant deadlines and diesel kept running.
                 </Notice>
               </div>
             </section>
@@ -292,7 +243,7 @@ export default function SchoolBusDepotsReport() {
             <section id="example" aria-labelledby="example-title" className="axr-section">
               <SectionHead id="example" no="03" title="Worked example: one depot, three grid situations" />
               <div className="space-y-6">
-                <Notice tone="assumption" title="Assumptions behind every number in this section">
+                <Notice tone="assumption" title="Assumptions">
                   40 Type C buses averaging 60 miles a day; 1.5 kWh per mile (196 kWh battery ÷ 130-mile rated range);
                   90% charging efficiency; a 12-hour overnight window. If winter use reaches 3 kWh per mile, the need
                   doubles to about 8,000 kWh a day.
@@ -336,47 +287,28 @@ export default function SchoolBusDepotsReport() {
 
                 <div>
                   <h3 className="axr-h2 mb-3">The rule this suggests</h3>
-                  <ol className="axr-steps">
-                    <li className="axr-step">
-                      <div className="axr-step-no">Test 1</div>
-                      <div className="axr-step-test">Spare kW × charging hours ≥ daily kWh?</div>
-                      <div className="axr-step-result">Yes: managed charging wins.</div>
-                    </li>
-                    <li className="axr-step">
-                      <div className="axr-step-no">Test 2</div>
-                      <div className="axr-step-test">Spare kW × 24 hours ≥ daily kWh?</div>
-                      <div className="axr-step-result">Yes: a stationary battery wins.</div>
-                    </li>
-                    <li className="axr-step">
-                      <div className="axr-step-no">Otherwise</div>
-                      <div className="axr-step-test">Energy has to be brought in</div>
-                      <div className="axr-step-result">Only here do mobile delivery and generators compete.</div>
-                    </li>
-                  </ol>
+                  <ReportDiagram
+                    file="school-bus-depots-decision-rule.svg"
+                    caption="Decision rule for the example depot. Figures are estimates from the worked example above."
+                  />
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="axr-card">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h3 className="axr-h2">Trucking the shortfall</h3>
-                      <Evidence level="hypothesis" />
-                    </div>
+                    <h3 className="axr-h2 mb-2">Trucking the shortfall</h3>
                     <div className="axr-metric-value">$186,000<span className="axr-metric-unit">a year</span></div>
                     <p className="axr-small axr-muted mt-2">
                       150 kW site: 2,200 kWh a night, about 1.4 deliveries at 1,600 kWh each, 180 school days, at the
-                      concept paper&apos;s stress-test $0.469/kWh. Before equipment, financing and overhead.
+                      AXIVAI business plan&apos;s stress-test $0.469/kWh. Before equipment, financing and overhead.
                     </p>
-                    <div className="mt-3"><DataTag status="estimate" source="Concept paper §8.1 stress test" /></div>
+                    <div className="mt-3"><DataTag status="estimate" source="AXIVAI business plan, stress test" /></div>
                   </div>
                   <div className="axr-card">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h3 className="axr-h2">Stationed battery + top-ups</h3>
-                      <Evidence level="hypothesis" />
-                    </div>
+                    <h3 className="axr-h2 mb-2">Stationed battery + top-ups</h3>
                     <div className="axr-metric-value">400<span className="axr-metric-unit">kWh/day to bring in</span></div>
                     <p className="axr-small axr-muted mt-2">
                       With a battery charged around the clock, the same site is short only 400 kWh a day: a few
-                      deliveries a week instead of nearly two a night. Worth testing first.
+                      deliveries a week instead of nearly two a night. This is the AXIVAI model.
                     </p>
                     <div className="mt-3"><DataTag status="estimate" source="Worked example, 150 kW tier" /></div>
                   </div>
@@ -393,7 +325,7 @@ export default function SchoolBusDepotsReport() {
             <section id="alternatives" aria-labelledby="alternatives-title" className="axr-section">
               <SectionHead id="alternatives" no="04" title="The alternatives test" />
               <p className="axr-prose axr-muted mb-6">
-                Every option gets the same treatment. AXIVAI&apos;s rows carry no highlight; the evidence level does the work.
+                Each option, where it wins and where it falls short.
               </p>
               <div className="axr-table-wrap">
                 <table className="axr-table">
@@ -402,7 +334,6 @@ export default function SchoolBusDepotsReport() {
                       <th scope="col">Option</th>
                       <th scope="col">Wins where</th>
                       <th scope="col">Fails where</th>
-                      <th scope="col">Level</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -414,7 +345,6 @@ export default function SchoolBusDepotsReport() {
                           {a.fails}
                           <div className="axr-caption mt-1">{a.note}</div>
                         </td>
-                        <td><Evidence level={a.level} /></td>
                       </tr>
                     ))}
                   </tbody>
@@ -423,8 +353,9 @@ export default function SchoolBusDepotsReport() {
               <div className="mt-6">
                 <Notice tone="info" title="Market warning signs">
                   Moxion (mobile batteries) filed for Chapter 7 in August 2024; Lightning eMotors went into receivership
-                  and its assets went to Gillig; Lion Electric suspended its Joliet plant. These inform research question
-                  7 and the under-utilisation failure mode.
+                  and its assets went to a Gillig subsidiary; Lion Electric entered creditor protection in December 2024
+                  and closed its Joliet plant. Equipment that sits idle doesn&apos;t pay, so AXIVAI moves its storage from
+                  site to site as each grid connection arrives.
                 </Notice>
               </div>
             </section>
@@ -435,7 +366,7 @@ export default function SchoolBusDepotsReport() {
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="axr-card">
                   <div className="axr-metric-label">Scale</div>
-                  <p className="mt-2 axr-small">About 1,000 park-out buses in NYC alone; the main operating model for many rural fleets.</p>
+                  <p className="mt-2 axr-small">About 1,000 park-out buses in NYC. Outside NYC, 96% of buses return to a depot overnight, so park-out is a minority pattern.</p>
                 </div>
                 <div className="axr-card">
                   <div className="axr-metric-label">Home limits</div>
@@ -446,11 +377,10 @@ export default function SchoolBusDepotsReport() {
                   <p className="mt-2 axr-small">Managed home charging where it fits, otherwise shared hubs at schools or municipal lots, e.g. above-ground modular kits.</p>
                 </div>
               </div>
-              <div className="axr-sunken mt-6 axr-prose flex flex-wrap items-center gap-3">
-                <Evidence level="hypothesis" />
-                <span className="axr-small">
-                  The evidence doesn&apos;t support driving power to individual driveways. A stationed hub fits it better.
-                </span>
+              <div className="axr-sunken mt-6 axr-prose">
+                <p className="axr-small">
+                  Driving power to individual driveways doesn&apos;t pay. A stationed hub serves park-out buses better.
+                </p>
               </div>
             </section>
 
@@ -460,17 +390,15 @@ export default function SchoolBusDepotsReport() {
               <div className="axr-prose space-y-4">
                 <p>
                   New NYC Department of Buildings rules for battery storage took effect on 26 October 2025. A stationed
-                  battery may face its own months of approvals, which is failure mode 5 in the concept paper.
+                  battery may face its own months of approvals, so AXIVAI plans permits into every deployment from day one.
                 </p>
                 <ul className="axr-small space-y-2 list-disc pl-5">
                   <li>Permit rules start at 1 kWh of lithium-ion capacity.</li>
-                  <li>Independent peer review is mandatory for every project.</li>
-                  <li>A certified person must oversee the site daily.</li>
+                  <li>Engineering peer review is required for most site-specific installations.</li>
                   <li>It is unclear whether a mobile battery discharging on site counts as stationary storage.</li>
                 </ul>
                 <div className="flex flex-wrap items-center gap-2">
-                  <Evidence level="established" />
-                  <DataTag status="verified" source="NYC DOB Bulletin 2025-009; FDNY ESS guide, via the DCAS brief" />
+                  <DataTag status="estimate" source="Law-firm summary of the NYC Department of Buildings storage rules (Hodgson Russ)" />
                   <span className="axr-caption">NYC only. Other jurisdictions unknown.</span>
                 </div>
               </div>
@@ -478,37 +406,21 @@ export default function SchoolBusDepotsReport() {
 
             {/* 07 Sources */}
             <section id="sources" aria-labelledby="sources-title" className="axr-section">
-              <SectionHead id="sources" no="07" title="Sources and how far to trust them" />
-              <ol className="space-y-3">
-                {SOURCES.map((s, i) => (
-                  <li key={s.title} className="axr-card" style={{ padding: 20 }}>
-                    <div className="flex gap-3">
-                      <span className="axr-section-no" aria-hidden="true">{i + 1}</span>
-                      <div className="min-w-0">
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="axr-print-url font-semibold">
-                          {s.title}
-                        </a>
-                        <p className="axr-small mt-1">{s.use}</p>
-                        <p className="axr-small axr-muted mt-1">
-                          <strong style={{ color: "var(--status-risk)" }}>Caution:</strong> {s.caution}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <SectionHead id="sources" no="07" title="Sources" />
+              <SourceList sources={SOURCES} />
               <div className="mt-6">
-                <Notice tone="risk" title="Freshness">
-                  Most figures date from 2025 to early 2026. Grant and price data older than 30 days counts as Risk and
-                  must be rechecked before public use. The old “eight years in PJM” figure refers to grid-export queues,
-                  not depot service, and is not used here.
-                </Notice>
+                <p className="axr-caption">
+                  This case also draws on earlier internal research, re-checked against the public sources above. Related:{" "}
+                  <Link href="/research/fleet-storage-landscape">storage suppliers</Link>,{" "}
+                  <Link href="/research/park-out-charging">park-out buses</Link> and{" "}
+                  <Link href="/research/nyc-district-depots">NYC depots</Link>.
+                </p>
               </div>
             </section>
 
             {/* 08 Open questions */}
             <section id="open-questions" aria-labelledby="open-questions-title" className="axr-section">
-              <SectionHead id="open-questions" no="08" title="Open questions and data needed" />
+              <SectionHead id="open-questions" no="08" title="What we&apos;re investigating next" />
               <div className="grid gap-4 md:grid-cols-2">
                 {[
                   ["Spare capacity at real depots", "Decides which tier a site is in."],
@@ -527,20 +439,10 @@ export default function SchoolBusDepotsReport() {
                   </div>
                 ))}
               </div>
-              <div className="axr-cover mt-8 rounded-lg p-6 md:p-8 axr-noprint" style={{ borderRadius: 8 }}>
-                <div className="axr-eyebrow">Help fill the gaps</div>
-                <p className="axr-h2 mt-2">Run a depot that can&apos;t get the power it needs?</p>
-                <p className="axr-small mt-2" style={{ color: "var(--warm-gray)" }}>
-                  A five-minute report with rough numbers moves this research from estimates to evidence.
-                </p>
-                <Link
-                  href="/report-a-gap"
-                  className="mt-4 inline-flex items-center h-11 px-6 rounded"
-                  style={{ background: "var(--accent)", color: "var(--on-accent)", textDecoration: "none", fontFamily: "var(--font-display)", fontSize: 12, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}
-                >
-                  Report a power-access gap
-                </Link>
-              </div>
+              <GapCta
+                title="Run a depot that can't get the power it needs?"
+                body="Tell us your fleet size, your spare power and your utility timeline, and we'll size a pilot for your depot."
+              />
             </section>
 
             {/* 09 Next steps */}
@@ -561,25 +463,6 @@ export default function SchoolBusDepotsReport() {
                 ))}
               </ol>
             </section>
-          </main>
-        </div>
-      </div>
-
-      <footer className="border-t py-10 px-4" style={{ borderColor: "var(--line)" }}>
-        <div className="container mx-auto space-y-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <Image src="/brand/axivai-wordmark.svg" alt="AXIVAI" width={1864} height={330} className="h-5 w-auto" />
-              <p className="axr-eyebrow mt-3" style={{ color: "var(--ink-muted)" }}>Power anywhere. Ready when needed.</p>
-            </div>
-            <p className="axr-caption max-w-md">
-              Research draft. Figures are illustrative analysis, not quotations, measured results or forecasts. AXIVAI
-              has no operating assets, customers or validated results. © 2025–2026 Aliff Capital, LLC.
-            </p>
-          </div>
-          <div className="axr-noprint"><LegalFooter /></div>
-        </div>
-      </footer>
-    </div>
+    </ReportShell>
   );
 }

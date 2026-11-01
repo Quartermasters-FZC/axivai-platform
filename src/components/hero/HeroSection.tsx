@@ -1,9 +1,9 @@
 /**
  * AXIVAI Hero Section Component
- * Full-width concept rendering with tagline, positioning statement and the four customer outcomes.
+  * Full-width hero rendering with tagline, positioning statement and the four customer outcomes.
  *
- * Copy source: docs/planning/AXIVAI_Improved_Concept_Paper_October_2026.md (§1, §3)
- * Brand rules: docs/planning/50_Design_System.md — rendered imagery carries a "Concept rendering" label.
+  * Copy source: docs/planning/AXIVAI_Business_Plan_October_2026.md (§1, §3)
+  * Brand rules: docs/planning/50_Design_System.md.
  */
 
 import Image from "next/image";
@@ -42,21 +42,19 @@ const OUTCOMES = [
 export function HeroSection() {
   return (
     <section className="relative flex flex-col">
-      {/* Concept rendering */}
+      {/* Hero rendering */}
       <div className="container mx-auto px-4 pt-6 md:pt-10">
         <figure className="relative rounded-2xl overflow-hidden border border-border/50 shadow-xl bg-card">
           <Image
             src="/images/hero/axivai-hero.png"
-            alt="Concept rendering. AXIVAI wordmark and the tagline “Power anywhere. Ready when needed.” above four outcomes: power availability, flexibility, resilience and speed of deployment. Below, a battery transport truck labelled mobile energy infrastructure stands between modular storage units at an energy hub and a row of electric school buses charging at sunrise, with mountains and a city skyline behind."
+            alt="AXIVAI wordmark and the tagline “Power anywhere. Ready when needed.” above four outcomes: power availability, flexibility, resilience and speed of deployment. Below, a battery transport truck labelled mobile energy infrastructure stands between modular storage units at an energy hub and a row of electric school buses charging at sunrise, with mountains and a city skyline behind."
             width={1983}
             height={793}
             sizes="(min-width: 1536px) 1536px, 100vw"
             className="w-full h-auto"
             priority
           />
-          <figcaption className="absolute bottom-3 right-3 rounded-md bg-primary/80 px-2.5 py-1 text-xs font-medium text-primary-foreground backdrop-blur-sm">
-            Concept rendering
-          </figcaption>
+          
         </figure>
       </div>
 
@@ -67,7 +65,7 @@ export function HeroSection() {
             variant="outline"
             className="border-accent/40 text-accent-ink bg-accent/5 text-xs font-medium"
           >
-            Concept stage · research and development
+            Deployable power for fleets and sites
           </Badge>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.15]">
@@ -75,10 +73,10 @@ export function HeroSection() {
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            AXIVAI is a deployable power infrastructure concept. It seeks to make
-            electrical capacity available when fixed infrastructure is too slow,
-            too limited or too inflexible, through modular storage,
-            mission-specific deployment and managed operations.
+            AXIVAI delivers electrical capacity where fixed infrastructure is too
+            slow, too limited or too inflexible, through modular storage,
+            mission-specific deployment and managed operations. When the grid
+            can&apos;t power your site yet, AXIVAI brings the power.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
@@ -87,10 +85,10 @@ export function HeroSection() {
               size="lg"
               className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
             >
-              <Link href="/report-a-gap">Report a power-access gap</Link>
+              <Link href="/report-a-gap">Tell us about your site</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="w-full sm:w-auto font-medium">
-              <Link href="#approach">See the approach</Link>
+              <Link href="#approach">See how it works</Link>
             </Button>
           </div>
         </div>

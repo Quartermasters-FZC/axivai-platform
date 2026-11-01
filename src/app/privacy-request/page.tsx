@@ -12,7 +12,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -149,7 +148,7 @@ export default function PrivacyRequestPage() {
       `Verification Agreed: Yes`
     );
 
-    window.location.href = `mailto:privacy@aliffcapital.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:privacy@axivai.com?subject=${subject}&body=${body}`;
 
     // Show success state
     setTimeout(() => {
@@ -160,8 +159,8 @@ export default function PrivacyRequestPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-background">
-        <main className="py-16 px-4">
+      <div className="bg-background">
+        <main id="main-content" tabIndex={-1} className="py-16 px-4">
           <div className="container mx-auto max-w-2xl">
             <Card className="border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950">
               <CardHeader className="text-center">
@@ -191,7 +190,7 @@ export default function PrivacyRequestPage() {
                   the email to complete your submission.
                 </p>
                 <div className="bg-background rounded-lg p-4 text-left">
-                  <h4 className="font-semibold mb-2">What happens next?</h4>
+                  <h2 className="font-semibold mb-2 text-base">What happens next?</h2>
                   <ul className="text-sm text-muted-foreground space-y-2">
                     <li>1. We will verify your identity using the email address provided</li>
                     <li>2. You may receive a verification email within 1-3 business days</li>
@@ -222,9 +221,9 @@ export default function PrivacyRequestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Content */}
-      <main className="py-16 px-4">
+      <main id="main-content" tabIndex={-1} className="py-16 px-4">
         <div className="container mx-auto max-w-2xl">
           <div className="mb-8">
             <Badge variant="outline" className="mb-4">
@@ -259,10 +258,10 @@ export default function PrivacyRequestPage() {
                 <strong>Alternative:</strong> You can also submit requests by
                 emailing{" "}
                 <a
-                  href="mailto:privacy@aliffcapital.com"
+                  href="mailto:privacy@axivai.com"
                   className="text-foreground underline"
                 >
-                  privacy@aliffcapital.com
+                  privacy@axivai.com
                 </a>{" "}
                 directly.
               </p>
@@ -420,7 +419,7 @@ export default function PrivacyRequestPage() {
 
           {/* Additional Info */}
           <div className="prose prose-stone dark:prose-invert text-sm">
-            <h3>Your Privacy Rights</h3>
+            <h2>Your Privacy Rights</h2>
             <p>
               Depending on your location, you may have rights including:
             </p>
@@ -447,36 +446,6 @@ export default function PrivacyRequestPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t py-12 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <BrandLogo className="h-6 mb-1" />
-              <p className="text-sm text-muted-foreground">
-                Deployable power infrastructure · concept in research and development
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-foreground">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-foreground">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="hover:text-foreground">
-                Cookie Policy
-              </Link>
-              <Link href="/accessibility" className="hover:text-foreground">
-                Accessibility
-              </Link>
-            </div>
-          </div>
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

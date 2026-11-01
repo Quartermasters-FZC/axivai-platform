@@ -1,0 +1,184 @@
+<svg data-chapters='[{"t": 0, "label": "400 kW spare"}, {"t": 7, "label": "250 kW spare"}, {"t": 14, "label": "150 kW spare"}]' data-duration="21" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+<title id="title">WHICH OPTION FITS THE DEPOT?</title>
+<desc id="desc">Left-to-right decision flow for a 40-bus school depot requiring about 4,000 kWh daily. First compare spare grid power times 12 overnight hours with need; if sufficient select managed charging. Otherwise compare spare power times 24 hours; if sufficient select stationary battery on the existing service; otherwise consider bringing energy in. Three example capacities and a winter demand note are included.</desc>
+<style>
+  /* Animated layer (SMIL, shared 21 s clock). Hidden for reduced motion, leaving the static diagram. */
+  @media (prefers-reduced-motion: reduce) { .sbd-anim { display: none; } }
+</style>
+<rect x="0" y="0" width="1600" height="900" fill="#FEFDFB"/>
+<g id="header">
+  <text x="66" y="77" font-family="Montserrat, Inter, Arial, sans-serif" font-size="39" font-weight="600" fill="#1C1917">WHICH OPTION FITS THE DEPOT?</text>
+  <text x="66" y="121" font-family="Inter, Arial, sans-serif" font-size="22" fill="#57534E">Example depot: 40 buses, daily need about 4,000 kWh</text>
+  <line x1="66" y1="149" x2="1534" y2="149" stroke="#E8E4DC" stroke-width="2"/>
+</g>
+<g id="decision-flow" stroke-linecap="round" stroke-linejoin="round">
+  <g id="start-node">
+    <rect x="66" y="363" width="220" height="94" rx="7" fill="#FEFDFB" stroke="#1C1917" stroke-width="2.5"/>
+    <text x="176" y="397" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" fill="#1C1917">Spare grid power</text>
+    <text x="176" y="424" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" fill="#1C1917">at the site (kW)</text>
+  </g>
+  <g id="connector-start-to-decision-1">
+    <line x1="286" y1="410" x2="325" y2="410" stroke="#1C1917" stroke-width="2.5"/>
+    <polygon points="325,404 337,410 325,416" fill="#1C1917"/>
+  </g>
+  <g id="decision-1">
+    <polygon points="450,307 563,410 450,513 337,410" fill="#FEFDFB" stroke="#D4A017" stroke-width="3"/>
+    <text x="450" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917">
+      <tspan x="450" dy="0">Spare kW ×</tspan>
+      <tspan x="450" dy="25">12 overnight hours</tspan>
+      <tspan x="450" dy="25">≥ 4,000 kWh?</tspan>
+    </text>
+  </g>
+  <g id="decision-2">
+    <polygon points="786,307 899,410 786,513 673,410" fill="#FEFDFB" stroke="#D4A017" stroke-width="3"/>
+    <text x="786" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917">
+      <tspan x="786" dy="0">Spare kW ×</tspan>
+      <tspan x="786" dy="25">24 hours</tspan>
+      <tspan x="786" dy="25">≥ 4,000 kWh?</tspan>
+    </text>
+  </g>
+  <g id="decision-1-no-path">
+    <line x1="563" y1="410" x2="661" y2="410" stroke="#8B6914" stroke-width="2.5"/>
+    <polygon points="661,404 673,410 661,416" fill="#8B6914"/>
+    <text x="618" y="395" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#8B6914" letter-spacing="1.5">NO</text>
+  </g>
+  <g id="decision-1-yes-path">
+    <path d="M450 307 V246 H1062" stroke="#8B6914" stroke-width="2.5" fill="none"/>
+    <polygon points="1062,240 1074,246 1062,252" fill="#8B6914"/>
+    <text x="468" y="292" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#8B6914" letter-spacing="1.5">YES</text>
+  </g>
+  <g id="decision-2-yes-path">
+    <path d="M899 410 H971 V451 H1062" stroke="#8B6914" stroke-width="2.5" fill="none"/>
+    <polygon points="1062,445 1074,451 1062,457" fill="#8B6914"/>
+    <text x="920" y="396" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#8B6914" letter-spacing="1.5">YES</text>
+  </g>
+  <g id="decision-2-no-path">
+    <path d="M786 513 V658 H1062" stroke="#8B6914" stroke-width="2.5" fill="none"/>
+    <polygon points="1062,652 1074,658 1062,664" fill="#8B6914"/>
+    <text x="804" y="545" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#8B6914" letter-spacing="1.5">NO</text>
+  </g>
+</g>
+<g id="outcomes" font-family="Inter, Arial, sans-serif">
+  <g id="outcome-a-managed-charging">
+    <rect x="1074" y="163" width="459" height="174" rx="10" fill="#FEFDFB" stroke="#E8E4DC" stroke-width="2"/>
+    <rect x="1074" y="163" width="459" height="5" fill="#D4A017"/>
+    <text x="1096" y="197" font-family="Montserrat, Inter, Arial, sans-serif" font-size="21" font-weight="600" fill="#1C1917" letter-spacing="1.2">A. MANAGED CHARGING</text>
+    <text x="1096" y="231" font-size="17" fill="#57534E">Spread charging across the night.</text>
+    <text x="1096" y="258" font-size="17" fill="#57534E">Example: 400 kW spare →</text>
+    <text x="1096" y="285" font-size="17" fill="#57534E">4,800 kWh overnight (120% of need).</text>
+    <g id="icon-clock-plug" fill="none" stroke="#1C1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="1482" cy="195" r="20"/>
+      <path d="M1482 182 V196 L1491 201"/>
+      <path d="M1463 224 h29 m-19 -7 v7 m10 -7 v7 m-15 0 v9 h20 v-9"/>
+    </g>
+  </g>
+  <g id="outcome-b-battery-existing-service">
+    <rect x="1074" y="365" width="459" height="174" rx="10" fill="#FEFDFB" stroke="#E8E4DC" stroke-width="2"/>
+    <rect x="1074" y="365" width="459" height="5" fill="#D4A017"/>
+    <text x="1096" y="398" font-family="Montserrat, Inter, Arial, sans-serif" font-size="18.5" font-weight="600" fill="#1C1917" letter-spacing="0.65">B. BATTERY ON THE EXISTING SERVICE</text>
+    <text x="1096" y="432" font-size="17" fill="#57534E">Charge a battery during the day,</text>
+    <text x="1096" y="458" font-size="17" fill="#57534E">discharge at night.</text>
+    <text x="1096" y="484" font-size="17" fill="#57534E">Example: 250 kW spare → 6,000 kWh</text>
+    <text x="1096" y="510" font-size="17" fill="#57534E">over 24 h (150%).</text>
+    <g id="icon-stationary-battery-cabinet" fill="none" stroke="#1C1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1475" y="412" width="34" height="52" rx="3"/>
+      <line x1="1475" y1="428" x2="1509" y2="428"/>
+      <path d="M1494 432 l-8 13 h8 l-4 11 12 -16 h-8"/>
+      <line x1="1480" y1="466" x2="1480" y2="471"/>
+      <line x1="1504" y1="466" x2="1504" y2="471"/>
+    </g>
+  </g>
+  <g id="outcome-c-bring-energy-in">
+    <rect x="1074" y="567" width="459" height="174" rx="10" fill="#FEFDFB" stroke="#1C1917" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <rect x="1074" y="567" width="459" height="5" fill="#D4A017"/>
+    <text x="1096" y="601" font-family="Montserrat, Inter, Arial, sans-serif" font-size="21" font-weight="600" fill="#1C1917" letter-spacing="1.1">C. BRING ENERGY IN</text>
+    <text x="1096" y="635" font-size="17" fill="#57534E">Mobile delivery, generator or temporary</text>
+    <text x="1096" y="662" font-size="17" fill="#57534E">service compete here.</text>
+    <text x="1096" y="689" font-size="17" fill="#57534E">Example: 150 kW spare → 3,600 kWh</text>
+    <text x="1096" y="716" font-size="17" fill="#57534E">over 24 h (90%).</text>
+    <g id="icon-generic-battery-truck" fill="none" stroke="#1C1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1451" y="590" width="40" height="27" rx="2"/>
+      <path d="M1491 599 h12 l9 11 v7 h-21"/>
+      <line x1="1451" y1="617" x2="1512" y2="617"/>
+      <circle cx="1463" cy="622" r="5"/>
+      <circle cx="1501" cy="622" r="5"/>
+      <path d="M1473 596 h9 v9 h-9 z M1477 598 v5"/>
+    </g>
+  </g>
+</g>
+<g id="sbd-anim" class="sbd-anim">
+<rect x="66" y="478" width="280" height="262" rx="8" fill="#FFFFFF" stroke="#E8E4DC" stroke-width="2"/>
+<text x="86" y="505" font-family="Montserrat, Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#57534E" letter-spacing="1.8">WORKED CHECK</text>
+<line x1="86" y1="680" x2="326" y2="680" stroke="#E8E4DC" stroke-width="1.5"/>
+<text x="86" y="702" font-family="Montserrat, Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#57534E" letter-spacing="1.8">RESULT</text>
+<circle cx="1478" cy="66" r="6" fill="#D4A017" fill-opacity="0" stroke="#8B6914" stroke-width="1.5"><animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0.00000;0.01429;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<circle cx="1500" cy="66" r="6" fill="#D4A017" fill-opacity="0" stroke="#8B6914" stroke-width="1.5"><animate attributeName="fill-opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.33333;0.34762;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<circle cx="1522" cy="66" r="6" fill="#D4A017" fill-opacity="0" stroke="#8B6914" stroke-width="1.5"><animate attributeName="fill-opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.66667;0.68095;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<text x="1534" y="96" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#57534E">Three example sites</text>
+<g id="example-a">
+<rect x="66" y="363" width="220" height="94" rx="7" fill="none" stroke="#D4A017" stroke-width="3.5" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0.00000;0.01429;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></rect>
+<text x="86" y="540" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#8B6914" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.00476;0.01905;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>400 kW spare</text>
+<path d="M286 410 H337" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.01905;0.01952;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.01905;0.03810;0.31905;0.32143;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.01667;0.01905;0.03905;0.04381;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M286 410 H337" keyPoints="0;0;1;1" keyTimes="0.00000;0.01905;0.03810;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.03810;0.05238;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><polygon points="450,307 563,410 450,513 337,410" fill="#FAF1D9" stroke="#D4A017" stroke-width="3.5"/><text x="450" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917"><tspan x="450" dy="0">Spare kW ×</tspan><tspan x="450" dy="25">12 overnight hours</tspan><tspan x="450" dy="25">≥ 4,000 kWh?</tspan></text></g>
+<text x="86" y="576" font-family="Inter, Arial, sans-serif" font-size="16" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.05238;0.06667;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>400 × 12 h = 4,800 kWh</text>
+<text x="86" y="600" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.06667;0.08095;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>≥ 4,000 → YES</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.06667;0.08095;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><rect x="460" y="275" width="54" height="23" rx="11.5" fill="#8B6914"/><text x="468" y="292" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#FEFDFB" letter-spacing="1.5">YES</text></g>
+<path d="M450 307 V246 H1074" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.08571;0.08619;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.08571;0.13333;0.31905;0.32143;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.08333;0.08571;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M450 307 V246 H1074" keyPoints="0;0;1;1" keyTimes="0.00000;0.08571;0.13333;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<rect x="1074" y="163" width="459" height="174" rx="10" fill="none" stroke="#D4A017" stroke-width="3.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.13333;0.14762;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></rect>
+<text x="86" y="722" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.13810;0.15238;0.29524;0.31905;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>Managed charging</text>
+</g>
+<g id="example-b">
+<rect x="66" y="363" width="220" height="94" rx="7" fill="none" stroke="#D4A017" stroke-width="3.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.33333;0.34762;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></rect>
+<text x="86" y="540" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#8B6914" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.33810;0.35238;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>250 kW spare</text>
+<path d="M286 410 H337" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.35238;0.35286;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.35238;0.37143;0.65238;0.65476;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.35000;0.35238;0.37238;0.37714;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M286 410 H337" keyPoints="0;0;1;1" keyTimes="0.00000;0.35238;0.37143;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.37143;0.38571;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><polygon points="450,307 563,410 450,513 337,410" fill="#FAF1D9" stroke="#D4A017" stroke-width="3.5"/><text x="450" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917"><tspan x="450" dy="0">Spare kW ×</tspan><tspan x="450" dy="25">12 overnight hours</tspan><tspan x="450" dy="25">≥ 4,000 kWh?</tspan></text></g>
+<text x="86" y="576" font-family="Inter, Arial, sans-serif" font-size="16" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.38571;0.40000;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>250 × 12 h = 3,000 kWh</text>
+<text x="86" y="600" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.40000;0.41429;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>&lt; 4,000 → NO</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.40000;0.41429;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><rect x="596" y="378" width="44" height="23" rx="11.5" fill="#8B6914"/><text x="618" y="395" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#FEFDFB" letter-spacing="1.5">NO</text></g>
+<path d="M563 410 H673" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.41905;0.41952;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.41905;0.43810;0.65238;0.65476;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.41667;0.41905;0.43905;0.44381;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M563 410 H673" keyPoints="0;0;1;1" keyTimes="0.00000;0.41905;0.43810;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.43810;0.45238;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><polygon points="786,307 899,410 786,513 673,410" fill="#FAF1D9" stroke="#D4A017" stroke-width="3.5"/><text x="786" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917"><tspan x="786" dy="0">Spare kW ×</tspan><tspan x="786" dy="25">24 hours</tspan><tspan x="786" dy="25">≥ 4,000 kWh?</tspan></text></g>
+<text x="86" y="636" font-family="Inter, Arial, sans-serif" font-size="16" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.45238;0.46667;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>250 × 24 h = 6,000 kWh</text>
+<text x="86" y="660" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.46667;0.48095;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>≥ 4,000 → YES</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.46667;0.48095;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><rect x="912" y="379" width="54" height="23" rx="11.5" fill="#8B6914"/><text x="920" y="396" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#FEFDFB" letter-spacing="1.5">YES</text></g>
+<path d="M899 410 H971 V451 H1074" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.48571;0.48619;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.48571;0.50952;0.65238;0.65476;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.48333;0.48571;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M899 410 H971 V451 H1074" keyPoints="0;0;1;1" keyTimes="0.00000;0.48571;0.50952;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<rect x="1074" y="365" width="459" height="174" rx="10" fill="none" stroke="#D4A017" stroke-width="3.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.50952;0.52381;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></rect>
+<text x="86" y="722" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.51429;0.52857;0.62857;0.65238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>Battery on existing service</text>
+</g>
+<g id="example-c">
+<rect x="66" y="363" width="220" height="94" rx="7" fill="none" stroke="#D4A017" stroke-width="3.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.66667;0.68095;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></rect>
+<text x="86" y="540" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#8B6914" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.67143;0.68571;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>150 kW spare</text>
+<path d="M286 410 H337" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.68571;0.68619;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.68571;0.70476;0.98571;0.98810;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.68333;0.68571;0.70571;0.71048;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M286 410 H337" keyPoints="0;0;1;1" keyTimes="0.00000;0.68571;0.70476;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.70476;0.71905;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><polygon points="450,307 563,410 450,513 337,410" fill="#FAF1D9" stroke="#D4A017" stroke-width="3.5"/><text x="450" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917"><tspan x="450" dy="0">Spare kW ×</tspan><tspan x="450" dy="25">12 overnight hours</tspan><tspan x="450" dy="25">≥ 4,000 kWh?</tspan></text></g>
+<text x="86" y="576" font-family="Inter, Arial, sans-serif" font-size="16" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.71905;0.73333;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>150 × 12 h = 1,800 kWh</text>
+<text x="86" y="600" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.73333;0.74762;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>&lt; 4,000 → NO</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.73333;0.74762;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><rect x="596" y="378" width="44" height="23" rx="11.5" fill="#8B6914"/><text x="618" y="395" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#FEFDFB" letter-spacing="1.5">NO</text></g>
+<path d="M563 410 H673" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.75238;0.75286;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.75238;0.77143;0.98571;0.98810;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.75000;0.75238;0.77238;0.77714;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M563 410 H673" keyPoints="0;0;1;1" keyTimes="0.00000;0.75238;0.77143;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.77143;0.78571;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><polygon points="786,307 899,410 786,513 673,410" fill="#FAF1D9" stroke="#D4A017" stroke-width="3.5"/><text x="786" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#1C1917"><tspan x="786" dy="0">Spare kW ×</tspan><tspan x="786" dy="25">24 hours</tspan><tspan x="786" dy="25">≥ 4,000 kWh?</tspan></text></g>
+<text x="86" y="636" font-family="Inter, Arial, sans-serif" font-size="16" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.78571;0.80000;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>150 × 24 h = 3,600 kWh</text>
+<text x="86" y="660" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.80000;0.81429;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>&lt; 4,000 → NO</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.80000;0.81429;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><rect x="796" y="528" width="44" height="23" rx="11.5" fill="#8B6914"/><text x="804" y="545" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#FEFDFB" letter-spacing="1.5">NO</text></g>
+<path d="M786 513 V658 H1074" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#D4A017" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.81905;0.81952;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="stroke-dashoffset" values="1;1;0;0;1;1" keyTimes="0.00000;0.81905;0.85238;0.98571;0.98810;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></path>
+<circle r="8" fill="#D4A017" stroke="#FEFDFB" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.81667;0.81905;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/><animateMotion path="M786 513 V658 H1074" keyPoints="0;0;1;1" keyTimes="0.00000;0.81905;0.85238;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></circle>
+<rect x="1074" y="567" width="459" height="174" rx="10" fill="none" stroke="#D4A017" stroke-width="3.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.85238;0.86667;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/></rect>
+<text x="86" y="722" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1C1917" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.00000;0.85714;0.87143;0.96190;0.98571;1.00000" dur="21s" repeatCount="indefinite" calcMode="linear"/>Bring energy in</text>
+</g>
+</g><!-- /sbd-anim -->
+<g id="winter-note-band">
+  <rect x="66" y="763" width="1467" height="62" rx="7" fill="#F6F3ED"/>
+  <line x1="84" y1="775" x2="84" y2="812" stroke="#8B6914" stroke-width="4" stroke-linecap="round"/>
+  <text x="106" y="789" font-family="Inter, Arial, sans-serif" font-size="19" fill="#1C1917">Winter can double the need to about 8,000 kWh a day —</text>
+  <text x="106" y="813" font-family="Inter, Arial, sans-serif" font-size="19" fill="#1C1917">then even the 400 kW site needs a battery.</text>
+</g>
+<g id="source-footer">
+  <text x="66" y="842" font-family="Inter, Arial, sans-serif" font-size="14" fill="#57534E">First-pass screen. Ignores battery round-trip losses, existing site loads and charger power limits.</text>
+  <line x1="66" y1="855" x2="1533" y2="855" stroke="#E8E4DC" stroke-width="1.5"/>
+  <text x="66" y="883" font-family="Inter, Arial, sans-serif" font-size="16" fill="#57534E">AXIVAI estimates. Need = 40 buses × 60 mi × 1.5 kWh/mi ÷ 90%.</text>
+</g>
+</svg>
