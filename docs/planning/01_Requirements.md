@@ -1,8 +1,8 @@
-Read the AXIVAI white paper and produce:
+Read the AXIVAI business plan and produce:
 
 - Problem inventory (grouped)
 - MUST / SHOULD / COULD requirements
 - Non-functional requirements
 - Risk register with mitigations
 
-Map every requirement to a white paper section.
+Map every requirement to a business plan section.

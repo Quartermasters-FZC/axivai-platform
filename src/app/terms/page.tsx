@@ -1,10 +1,9 @@
 /**
  * AXIVAI Terms of Service Page
- * © 2025-2050 Aliff Capital, LLC. All Rights Reserved.
+ * © 2025–2026 Aliff Capital, LLC. All Rights Reserved.
  *
  * Comprehensive Terms of Service covering:
  * - Platform usage terms
- * - Subscription and payment terms
  * - Intellectual property
  * - Liability limitations
  * - Dispute resolution
@@ -17,32 +16,21 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Service | AXIVAI",
   description:
-    "Terms and conditions for using AXIVAI school bus electrification platform, including TCO Calculator, subscription terms, acceptable use, and user rights.",
+    "Terms and conditions for using the AXIVAI website and research tools, including the power-access gap report form, acceptable use, and user rights.",
   robots: "index, follow",
 };
 
 export default function TermsOfServicePage() {
-  const lastUpdated = "December 25, 2025";
-  const effectiveDate = "December 25, 2025";
+  const lastUpdated = "November 1, 2026";
+  const effectiveDate = "October 31, 2026";
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold gradient-text">
-            AXIVAI
-          </Link>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/">Back to Home</Link>
-          </Button>
-        </div>
-      </nav>
-
+    <div className="bg-background">
       {/* Content */}
-      <main className="py-16 px-4">
+      <main id="main-content" tabIndex={-1} className="py-16 px-4">
         <article className="container mx-auto max-w-3xl prose prose-stone dark:prose-invert">
           <div className="not-prose mb-8">
             <Badge variant="outline" className="mb-4">
@@ -103,62 +91,36 @@ export default function TermsOfServicePage() {
           <section id="services">
             <h2>3. Description of Services</h2>
             <p>
-              AXIVAI provides decision-grade infrastructure intelligence for
-              U.S. school bus electrification. Our Services include:
+              AXIVAI provides deployable power infrastructure. This website
+              includes:
             </p>
 
-            <h3>3.1 TCO Calculator</h3>
+            <h3>3.1 Company and Research Information</h3>
             <p>
-              A planning-grade Total Cost of Ownership calculator that compares
-              diesel, self-managed EV, Electrification-as-a-Service (EaaS), and
-              AXIVAI mobile charging scenarios. The TCO Calculator provides:
+              Information about AXIVAI, its services and its industry research,
+              provided for general information. It is not an offer or a
+              quotation; any service is governed by a separate written agreement.
             </p>
-            <ul>
-              <li>Fleet-specific cost estimates based on user inputs</li>
-              <li>Multi-scenario comparison with transparent assumptions</li>
-              <li>Evidence strength indicators and applicability warnings</li>
-              <li>Export capabilities (JSON/CSV)</li>
-            </ul>
 
-            <h3>3.2 AI-Powered Analysis (Preview)</h3>
+            <h3>3.2 Power-Access Gap Reports</h3>
             <p>
-              Optional AI-powered explanations and audit insights using
-              third-party AI providers (OpenAI, Anthropic, Google). AI outputs
-              are informational only and should not replace professional advice.
+              A form for describing sites where power access falls short.
+              Reports are used for research. Submitting a report creates no
+              commercial relationship, commitment or obligation for you or for
+              AXIVAI. Do not include confidential information you are not
+              permitted to share, or personal information about other people.
             </p>
 
             <h3>3.3 Future Services</h3>
             <p>
-              Additional modules including Research Engine, Solution Explorer,
-              Trust Center, and AXIVAI Chat are planned for future release.
-              These Terms will govern those services upon availability.
-            </p>
-          </section>
-
-          {/* Account Terms */}
-          <section id="accounts">
-            <h2>4. Account Registration</h2>
-            <p>
-              Some features may require account registration. If you create an
-              account, you agree to:
-            </p>
-            <ul>
-              <li>Provide accurate, current, and complete information</li>
-              <li>Maintain and update your information to keep it accurate</li>
-              <li>Maintain the security and confidentiality of your login credentials</li>
-              <li>Accept responsibility for all activities under your account</li>
-              <li>Notify us immediately of any unauthorized access or security breach</li>
-            </ul>
-            <p>
-              We reserve the right to suspend or terminate accounts that violate
-              these Terms or appear to involve fraudulent or unauthorized
-              activity.
+              Additional research tools may be released in the future. These
+              Terms will govern those services upon availability.
             </p>
           </section>
 
           {/* Acceptable Use */}
           <section id="acceptable-use">
-            <h2>5. Acceptable Use Policy</h2>
+            <h2>4. Acceptable Use Policy</h2>
             <p>
               You agree to use the Services only for lawful purposes and in
               accordance with these Terms. You may NOT:
@@ -179,7 +141,7 @@ export default function TermsOfServicePage() {
               </li>
               <li>
                 <strong>Unauthorized Access:</strong> Attempt to gain unauthorized
-                access to our systems, other users&apos; accounts, or connected
+                access to our systems, other people&apos;s data, or connected
                 networks.
               </li>
               <li>
@@ -208,7 +170,7 @@ export default function TermsOfServicePage() {
 
           {/* Intellectual Property */}
           <section id="intellectual-property">
-            <h2>6. Intellectual Property</h2>
+            <h2>5. Intellectual Property</h2>
 
             <h3>6.1 Our Ownership</h3>
             <p>
@@ -256,15 +218,14 @@ export default function TermsOfServicePage() {
 
           {/* Third-Party Services */}
           <section id="third-party">
-            <h2>7. Third-Party Services and Content</h2>
+            <h2>6. Third-Party Services and Content</h2>
             <p>
               The Services may integrate with or contain links to third-party
               services, including:
             </p>
             <ul>
-              <li>AI providers (OpenAI, Anthropic, Google)</li>
               <li>Data sources (EIA, EPA, government databases)</li>
-              <li>Analytics and infrastructure providers</li>
+              <li>Hosting and infrastructure providers</li>
             </ul>
             <p>
               Your use of third-party services is governed by their respective
@@ -275,7 +236,7 @@ export default function TermsOfServicePage() {
 
           {/* Disclaimers */}
           <section id="disclaimers">
-            <h2>8. Disclaimers</h2>
+            <h2>7. Disclaimers</h2>
 
             <h3>8.1 &quot;As Is&quot; Provision</h3>
             <p className="uppercase text-sm">
@@ -288,9 +249,8 @@ export default function TermsOfServicePage() {
 
             <h3>8.2 No Professional Advice</h3>
             <p>
-              The Services, including TCO calculations and AI insights, provide
-              <strong> planning-grade estimates only</strong> and do not
-              constitute:
+              The Services provide <strong>general research information only</strong>
+              and do not constitute:
             </p>
             <ul>
               <li>Financial, investment, or accounting advice</li>
@@ -311,7 +271,6 @@ export default function TermsOfServicePage() {
               <li>All data, calculations, or estimates are accurate, complete, or current</li>
               <li>Default assumptions apply to your specific situation</li>
               <li>Third-party data sources are error-free or up-to-date</li>
-              <li>AI-generated content is factually correct or bias-free</li>
             </ul>
             <p>
               Users are responsible for verifying outputs against their own
@@ -328,7 +287,7 @@ export default function TermsOfServicePage() {
 
           {/* Limitation of Liability */}
           <section id="liability">
-            <h2>9. Limitation of Liability</h2>
+            <h2>8. Limitation of Liability</h2>
             <p className="uppercase text-sm">
               <strong>To the maximum extent permitted by applicable law, Aliff
               Capital, LLC and its officers, directors, employees, agents,
@@ -355,7 +314,7 @@ export default function TermsOfServicePage() {
 
           {/* Indemnification */}
           <section id="indemnification">
-            <h2>10. Indemnification</h2>
+            <h2>9. Indemnification</h2>
             <p>
               You agree to indemnify, defend, and hold harmless Aliff Capital,
               LLC and its officers, directors, employees, agents, and affiliates
@@ -367,13 +326,12 @@ export default function TermsOfServicePage() {
               <li>Your violation of these Terms</li>
               <li>Your violation of any third-party rights</li>
               <li>Your User Content</li>
-              <li>Any misuse of the Services under your account</li>
             </ul>
           </section>
 
           {/* Dispute Resolution */}
           <section id="disputes">
-            <h2>11. Dispute Resolution</h2>
+            <h2>10. Dispute Resolution</h2>
 
             <h3>11.1 Governing Law</h3>
             <p>
@@ -385,7 +343,7 @@ export default function TermsOfServicePage() {
             <h3>11.2 Informal Resolution</h3>
             <p>
               Before filing any formal dispute, you agree to contact us at{" "}
-              <a href="mailto:legal@aliffcapital.com">legal@aliffcapital.com</a>{" "}
+              <a href="mailto:legal@axivai.com">legal@axivai.com</a>{" "}
               to attempt to resolve the dispute informally. Most disputes can
               be resolved within 30 days.
             </p>
@@ -418,11 +376,11 @@ export default function TermsOfServicePage() {
 
           {/* Termination */}
           <section id="termination">
-            <h2>12. Termination</h2>
+            <h2>11. Termination</h2>
             <p>
               <strong>Termination by You:</strong> You may stop using the
-              Services at any time. If you have an account, you may request
-              account deletion by contacting us.
+              Services at any time. You may ask us to delete a gap report you
+              submitted by contacting us.
             </p>
             <p>
               <strong>Termination by Us:</strong> We may suspend or terminate
@@ -432,7 +390,6 @@ export default function TermsOfServicePage() {
             <ul>
               <li>Violation of these Terms</li>
               <li>Conduct harmful to us, other users, or third parties</li>
-              <li>Extended periods of inactivity (for accounts)</li>
               <li>Business reasons (e.g., discontinuation of Services)</li>
             </ul>
             <p>
@@ -446,7 +403,7 @@ export default function TermsOfServicePage() {
 
           {/* Changes to Terms */}
           <section id="changes">
-            <h2>13. Changes to These Terms</h2>
+            <h2>12. Changes to These Terms</h2>
             <p>
               We may modify these Terms at any time. When we make material
               changes:
@@ -465,7 +422,7 @@ export default function TermsOfServicePage() {
 
           {/* General Provisions */}
           <section id="general">
-            <h2>14. General Provisions</h2>
+            <h2>13. General Provisions</h2>
 
             <h3>14.1 Entire Agreement</h3>
             <p>
@@ -508,38 +465,26 @@ export default function TermsOfServicePage() {
 
           {/* EU-Specific Terms */}
           <section id="eu-terms">
-            <h2>15. Additional Terms for EU Users</h2>
+            <h2>14. Additional Terms for EU Users</h2>
             <p>
               If you are a consumer in the European Union:
             </p>
             <ul>
               <li>
-                <strong>Right of Withdrawal:</strong> For paid digital services,
-                you have 14 days to withdraw from a purchase. By requesting
-                immediate access to digital content, you may waive this right.
-              </li>
-              <li>
                 <strong>Consumer Rights:</strong> Nothing in these Terms limits
                 your statutory consumer rights under applicable EU law.
               </li>
               <li>
-                <strong>Dispute Resolution:</strong> You may submit disputes to
-                the EU Online Dispute Resolution platform at{" "}
-                <a
-                  href="https://ec.europa.eu/odr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://ec.europa.eu/odr
-                </a>
-                .
+                <strong>Dispute Resolution:</strong> You may also bring a
+                complaint before the consumer authority or courts of your
+                country of residence where applicable law allows.
               </li>
             </ul>
           </section>
 
           {/* Contact */}
           <section id="contact">
-            <h2>16. Contact Information</h2>
+            <h2>15. Contact Information</h2>
             <p>
               For questions about these Terms, please contact us:
             </p>
@@ -549,10 +494,7 @@ export default function TermsOfServicePage() {
               Legal Department
               <br />
               Email:{" "}
-              <a href="mailto:legal@aliffcapital.com">legal@aliffcapital.com</a>
-              <br />
-              Website:{" "}
-              <Link href="https://aliffcapital.com">aliffcapital.com</Link>
+              <a href="mailto:legal@axivai.com">legal@axivai.com</a>
             </address>
           </section>
 
@@ -576,36 +518,6 @@ export default function TermsOfServicePage() {
         </article>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t py-12 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <p className="font-bold gradient-text text-lg">AXIVAI</p>
-              <p className="text-sm text-muted-foreground">
-                Resilience Infrastructure for School Bus Electrification
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-foreground">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-foreground">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="hover:text-foreground">
-                Cookie Policy
-              </Link>
-              <Link href="/accessibility" className="hover:text-foreground">
-                Accessibility
-              </Link>
-            </div>
-          </div>
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            © 2025–2050 Aliff Capital, LLC. All Rights Reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

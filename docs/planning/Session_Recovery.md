@@ -1,6 +1,6 @@
 ## SESSION RECOVERY PROTOCOL
 
-1. Re-read /Planning/AXIVAI_Whitepaper_VNext.docx.md
+1. Re-read /Planning/AXIVAI_Business_Plan_October_2026.md
 2. Summarize it in 12 bullets
 3. List all finalized decisions found in /Planning
 4. List unresolved questions and data gaps

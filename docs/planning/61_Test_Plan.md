@@ -1,5 +1,5 @@
 Define acceptance tests for:
 - Research accuracy
-- TCO correctness
+- Gap report validation, spam controls and storage
 - Chatbot grounding
 - Compliance

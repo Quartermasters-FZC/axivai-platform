@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CookieConsent } from "@/components/cookie-consent/CookieConsent";
+import { SITE } from "@/lib/site";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -14,34 +21,42 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AXIVAI - School Bus Electrification Platform",
+  title: "AXIVAI | Deployable power infrastructure",
   description:
-    "Decision-grade infrastructure intelligence for U.S. school bus electrification. Planning-grade TCO calculator, research engine, and mobile charging solutions.",
+    "AXIVAI delivers usable electrical capacity where fixed infrastructure is too slow, too limited or too inflexible: battery power trucked to fleet depots and sites waiting on the grid, through modular storage, mission-specific deployment and managed operations.",
   keywords: [
-    "electric school bus",
-    "school bus electrification",
-    "TCO calculator",
-    "mobile charging",
-    "EPA Clean School Bus Program",
-    "V1G",
-    "fleet electrification",
+    "deployable power",
+    "modular energy storage",
+    "temporary power",
+    "mobile battery storage",
+    "fleet charging",
+    "electric school bus charging",
+    "managed charging",
+    "power resilience",
   ],
-  authors: [{ name: "Aliff Capital, LLC", url: "https://aliffcapital.com" }],
+  authors: [{ name: SITE.entity }],
   openGraph: {
-    title: "AXIVAI - School Bus Electrification Platform",
+    title: "AXIVAI | Power anywhere. Ready when needed.",
     description:
-      "Decision-grade infrastructure intelligence for U.S. school bus electrification",
+      "Deployable power infrastructure: mobile, stationed or managed capacity where conventional infrastructure falls short.",
     url: "https://axivai.com",
     siteName: "AXIVAI",
     type: "website",
     images: [
       {
-        url: "/images/axivai-three-lanes-architecture.svg",
+        url: "/og/axivai-og.jpg",
         width: 1200,
-        height: 800,
-        alt: "AXIVAI Three-Lane Mobile Charging Architecture showing Direct Injection, Mothership, and Valet solutions",
+        height: 630,
+        alt: "AXIVAI: Power anywhere. Ready when needed. Deployable power infrastructure, beside a rendering of a battery transport trailer at sunrise.",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AXIVAI | Power anywhere. Ready when needed.",
+    description:
+      "Deployable power infrastructure: mobile, stationed or managed capacity where conventional infrastructure falls short.",
+    images: ["/og/axivai-og.jpg"],
   },
   metadataBase: new URL("https://axivai.com"),
 };
@@ -54,11 +69,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${montserrat.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col`}
       >
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <SiteHeader />
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -69,13 +85,13 @@ export default function RootLayout({
               name: "AXIVAI",
               url: "https://axivai.com",
               description:
-                "Decision-grade infrastructure intelligence for U.S. school bus electrification.",
-              logo: "https://axivai.com/logo.png",
-              sameAs: ["https://aliffcapital.com"],
+                "Deployable power infrastructure: modular storage, mission-specific deployment and managed operations.",
+              logo: "https://axivai.com/brand/axivai-wordmark.png",
+              founder: { "@type": "Organization", name: SITE.entity, url: SITE.entityUrl },
               contactPoint: {
                 "@type": "ContactPoint",
-                email: "privacy@aliffcapital.com",
-                contactType: "customer service",
+                email: SITE.email.privacy,
+                contactType: "privacy",
                 availableLanguage: ["en"],
               },
             }),
@@ -90,38 +106,11 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "AXIVAI",
               url: "https://axivai.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://axivai.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
             }),
           }}
         />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ImageObject",
-              name: "AXIVAI Three-Lane Mobile Charging Architecture",
-              description:
-                "Diagram showing AXIVAI's three-lane mobile charging solution: Direct Injection (Class 6 trucks, 500kWh), Mothership (Class 8 trailers, 2MWh), and Valet (electric vans, 150kWh) powered by wholesale energy sources at $0.03-$0.08/kWh",
-              url: "https://axivai.com/images/axivai-three-lanes-architecture.svg",
-              contentUrl: "https://axivai.com/images/axivai-three-lanes-architecture.svg",
-              license: "https://axivai.com/terms",
-              acquireLicensePage: "https://axivai.com/terms",
-              creditText: "AXIVAI by Aliff Capital",
-              creator: {
-                "@type": "Organization",
-                name: "AXIVAI",
-              },
-            }),
-          }}
-        />
-        {children}
-        <CookieConsent />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );
