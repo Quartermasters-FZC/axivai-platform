@@ -9,8 +9,10 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createClient() {
-  const url = process.env.DATABASE_URL;
-  if (!url) throw new Error("DATABASE_URL is not set");
+  const raw = process.env.DATABASE_URL;
+  if (!raw) throw new Error("DATABASE_URL is not set");
+  // Hostinger's generated URL uses localhost, which can resolve to IPv6; force IPv4.
+  const url = raw.replace("@localhost:", "@127.0.0.1:");
   return new PrismaClient({
     adapter: new PrismaMariaDb(url),
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],

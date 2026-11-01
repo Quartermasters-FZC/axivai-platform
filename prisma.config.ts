@@ -9,6 +9,7 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Hostinger's generated URL uses localhost, which can resolve to IPv6; force IPv4.
+    url: process.env["DATABASE_URL"]?.replace("@localhost:", "@127.0.0.1:"),
   },
 });
