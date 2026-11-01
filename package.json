@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node -e \"process.exit(process.env.DATABASE_URL ? 0 : 1)\" && prisma migrate deploy; next build",
+    "build": "node -e \"process.exit(process.env.DATABASE_URL ? 0 : 1)\" && prisma migrate deploy; next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
